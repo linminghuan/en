@@ -1,0 +1,21 @@
+#page a {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	border: 1px solid #126AE1;
+	border-radius: 5px;
+	margin-right: 5px;
+	text-align: center;
+	line-height: 22px;
+}
+#page .current {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	border: 1px solid #126AE1;
+	border-radius: 5px;
+	margin-right: 5px;
+	background: #1E86E4;
+	text-align: center;
+	line-height: 22px;
+}

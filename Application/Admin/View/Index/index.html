@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<include file="./Application/Admin/View/Layouts/resouce.html" title="后台首页"/>
+</head>
+<body>
+	<div class="container-fluid">
+		<include file="./Application/Admin/View/Layouts/header.html"/>
+		<div class="row">
+			<include file="./Application/Admin/View/Layouts/left_nav.html"/>
+			<div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">
+				<div class="panel panel-default">
+		   			<div class="panel-body">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<include file="./Application/Admin/View/Layouts/footer.html"/>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	InitNav($('#left_nav li'),"{$category}");
+</script>
