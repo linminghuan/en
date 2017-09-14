@@ -19,7 +19,7 @@
 		<div class="panel panel-default">
 		    <div class="panel-body">
 			    <h2 class="text-left col-sm-offset-2">资源环境招生网后台登陆</h2>
-		    	<form class="form-horizontal" role="form" action="/index.php/Auth/login" id="login" method="post">
+		    	<form class="form-horizontal" role="form" action="/index.php/Admin/Auth/login" id="login" method="post">
 				<div class="form-group">
 					<label for="name" class="col-sm-2 control-label">用户名</label>
 					<div class="col-sm-6">

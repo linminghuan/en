@@ -21,9 +21,9 @@
 						<div class="row">
 							<form class="form-horizontal" role="form" method="post" action="__URL__/update/id/{$data.id}"> 
 							<div class="form-group">
-								<label for="note" class="col-sm-2 control-label">描述</label>
+								<label for="discription" class="col-sm-2 control-label">描述</label>
 								<div class="col-sm-10">
-								<input type="text" class="form-control" id="note" name="note" placeholder="请输入描述" value="{$data.note}">
+								<input type="text" class="form-control" id="discription" name="discription" placeholder="请输入描述" value="{$data.discription}">
 								</div>
 							</div>
 							<div class="form-group">
@@ -33,6 +33,18 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label for="editor" class="col-sm-2 control-label">编辑者</label>
+								<div class="col-sm-10">
+								<input type="text" class="form-control" id="editor" name="editor" placeholder="请输入编辑者" value="{$data.editor}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="sort" class="col-sm-2 control-label">排序</label>
+								<div class="col-sm-10">
+								<input type="number" class="form-control" id="sort" name="sort" placeholder="请输入排序" value="{$data.sort}">
+								</div>
+							</div>
+							<!-- <div class="form-group">
 								<label for="category" class="col-sm-2 control-label">图片类型</label>
 								<div class=" col-sm-2">
 									<select class="form-control" name="category" id="category">
@@ -40,13 +52,13 @@
 										<option value="student">学生风采</option>
 									</select>
 								</div>
-							</div>
+							</div> -->
 							<div class="form-group">
 								<label for="status" class="col-sm-2 control-label">是否显示</label>
 								<div class="col-sm-2">
-									<label>
+									<!-- <label>
 										<input type="radio" name="status" id="status1" value="2" checked> 首页显示
-									</label>
+									</label> -->
 									<label>
 										<input type="radio" name="status" id="status1" value="1"> 显示
 									</label>
@@ -56,10 +68,29 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">图片</label>
+								<label class="col-sm-2 control-label">原图片</label>
 								<!-- 加载编辑器的容器 -->
-							    <img id="photo_url" src="{$data.url}">
-							    <input type="hidden" name="url" value="{$data.url}">
+							    <img id="photo_url" src="{$data.url}" style="width:30%;">
+							    <input type="disabled" name="oldUrl" value="{$data.url}" style="display:none">
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">新图片</label>
+								<!-- 加载编辑器的容器 -->
+							    <texterea id="ue_container" name="url" type="text/plain" class="col-sm-9" style="height:290px;"></texterea>
+							    <!-- 配置文件 -->
+							    <script type="text/javascript" src="__ROOT__/Application/Common/Ueditor/ueditor.config.js"></script>
+							    <!-- 编辑器源码文件 -->
+							    <script type="text/javascript" src="__ROOT__/Application/Common/Ueditor/ueditor.all.js"></script>
+							    <!-- 实例化编辑器 -->
+							    <script type="text/javascript">
+							        var ue = UE.getEditor('ue_container',{toolbars: [[
+								        'simpleupload', //单图上传
+								        //'insertimage', //多图上传
+							        ]]});
+							        uParse('.ue_container', {
+									    rootPath: '../'
+									});
+							    </script>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
@@ -80,7 +111,7 @@
 <script type="text/javascript">
 	InitRadio($("input[name='status']"),"{$data.status}");
 	InitNav($('#left_nav li'),"{$category}");
-	InitCategory($('#category')[0],$('#sub_category')[0],"{$data.category}","{$data.sub_category}");
+	// InitCategory($('#category')[0],$('#sub_category')[0],"{$data.category}","{$data.sub_category}");
 	$(function (){
 		$("#photo_form").validate({
 	    	rules:{

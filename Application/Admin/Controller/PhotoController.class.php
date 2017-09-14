@@ -10,11 +10,18 @@
 namespace Admin\Controller;
 
 use Think\Controller;
+use Admin\Traits\AuthTrait;
+use Admin\Traits\UtilTrait;
 
 error_reporting(E_ALL ^ E_NOTICE);
 
-class PhotoController extends Controller{
-	public function index(){
+class PhotoController extends Controller
+{
+	use AuthTrait;
+	use UtilTrait;
+	
+	public function index()
+	{
 		$photo = M('photos');
 		$p = 1;
 		$status = $_GET['status'];
@@ -45,17 +52,23 @@ class PhotoController extends Controller{
 		$this->display('Photo/index'); // 输出模板
 	}
 
-	public function insert(){
-		$photo = D('photos');
+	public function insert()
+	{
+		$photo = D('photo');//D方法实例化时需要传入完整类名，而不是表名；
 		if($photo->create()){
 			$result = $photo->add();
 			if($result){
 				$this->redirect('Admin/Photo/index', '',2, '<meta charset="UTF-8"><font style='.'font-family:"微软雅黑";font-size:35px;color:#555;'.'>图片增加成功</font>');
 			}else{
-				$this->error('增加文章失败');
+				$this->error('500错误,增加图片失败');
 			}
 		}else{
-			$this->error($article->getError());
+			if(APP_DEBUG){
+				$this->error($photo->getError());
+			}else{
+				$this->error('500错误,增加图片失败');
+			}
+			
 		}
 		/*$oldurl = $this->GetImgUrl(I('post.url'));
 		$photoName = strchr($oldurl,"Temp/");
@@ -81,7 +94,8 @@ class PhotoController extends Controller{
 		}*/
 	}
 
-	public function edit($id){
+	public function edit($id)
+	{
 		$photo = M('photos');
 		if($id == 0){
 			$data = $photo->select();
@@ -100,16 +114,26 @@ class PhotoController extends Controller{
 		}
 	}
 
-	public function create(){
+	public function create()
+	{
 		$photo = M('photos');
 		$category = "photo";
 		$this->assign('category',$category);
 		$this->display('Photo/create');
 	}
 
-	public function update($id){
-		$photo = D('photos');
+	public function update($id)
+	{
+		$photo = D('photo');
 		if($photo->create()){
+			//替换图片
+			$oldUrl = I('oldUrl');
+			if(isset($photo->url)){
+				$res = $this->delFile($oldUrl);
+				if(!$res) $this->error('500，服务器错误'); 
+			}else{
+				$photo->url = $oldUrl;
+			}
 			$result = $photo->where('id = '.$id)->save();
 			if($result !== false){
 				$this->redirect('Admin/Photo/index', '',2, '<meta charset="UTF-8"><font style='.'font-family:"微软雅黑";font-size:35px;color:#555;'.'>图片更新成功</font>');
@@ -117,15 +141,20 @@ class PhotoController extends Controller{
 				$this->error($photo->getError());
 			}
 		}else{
-			$this->error($photo->getError());
+			if(APP_DEBUG){
+				$this->error($photo->getError());
+			}else{
+				$this->error('500错误,更新图片失败');
+			}
 		}
 	}
 
-	public function delete($id){
+	public function delete($id)
+	{
 		$photo = M('photos');
 		$data = $photo->find($id);
-		$tmp = str_replace("/zhaosheng/","./",$data['url']);
-		if(unlink($tmp)){
+		$res = $this->delFile($data['url']);
+		if($res){
 			$result = $photo->delete($id);
 			if($result){
 				$this->success('删除成功');
@@ -137,12 +166,11 @@ class PhotoController extends Controller{
 		}
 	}
 
-	public function GetImgUrl($str){
-		$str = strchr($str,"/");
-		$str = strchr($str,"&quot;",true);
-		return $str;
+	public function batchDel()
+	{
+		$photo = M('photos');
+		$this->uBatchDel($photo);
 	}
-
 
 }
 

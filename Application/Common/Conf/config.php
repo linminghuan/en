@@ -16,4 +16,6 @@ return array(
 	//'DB_PREFIX'=>'ywev',// 数据库表前缀
 
 	'DB_CHARSET'=>'utf8',// 数据库字符集
+
+	'UPLOAD_PREFIX' => '/yuanwangEnglish',
 );

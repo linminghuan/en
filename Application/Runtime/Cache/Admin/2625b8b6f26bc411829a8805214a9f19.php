@@ -3,7 +3,7 @@
 <head>
 	<head>
 	<meta charset="UTF-8">
-	<title>管理图片</title>
+	<title>图片管理</title>
 	<link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/Public/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/Public/Admin/Css/common.css">
@@ -51,24 +51,24 @@
 						<div class="row">
 							<div class="row">
 								<form class="form-inline" role="form" action="/index.php/Admin/Photo/index" method="get">
-									<div class="col-md-3">
+									<!-- <div class="col-md-3">
 										<div class="form-group">
 											<div class=" col-sm-5">
 												<select class="form-control" name="category">
 													<option value="">图片类型</option>
 													<option value="student">学生风采</option>
-													<!-- <option value="banner">banner轮播</option>
-													<option value="famous">名师风采</option> -->
+													<option value="banner">banner轮播</option>
+													<option value="famous">名师风采</option>
 												</select>
 											</div>
 										</div>
-									</div>
+									</div> -->
 									<div class="col-md-3">
 										<div class="form-group">
 											<div class=" col-sm-12">
 												<select class="form-control" name="status" id="status">
 													<option value="">是否显示</option>
-													<option value="2">首页显示</option>
+													<!-- <option value="2">首页显示</option> -->
 													<option value="1">显示</option>
 													<option value="0">不显示</option>
 												</select>
@@ -90,8 +90,8 @@
 							<tr>
 							<th width="10px">#</th>
 							<th>描述</th>
-							<th>作者</th>
-							<th>图片类型</th>
+							<th>编辑者</th>
+							<!-- <th>图片类型</th> -->
 							<th>是否显示</th>
 							<th>更新日期</th>
 							<th>操作</th>
@@ -100,21 +100,23 @@
 							<tbody>
 							<tr>
 								<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$photo): $mod = ($i % 2 );++$i;?><tr>
-										<td><input class="checkbox-batch" name="checkbox[]" type="checkbox" data-group="photos"></td>
+										<td><input class="checkbox-batch" name="checkbox" type="checkbox" data-group="photos" value="<?php echo ($photo["id"]); ?>"></td>
 
-										<td><?php echo ($photo["note"]); ?></td>
-										<td><?php echo ($photo["author"]); ?></td>
-										<td>
+										<td><?php echo ($photo["discription"]); ?></td>
+										<td><?php echo ($photo["editor"]); ?></td>
+										<!-- <td>
 											<?php switch($photo["category"]): case "student": ?>学生风采<?php break;?>
 											    <?php case "banner": ?>banner轮播<?php break;?>
 											    <?php case "famous": ?>名师风采<?php break; endswitch;?>
-										</td>
+										</td> -->
 										<td>
-											<?php if($photo["status"] == 2): ?>首页显示
+											<!-- <?php if($photo["status"] == 2): ?>首页显示
 											<?php elseif($photo["status"] == 1): ?>显示
+											<?php else: ?>不显示<?php endif; ?> -->
+											<?php if($photo["status"] == 1): ?>显示
 											<?php else: ?>不显示<?php endif; ?>
 										</td>
-										<td><?php echo (date("Y-m-d",$photo["update_at"])); ?></td>
+										<td><?php echo ($photo["update_at"]); ?></td>
 										<td>
 											<a href="/index.php/Admin/Photo/edit/id/<?php echo ($photo["id"]); ?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
 											<a href="/index.php/Admin/Photo/delete/id/<?php echo ($photo["id"]); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
@@ -124,7 +126,13 @@
 							</tbody>
 							</table>
 						</div>
-						<div class="result page" id="page"><?php echo ($page); ?></div>
+						<div class="row">
+							<div class="col-md-4">
+								<input id="checkall" class="checkbox-batch" name="checkbox" type="checkbox" value="">
+								<button id="batchDelBtn" class="btn btn-danger" type="submit">批量删除</button>
+							</div>
+							<div class="result page" id="page"><?php echo ($page); ?></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -138,5 +146,9 @@
 <script type="text/javascript">
 	// InitRadio($("input[name='status']"),"<?php echo ($data["status"]); ?>");
 	InitNav($('#left_nav li'),"<?php echo ($category); ?>");
+	checkAll("#checkall");
+	batchDel('#batchDelBtn', '/index.php/Admin/Photo/batchDel');
 	// InitCategory($('#category')[0].options,"<?php echo ($data["category"]); ?>");
+	//批量删除
+	
 </script>
