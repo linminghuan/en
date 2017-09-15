@@ -84,7 +84,7 @@
 </body>
 </html>
 <script type="text/javascript">
-	
+	InitNav($('#left_nav li'),"<?php echo ($category); ?>");
 </script>
 <?php
  function rend($params) { rendCategory($params); } function rendCategory($params, $t = -10) { $translate = ['是', '否']; foreach($params as $key => $value){ $tmp = 'margin-left:'.$t.'px;'; echo "<div class='row' style='height:36px;".$tmp."margin-top: 10px;border-bottom:2px solid #20D181;border-left: 1px solid #20D181;'>"; echo "<span class='col-xs-1'>".$value['id']."</span>"; echo "<span class='col-xs-3'>".$value['name']."</span>"; echo "<span class='col-xs-1'>".$value['sort']."</span>"; echo "<div class='col-xs-3'>"; echo "<span class='col-xs-6'>".$translate[$value['homepage']]."</span>"; echo "<span class='col-xs-6'>".$translate[$value['status']]."</span>"; echo '</div>'; echo "<div class='col-xs-4'>"; echo "<span class='col-xs-6'><a href='/index.php/Admin/Category/create/pid/".$value['id']."' class='btn btn-success btn-xs'><i class='fa fa-plus'></i></a></span>"; echo "<span class='col-xs-3'><a href='/index.php/Admin/Category/edit/pid/".$value['pid']."/id/".$value['id']."' class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></a></span>"; echo "<span class='col-xs-3'><a href='/index.php/Admin/Category/delete/pid/".$value['pid']."/id/".$value['id']."' class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></a></span>"; echo '</div>'; echo '</div>'; if(null != $value['next']){ $t += 20; rendCategory($value['next'], $t); } $t = -10; } } ?>

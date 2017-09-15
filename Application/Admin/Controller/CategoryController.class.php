@@ -28,6 +28,7 @@ class CategoryController extends Controller
 		}
 		$pid = $data[0]['id'];
 		$pname = $data[0]['name'];
+		$this->assign('category', 'category');
 		$this->assign('pid', $pid);
 		$this->assign('pname', $pname);
 		$this->display('Category/create');
@@ -58,6 +59,7 @@ class CategoryController extends Controller
 		$category = M('categories');
 		$data = $category->where("name='menu'")->field('id')->select();
 		$res = $this->subCategory($category, $data[0]['id']);
+		$this->assign('category', 'category');
 		$this->assign('data', $res);
 		$this->display('Category/index');
 
@@ -96,6 +98,7 @@ class CategoryController extends Controller
 					}
 				}
 				$data['pname'] = $tmp['name'];
+				$this->assign('category', 'category');
 				$this->assign('data',$data);
 				$this->display('Category/edit');
 			}else{

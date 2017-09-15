@@ -33,7 +33,7 @@
 			<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2" id="left_nav">
 	<ul class="nav nav-pills nav-stacked">
 		<li id="l_index"><a href="/Admin/Index/index">首页</a></li>
-		<li id="l_downfile"><a href="/Admin/Category/index">栏目管理</a></li>
+		<li id="l_category"><a href="/Admin/Category/index">栏目管理</a></li>
 		<li id="l_article"><a href="/Admin/Article/index">文章管理</a></li>
 		<li id="l_photo"><a href="/Admin/Photo/index">图片管理</a></li>
 	</ul>
@@ -109,7 +109,7 @@
 </html>
 <script type="text/javascript">
 	InitRadio($("input[name='status']"),"<?php echo ($data["status"]); ?>");
-	InitNav($('#left_nav li'),"<?php echo ($category); ?>");
+	InitNav($('#left_nav li'), "<?php echo ($category); ?>");
 	InitRadio($("input[name='homepage']"),"<?php echo ($data["homepage"]); ?>");
 	//InitCategory($('#category')[0].options,"<?php echo ($data["category"]); ?>");
 	$(function (){
