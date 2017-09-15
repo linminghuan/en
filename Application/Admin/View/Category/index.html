@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<include file="./Application/Admin/View/Layouts/resouce.html" title="栏目管理"/>
+	<style type="text/css">
+		#category span{
+
+		}
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<include file="./Application/Admin/View/Layouts/header.html"/>
+		<div class="row">
+			<include file="./Application/Admin/View/Layouts/left_nav.html"/>
+			<div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+							<ol class="breadcrumb">
+							    <li><a href="__ROOT__/Admin/Index/index">首页</a></li>
+							    <li>栏目管理</li>
+							</ol>
+						</div>
+						<div class="row">
+							<div class="row">
+								<div class="col-md-1 pull-right">
+									<a href="__URL__/create" class="btn btn-success">新增</a>
+								</div>
+							</div>
+							<div class="row" style="width:95%;">
+								<div id="category" style="margin-left:36px;">
+									<div class="row" style="height:25px;margin-top: 5 px;border-bottom:2px solid #666;">
+										<span class="col-md-1">序号</span>
+										<span class="col-md-5">分类名称</span>
+										<span class="col-md-1">排序</span>
+										<span class="col-md-1">是否导航</span>
+										<span class="col-md-1">是否显示</span>
+										<span class="col-md-1">新增子栏目</span>
+										<span class="col-md-1">编辑</span>
+										<span class="col-md-1">删除</span>
+									</div>
+									<div class="row" style="height:36px;margin-top: 10px;border-bottom:2px solid #666;">
+										<span class="col-md-1">1</span>
+										<span class="col-md-5">通知公告</span>
+										<span class="col-md-1">1</span>
+										<span class="col-md-1">否</span>
+										<span class="col-md-1">是</span>
+										<span class="col-md-1"><a href="__URL__/create" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></span>
+										<span class="col-md-1"><a href="__URL__/edit/id/{$photo.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></span>
+										<span class="col-md-1"><a href="__URL__/delete/id/{$photo.id}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		console.log($('#category'));
+	});
+</script>

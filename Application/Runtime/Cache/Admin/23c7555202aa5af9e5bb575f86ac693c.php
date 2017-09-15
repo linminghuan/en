@@ -3,7 +3,7 @@
 <head>
 	<head>
 	<meta charset="UTF-8">
-	<title>新增图片</title>
+	<title>新增栏目</title>
 	<link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/Public/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/Public/Admin/Css/common.css">
@@ -33,9 +33,9 @@
 			<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2" id="left_nav">
 	<ul class="nav nav-pills nav-stacked">
 		<li id="l_index"><a href="/Admin/Index/index">首页</a></li>
+		<li id="l_downfile"><a href="/Admin/Category/index">栏目管理</a></li>
 		<li id="l_article"><a href="/Admin/Article/index">文章管理</a></li>
 		<li id="l_photo"><a href="/Admin/Photo/index">图片管理</a></li>
-		<li id="l_downfile"><a href="/Admin/Downfile/index">附件管理</a></li>
 		<li id="l_video"><a href="/Admin/Video/index">视频管理</a></li>
 	</ul>
 </div>
@@ -45,28 +45,23 @@
 						<div class="row">
 							<ol class="breadcrumb">
 							    <li><a href="/Admin/Index/index">首页</a></li>
-							    <li><a href="/Admin/Photo/index">图片管理</a></li>
-							    <li>新增图片</li>
+							    <li><a href="/Admin/Category/index">栏目管理</a></li>
+							    <li>新增栏目</li>
 							</ol>
 						</div>
 						<div class="row">
-							<form class="form-horizontal" name="photo_form" role="form" method="post" action="/index.php/Admin/Photo/insert"> 
+							<form class="form-horizontal" name="category_form" role="form" method="post" action="/index.php/Admin/Category/insert"> 
 							<div class="form-group">
-								<label for="discription" class="col-sm-2 control-label">描述</label>
+								<label for="name" class="col-sm-2 control-label">栏目名</label>
 								<div class="col-sm-10">
-								<input type="text" class="form-control" id="discription" name="discription" placeholder="请输入描述">
+								<input type="text" class="form-control" id="name" name="name" placeholder="请输入栏目名">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="author" class="col-sm-2 control-label">作者</label>
+								<label for="pid" class="col-sm-2 control-label">父级栏目</label>
 								<div class="col-sm-10">
-								<input type="text" class="form-control" id="author" name="author" placeholder="请输入作者">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="editor" class="col-sm-2 control-label">编辑者</label>
-								<div class="col-sm-10">
-								<input type="text" class="form-control" id="editor" name="editor" placeholder="请输入编辑者">
+								<input type="text" class="form-control" id="pid" name="pid" value="<?php echo ($pid); ?>" style="display:none;">
+								<input type="text" class="form-control" value="<?php echo ($pname); ?>" disabled="true">
 								</div>
 							</div>
 							<div class="form-group">
@@ -75,31 +70,20 @@
 								<input type="number" class="form-control" id="sort" name="sort" placeholder="请输入排序">
 								</div>
 							</div>
-							<!-- <div class="form-group">
-								<label for="category" class="col-sm-2 control-label">图片类型</label>
-								<div class=" col-sm-2">
-									<select class="form-control" name="category" id="category">
-										<option value="student">学生风采</option>
-										<option value="banner">banner轮播</option>
-										<option value="famous">名师风采</option>
-									</select>
+							<div class="form-group">
+								<label for="homepage" class="col-sm-2 control-label">是否导航</label>
+								<div class="col-sm-2">
+									<label>
+										<input type="radio" name="homepage" id="homepage1" value="1" checked> 显示
+									</label>
+									<label>
+										<input type="radio" name="homepage" id="homepage2" value="0">不显示
+									</label>
 								</div>
-								<label for="sub_category" class="col-sm-2 control-label">图片二级类型</label>
-								<div class=" col-sm-2">
-									<select class="form-control" name="sub_category" id="sub_category" disabled="true">
-										<option></option>
-										<option value="star_teacher">名师</option>
-									    <option value="professor">教授</option>
-									    <option value="associate_professor">副教授</option>
-									</select>
-								</div>
-							</div> -->
+							</div>
 							<div class="form-group">
 								<label for="status" class="col-sm-2 control-label">是否显示</label>
 								<div class="col-sm-2">
-									<!-- <label>
-										<input type="radio" name="status" id="status1" value="2" checked> 首页显示
-									</label> -->
 									<label>
 										<input type="radio" name="status" id="status1" value="1" checked> 显示
 									</label>
@@ -107,25 +91,6 @@
 										<input type="radio" name="status" id="status2" value="0">不显示
 									</label>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">图片</label>
-								<!-- 加载编辑器的容器 -->
-							    <texterea id="ue_container" name="url" type="text/plain" class="col-sm-9" style="height:290px;"></texterea>
-							    <!-- 配置文件 -->
-							    <script type="text/javascript" src="/Application/Common/Ueditor/ueditor.config.js"></script>
-							    <!-- 编辑器源码文件 -->
-							    <script type="text/javascript" src="/Application/Common/Ueditor/ueditor.all.js"></script>
-							    <!-- 实例化编辑器 -->
-							    <script type="text/javascript">
-							        var ue = UE.getEditor('ue_container',{toolbars: [[
-								        'simpleupload', //单图上传
-								        //'insertimage', //多图上传
-							        ]]});
-							        uParse('.ue_container', {
-									    rootPath: '../'
-									});
-							    </script>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
@@ -147,9 +112,9 @@
 	InitNav($('#left_nav li'),"<?php echo ($category); ?>");
 	//InitCategory($('#category')[0].options,"<?php echo ($data["category"]); ?>");
 	$(function (){
-		$("#photo_form").validate({
+		$("#category_form").validate({
 	    	rules:{
-	    		discription:{
+	    		name:{
 	    			required:true,
 	    			maxlength:255
 	    		},/*
@@ -160,7 +125,7 @@
 	    		status:"required",
 	    	},
 	    	messages:{
-	    		discription:{
+	    		name:{
 	    			required:"请填写图片描述",
 	    			maxlength:255
 	    		},/*
