@@ -21,11 +21,11 @@
 	<div class="container-fluid">
 		<div class="row" id="header">
 	<div class="col-xs-8 col-sm-8 col-md-4 col-lg-2">
-		<a href="/index.php/Home/Index/index.html"><h2>资环招生网站首页</h2></a>
+		<a href="/index.php/Home/Index/index.html"><h2>资环英文网站首页</h2></a>
 	</div>
 	<div class="col-xs-0 col-sm-0 col-md-6 col-lg-8""></div>
 	<div class="col-xs-4 col-sm-4 col-md-2 col-lg-1 col-lg-offset-1">
-		<span>admin</span>
+		<span></span>
 		<a href="/index.php/Auth/quit" class="btn btn-danger">退出</a>
 	</div>
 </div>
@@ -36,7 +36,6 @@
 		<li id="l_downfile"><a href="/Admin/Category/index">栏目管理</a></li>
 		<li id="l_article"><a href="/Admin/Article/index">文章管理</a></li>
 		<li id="l_photo"><a href="/Admin/Photo/index">图片管理</a></li>
-		<li id="l_video"><a href="/Admin/Video/index">视频管理</a></li>
 	</ul>
 </div>
 			<div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">

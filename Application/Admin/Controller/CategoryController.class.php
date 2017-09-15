@@ -7,7 +7,7 @@
  * @description:  
  * （1）完成基本功能；（2017/9/14）；
  * （2）添加index方法；（2017/9/15）；
- * （3）修复create方法显示父级栏目名错误；（2017/9/15）；
+ * （3）修复create方法显示父级栏目名错误；添加edit、update、delete方法（2017/9/15）；
  */
 namespace Admin\Controller;
 
@@ -45,7 +45,7 @@ class CategoryController extends Controller
 			}
 		}else{
 			if(APP_DEBUG){
-				$this->error($photo->getError());
+				$this->error($category->getError());
 			}else{
 				$this->error('500错误,增加栏目失败');
 			}
@@ -79,6 +79,81 @@ class CategoryController extends Controller
 			return $categoryArr;
 		}else{
 			return;
+		}
+	}
+
+	public function edit($pid, $id)
+	{
+		if(isset($id)){
+			$category = D('category');
+			$data = $category->find($id);
+			if(count($data) != 0){
+				$tmp = $category->find($pid);
+				if(count($tmp) == 0){
+					if(APP_DEBUG){
+						$this->error($category->getError());
+					}else{
+						$this->error('500，服务器错误！');
+					}
+				}
+				$data['pname'] = $tmp['name'];
+				$this->assign('data',$data);
+				$this->display('Category/edit');
+			}else{
+				if(APP_DEBUG){
+					$this->error($category->getError());
+				}else{
+					$this->error('500，服务器错误！');
+				}
+			}
+		}else{
+			$this->error('404, 没找到！');
+		}
+	}
+
+	public function update($pid, $id)
+	{
+		if(isset($id)){
+			$category = D('category');
+			if($category->create()){
+				$res = $category->where('id='.$id)->save();
+				if($res){
+					$this->redirect('Admin/Category/index', '',2, '<meta charset="UTF-8"><font style='.'font-family:"微软雅黑";font-size:35px;color:#555;'.'>栏目更新成功</font>');
+				}else{
+					if(APP_DEBUG){
+						$this->error($category->getError());
+					}else{
+						$this->error('500，服务器错误！');
+					}
+				}
+			}else{
+				$this->error('500，服务器错误！');
+			}
+		}else{
+			$this->error('404，没找到！');
+		}
+		
+	}
+
+	public function delete($pid, $id)
+	{
+		//删除功能待完成
+		$this->error('403，目前禁用删除，可以修改是否显示代替本操作！');
+		return;
+		if(isset($id)){
+			$category = M('categories');
+			$res = $category->delete($id);
+			if($res){
+				$this->success('删除成功');
+			}else{
+				if(APP_DEBUG){
+					$this->error($category->getError());
+				}else{
+					$this->error('500，服务器错误！');
+				}
+			}
+		}else{
+			$this->error('404，没找到！');
 		}
 	}
 }

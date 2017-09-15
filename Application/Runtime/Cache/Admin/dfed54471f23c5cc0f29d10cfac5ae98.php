@@ -3,7 +3,7 @@
 <head>
 	<head>
 	<meta charset="UTF-8">
-	<title>新增栏目</title>
+	<title>编辑栏目</title>
 	<link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/Public/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/Public/Admin/Css/common.css">
@@ -25,7 +25,7 @@
 	</div>
 	<div class="col-xs-0 col-sm-0 col-md-6 col-lg-8""></div>
 	<div class="col-xs-4 col-sm-4 col-md-2 col-lg-1 col-lg-offset-1">
-		<span>当前用户：<?php echo $_SESSION['name']; ?></span>
+		<span>admin</span>
 		<a href="/index.php/Auth/quit" class="btn btn-danger">退出</a>
 	</div>
 </div>
@@ -36,6 +36,7 @@
 		<li id="l_downfile"><a href="/Admin/Category/index">栏目管理</a></li>
 		<li id="l_article"><a href="/Admin/Article/index">文章管理</a></li>
 		<li id="l_photo"><a href="/Admin/Photo/index">图片管理</a></li>
+		<li id="l_video"><a href="/Admin/Video/index">视频管理</a></li>
 	</ul>
 </div>
 			<div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">
@@ -45,29 +46,29 @@
 							<ol class="breadcrumb">
 							    <li><a href="/Admin/Index/index">首页</a></li>
 							    <li><a href="/Admin/Category/index">栏目管理</a></li>
-							    <li>新增栏目</li>
+							    <li>编辑栏目</li>
 							</ol>
 						</div>
 						<div class="row">
-							<form class="form-horizontal" name="category_form" role="form" method="post" action="/index.php/Admin/Category/insert"> 
+							<form class="form-horizontal" name="category_form" role="form" method="post" action="/index.php/Admin/Category/update/pid/<?php echo ($data["pid"]); ?>/id/<?php echo ($data["id"]); ?>"> 
 							<div class="form-group">
 								<label for="name" class="col-sm-2 control-label">栏目名</label>
 								<div class="col-sm-10">
-								<input type="text" class="form-control" id="name" name="name" placeholder="请输入栏目名">
+								<input type="text" class="form-control" id="name" name="name" placeholder="请输入栏目名" value="<?php echo ($data["name"]); ?>">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="pid" class="col-sm-2 control-label">父级栏目</label>
 								<div class="col-sm-10">
-								<input type="text" class="form-control" id="pid" name="pid" value="<?php echo ($pid); ?>" style="display:none;">
-								<span class="form-control"><?php echo ($pname); ?></span>
+								<input type="text" class="form-control" id="pid" name="pid" value="<?php echo ($data["pid"]); ?>" style="display:none;">
+								<span class="form-control"><?php echo ($data["pname"]); ?></span>
 								<!-- <input type="text" class="form-control" placeholder="<?php echo ($pname); ?>" disabled="true"> -->
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="sort" class="col-sm-2 control-label">排序</label>
 								<div class="col-sm-10">
-								<input type="number" class="form-control" id="sort" name="sort" placeholder="请输入排序">
+								<input type="number" class="form-control" id="sort" name="sort" placeholder="请输入排序" value="<?php echo ($data["sort"]); ?>">
 								</div>
 							</div>
 							<div class="form-group">
@@ -108,8 +109,9 @@
 </body>
 </html>
 <script type="text/javascript">
-	// InitRadio($("input[name='status']"),"<?php echo ($data["status"]); ?>");
+	InitRadio($("input[name='status']"),"<?php echo ($data["status"]); ?>");
 	InitNav($('#left_nav li'),"<?php echo ($category); ?>");
+	InitRadio($("input[name='homepage']"),"<?php echo ($data["homepage"]); ?>");
 	//InitCategory($('#category')[0].options,"<?php echo ($data["category"]); ?>");
 	$(function (){
 		$("#category_form").validate({

@@ -1,11 +1,11 @@
 
 function InitRadio(radio,param){
-	if(param == 0){
+	if(param == 1){
 		radio[0].checked = true;
 		radio[1].checked = false;
 	}else{
 		radio[0].checked = false;
-		radio[1].checked = false;
+		radio[1].checked = true;
 	}
 }
 
