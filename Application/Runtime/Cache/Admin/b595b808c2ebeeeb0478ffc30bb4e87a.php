@@ -25,15 +25,15 @@
 	</div>
 	<div class="col-xs-0 col-sm-0 col-md-6 col-lg-8""></div>
 	<div class="col-xs-4 col-sm-4 col-md-2 col-lg-1 col-lg-offset-1">
-		<span></span>
-		<a href="/index.php/Auth/quit" class="btn btn-danger">退出</a>
+		<span>当前用户：<?php echo $_SESSION['name']; ?></span>
+		<a href="/index.php/Admin/Auth/quit" class="btn btn-danger">退出</a>
 	</div>
 </div>
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2" id="left_nav">
 	<ul class="nav nav-pills nav-stacked">
 		<li id="l_index"><a href="/Admin/Index/index">首页</a></li>
-		<li id="l_downfile"><a href="/Admin/Category/index">栏目管理</a></li>
+		<li id="l_category"><a href="/Admin/Category/index">栏目管理</a></li>
 		<li id="l_article"><a href="/Admin/Article/index">文章管理</a></li>
 		<li id="l_photo"><a href="/Admin/Photo/index">图片管理</a></li>
 	</ul>
