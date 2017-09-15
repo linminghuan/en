@@ -60,7 +60,6 @@
 								</div>
 							</div>
 							<div class="row" style="width:95%;">
-							<?php echo ($data); ?>
 								<div id="category" style="margin-left:36px;">
 									<div class="row" style="height:25px;margin-top: 5 px;border-bottom:2px solid #666;">
 										<span class="col-md-1">序号</span>
@@ -72,16 +71,8 @@
 										<span class="col-md-1">编辑</span>
 										<span class="col-md-1">删除</span>
 									</div>
-									<div class="row" style="height:36px;margin-top: 10px;border-bottom:2px solid #666;">
-										<span class="col-md-1">1</span>
-										<span class="col-md-5">通知公告</span>
-										<span class="col-md-1">1</span>
-										<span class="col-md-1">否</span>
-										<span class="col-md-1">是</span>
-										<span class="col-md-1"><a href="/index.php/Admin/Category/create" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></span>
-										<span class="col-md-1"><a href="/index.php/Admin/Category/edit/id/<?php echo ($photo["id"]); ?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a></span>
-										<span class="col-md-1"><a href="/index.php/Admin/Category/delete/id/<?php echo ($photo["id"]); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a></span>
-									</div>
+									<?php
+ rend($data); ?>
 								</div>
 							</div>
 						</div>
@@ -93,7 +84,7 @@
 </body>
 </html>
 <script type="text/javascript">
-	$(function(){
-		console.log($('#category'));
-	});
+	
 </script>
+<?php
+ function rend($params) { rendCategory($params); } function rendCategory($params, $t = -10) { foreach($params as $key => $value){ $tmp = 'margin-left:'.$t.'px;'; echo "<div class='row' style='height:36px;".$tmp."margin-top: 10px;border-bottom:2px solid #666;border-left: 2px solid #666;'>"; echo "<span class='col-md-1'>".$value['id']."</span>"; echo "<span class='col-md-5'>".$value['name']."</span>"; echo "<span class='col-md-1'>".$value['sort']."</span>"; echo "<span class='col-md-1'>".$value['homepage']."</span>"; echo "<span class='col-md-1'>".$value['status']."</span>"; echo "<span class='col-md-1'><a href='/index.php/Admin/Category/create/pid/".$value['id']."' class='btn btn-success btn-sm'><i class='fa fa-plus'></i></a></span>"; echo "<span class='col-md-1'><a href='/index.php/Admin/Category/edit/id/".$value['id']."' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a></span>"; echo "<span class='col-md-1'><a href='/index.php/Admin/Category/delete/id/".$value['id']."' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></a></span>"; echo '</div>'; if(null != $value['next']){ $t += 10; rendCategory($value['next'], $t); } $t = -10; } } ?>

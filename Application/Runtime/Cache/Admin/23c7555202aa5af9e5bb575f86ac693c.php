@@ -61,7 +61,8 @@
 								<label for="pid" class="col-sm-2 control-label">父级栏目</label>
 								<div class="col-sm-10">
 								<input type="text" class="form-control" id="pid" name="pid" value="<?php echo ($pid); ?>" style="display:none;">
-								<input type="text" class="form-control" value="<?php echo ($pname); ?>" disabled="true">
+								<span class="form-control"><?php echo ($pname); ?></span>
+								<!-- <input type="text" class="form-control" placeholder="<?php echo ($pname); ?>" disabled="true"> -->
 								</div>
 							</div>
 							<div class="form-group">
