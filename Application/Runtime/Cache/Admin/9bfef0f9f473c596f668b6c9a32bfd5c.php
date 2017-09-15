@@ -26,7 +26,7 @@
 	<div class="container-fluid">
 		<div class="row" id="header">
 	<div class="col-xs-8 col-sm-8 col-md-4 col-lg-2">
-		<a href="/index.php/Home/Index/index.html"><h2>资环招生网站首页</h2></a>
+		<a href="/index.php/Home/Index/index.html"><h2>资环英文网站首页</h2></a>
 	</div>
 	<div class="col-xs-0 col-sm-0 col-md-6 col-lg-8""></div>
 	<div class="col-xs-4 col-sm-4 col-md-2 col-lg-1 col-lg-offset-1">
@@ -87,4 +87,4 @@
 	
 </script>
 <?php
- function rend($params) { rendCategory($params); } function rendCategory($params, $t = -10) { foreach($params as $key => $value){ $tmp = 'margin-left:'.$t.'px;'; echo "<div class='row' style='height:36px;".$tmp."margin-top: 10px;border-bottom:2px solid #666;border-left: 2px solid #666;'>"; echo "<span class='col-md-1'>".$value['id']."</span>"; echo "<span class='col-md-5'>".$value['name']."</span>"; echo "<span class='col-md-1'>".$value['sort']."</span>"; echo "<span class='col-md-1'>".$value['homepage']."</span>"; echo "<span class='col-md-1'>".$value['status']."</span>"; echo "<span class='col-md-1'><a href='/index.php/Admin/Category/create/pid/".$value['id']."' class='btn btn-success btn-sm'><i class='fa fa-plus'></i></a></span>"; echo "<span class='col-md-1'><a href='/index.php/Admin/Category/edit/id/".$value['id']."' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a></span>"; echo "<span class='col-md-1'><a href='/index.php/Admin/Category/delete/id/".$value['id']."' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></a></span>"; echo '</div>'; if(null != $value['next']){ $t += 10; rendCategory($value['next'], $t); } $t = -10; } } ?>
+ function rend($params) { rendCategory($params); } function rendCategory($params, $t = -10) { foreach($params as $key => $value){ $tmp = 'margin-left:'.$t.'px;'; echo "<div class='row' style='height:36px;".$tmp."margin-top: 10px;border-bottom:2px solid #20D181;border-left: 1px solid #20D181;'>"; echo "<span class='col-md-1'>".$value['id']."</span>"; echo "<span class='col-md-5'>".$value['name']."</span>"; echo "<span class='col-md-1'>".$value['sort']."</span>"; echo "<span class='col-md-1'>".$value['homepage']."</span>"; echo "<span class='col-md-1'>".$value['status']."</span>"; echo "<span class='col-md-1'><a href='/index.php/Admin/Category/create/pid/".$value['id']."' class='btn btn-success btn-sm'><i class='fa fa-plus'></i></a></span>"; echo "<span class='col-md-1'><a href='/index.php/Admin/Category/edit/id/".$value['id']."' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i></a></span>"; echo "<span class='col-md-1'><a href='/index.php/Admin/Category/delete/id/".$value['id']."' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i></a></span>"; echo '</div>'; if(null != $value['next']){ $t += 10; rendCategory($value['next'], $t); } $t = -10; } } ?>
