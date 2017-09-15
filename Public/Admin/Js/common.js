@@ -17,23 +17,12 @@ function InitNav(li,param){
 	}
 }
 
-function InitCategory(options,sub_options,param,param_sub){
+function InitCategory(options, param){
 	/*let sub_options = arguments[1]?arguments[1]:null;
 	let param_sub = arguments[3]?arguments[3]:"";*/
 	for(var i = 0 ; i < options.length ; i++){
 		if(options[i].value == param){
 			options[i].selected = true ;
-		}
-	}
-
-	if(sub_options != null){
-		if(param == "teachers"){
-			sub_options.disabled = false;
-			for(var i = 0 ; i < sub_options.length ; i++){
-				if(sub_options[i].value == param_sub){
-					sub_options[i].selected = true ;
-				}
-			}
 		}
 	}
 }
@@ -82,6 +71,13 @@ function checkAll(elementId)
 		$("[name ='checkbox']:checkbox").attr("checked", this.checked);
 	});
 	
+}
+
+function ajaxGet(url, fn)
+{
+	$.get(url,function(data,status,xhr){
+		return data;
+	});
 }
 
 

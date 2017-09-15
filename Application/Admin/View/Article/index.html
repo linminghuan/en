@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<include file="./Application/Admin/View/Layouts/resouce.html" title="文章管理"/>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<include file="./Application/Admin/View/Layouts/header.html"/>
+		<div class="row">
+			<include file="./Application/Admin/View/Layouts/left_nav.html"/>
+			<div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">
+				<div class="panel panel-default">
+		   			<div class="panel-body">
+						<div class="row">
+							<ol class="breadcrumb">
+							    <li><a href="__ROOT__/Admin/Index/index">首页</a></li>
+							    <li>文章管理</li>
+							</ol>
+						</div>
+						<div class="row">
+							<div class="row">
+								<form class="form-inline" role="form" action="__URL__/index" method="get">
+									<div class="col-md-3">
+										<div class="form-group">
+											<div class=" col-sm-6">
+												<select class="form-control" name="category_id" id="category_id">
+													<option value="">请选择栏目</option>
+													<foreach name="categories" item="vo">
+													    <option value="{$vo.id}">{$vo.name}</option>
+													</foreach>
+												</select>
+											</div>	
+											<div class=" col-sm-6">
+												
+											</div>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<div class=" col-sm-8">
+												<select class="form-control" name="status" id="status">
+													<option value="">是否显示</option>
+													<option value="1">显示</option>
+													<option value="0">不显示</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="input-group">
+						                    <input type="text" name="qText" class="form-control" placeholder="请输入标题">
+						                    <span class="input-group-btn">
+						                        <input class="btn btn-default" type="submit" value="搜索">
+						                    </span>
+						                </div>
+									</div>
+								</form>
+								<div class="col-md-1 pull-right">
+									<a href="__URL__/create" class="btn btn-success">新增</a>
+								</div>
+							</div>
+							<table class="table table-striped">
+							<thead>
+							<tr>
+							<th width="10px">#</th>
+							<th>标题</th>
+							<th>作者</th>
+							<th>编辑者</th>
+							<th>栏目</th>
+							<th>是否显示</th>
+							<th>更新日期</th>
+							<th>点击数</th>
+							<th>操作</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<volist name="data" id="article">
+									<tr>
+										<td><input class="checkbox-batch" name="checkbox" type="checkbox" data-group="articles" data-id="" value="{$article.id}"></td>
+
+										<td>{$article.title}</td>
+										<td>{$article.author}</td>
+										<td>{$article.editor}</td>
+										<td>{$article.cname}</td>
+										<td>
+											<eq name="article.status" value="1">
+											显示
+											<else/>
+											不显示
+											</eq>
+										</td>
+										<td>{$article.update_at}</td>
+										<td>{$article.click}</td>
+										<td>
+											<a href="__URL__/edit/id/{$article.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+											<a href="__URL__/delete/id/{$article.id}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
+										</td>
+									</tr>
+								</volist>
+							</tr>
+							</tbody>
+							</table>
+						</div>
+							<div class="row">
+								<div class="col-md-4">
+									<input id="checkall" class="checkbox-batch" name="checkbox" type="checkbox" value="">
+									<button id="batchDelBtn" class="btn btn-danger" type="submit">批量删除</button>
+								</div>
+								<div class="result page" id="page">{$page}</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<include file="./Application/Admin/View/Public/footer.html"/>
+	</div>
+</body>
+</html>
+<script>
+	// InitRadio($("input[name='status']"),"{$data.status}");
+	InitNav($('#left_nav li'), "{$category}");
+	// InitCategory($('#category')[0].options,"{$data.category}");
+	//InitSubCategory($('#category'),$('#sub_category'));
+	checkAll("#checkall");
+	batchDel('#batchDelBtn', '__URL__/batchDel');
+</script>

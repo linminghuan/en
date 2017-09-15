@@ -35,9 +35,11 @@ trait UtilTrait
 		$delItems = I('delitems');
 		$delItems = trim($delItems, ',');
 		$delItems = explode(',', $delItems);
-		foreach ($delItems as $id) {
-			$data = $model->where('id', '=', $id)->field('url')->select();
-			$res = $this->delFile($data[0]['url']);
+		if($model->db()->getTables() == 'photos'){
+			foreach ($delItems as $id) {
+				$data = $model->where('id', '=', $id)->field('url')->select();
+				$res = $this->delFile($data[0]['url']);
+			}
 		}
 		$model->startTrans();
 		$res = $model->where(array('id'=>array('in',$delItems)))->delete();

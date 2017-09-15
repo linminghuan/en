@@ -41,15 +41,14 @@ class CategoryController extends Controller
 			if($res){
 				$this->redirect('Admin/Category/index', '',2, '<meta charset="UTF-8"><font style='.'font-family:"微软雅黑";font-size:35px;color:#555;'.'>栏目增加成功</font>');
 			}else{
-				$this->error('500错误,增加图片失败');
+				if(APP_DEBUG){
+					$this->error($category->getError());
+				}else{
+					$this->error('500，服务器错误！');
+				}
 			}
 		}else{
-			if(APP_DEBUG){
-				$this->error($category->getError());
-			}else{
-				$this->error('500错误,增加栏目失败');
-			}
-			
+			$this->error($category->getError());
 		}
 	}
 
@@ -120,14 +119,14 @@ class CategoryController extends Controller
 				if($res){
 					$this->redirect('Admin/Category/index', '',2, '<meta charset="UTF-8"><font style='.'font-family:"微软雅黑";font-size:35px;color:#555;'.'>栏目更新成功</font>');
 				}else{
-					if(APP_DEBUG){
-						$this->error($category->getError());
-					}else{
-						$this->error('500，服务器错误！');
-					}
+					$this->error($category->getError());
 				}
 			}else{
-				$this->error('500，服务器错误！');
+				if(APP_DEBUG){
+					$this->error($category->getError());
+				}else{
+					$this->error('500，服务器错误！');
+				}
 			}
 		}else{
 			$this->error('404，没找到！');

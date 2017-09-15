@@ -25,7 +25,7 @@
 	</div>
 	<div class="col-xs-0 col-sm-0 col-md-6 col-lg-8""></div>
 	<div class="col-xs-4 col-sm-4 col-md-2 col-lg-1 col-lg-offset-1">
-		<span>admin</span>
+		<span>当前用户：<?php echo $_SESSION['name']; ?></span>
 		<a href="/index.php/Auth/quit" class="btn btn-danger">退出</a>
 	</div>
 </div>
@@ -36,7 +36,6 @@
 		<li id="l_downfile"><a href="/Admin/Category/index">栏目管理</a></li>
 		<li id="l_article"><a href="/Admin/Article/index">文章管理</a></li>
 		<li id="l_photo"><a href="/Admin/Photo/index">图片管理</a></li>
-		<li id="l_video"><a href="/Admin/Video/index">视频管理</a></li>
 	</ul>
 </div>
 			<div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">

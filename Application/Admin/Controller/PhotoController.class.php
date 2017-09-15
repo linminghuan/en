@@ -60,38 +60,15 @@ class PhotoController extends Controller
 			if($result){
 				$this->redirect('Admin/Photo/index', '',2, '<meta charset="UTF-8"><font style='.'font-family:"微软雅黑";font-size:35px;color:#555;'.'>图片增加成功</font>');
 			}else{
-				$this->error('500错误,增加图片失败');
-			}
-		}else{
-			if(APP_DEBUG){
-				$this->error($photo->getError());
-			}else{
-				$this->error('500错误,增加图片失败');
-			}
-			
-		}
-		/*$oldurl = $this->GetImgUrl(I('post.url'));
-		$photoName = strchr($oldurl,"Temp/");
-		$photoName = strchr($photoName,"/");
-		$newurl = "/zhaosheng/Public/Upload/Image".$photoName;
-		dump($oldurl);
-		dump($newurl);
-		if(rename($oldurl,$newurl)){
-			$data["note"] = I("post.note");
-			$data["author"] = I("post.author");
-			$data["status"] = I("post.status");
-			$data["category"] = I("post.category");
-			$data["update_at"] = NOW_TIME;
-			$data["url"] = $newurl;
-			$result = $photo->add($data);
-			if($result){
-				$this->redirect('Admin/Photo/index', '',2, '<meta charset="UTF-8"><font style='.'font-family:"微软雅黑";font-size:35px;color:#555;'.'>图片更新成功</font>');
-			}else{
-				$this->error($photo->getError());
+				if(APP_DEBUG){
+					$this->error($photo->getError());
+				}else{
+					$this->error('500，服务器错误！');
+				}
 			}
 		}else{
 			$this->error($photo->getError());
-		}*/
+		}
 	}
 
 	public function edit($id)
@@ -138,14 +115,14 @@ class PhotoController extends Controller
 			if($result !== false){
 				$this->redirect('Admin/Photo/index', '',2, '<meta charset="UTF-8"><font style='.'font-family:"微软雅黑";font-size:35px;color:#555;'.'>图片更新成功</font>');
 			}else{
-				$this->error($photo->getError());
+				if(APP_DEBUG){
+					$this->error($photo->getError());
+				}else{
+					$this->error('500，服务器错误！');
+				}
 			}
 		}else{
-			if(APP_DEBUG){
-				$this->error($photo->getError());
-			}else{
-				$this->error('500错误,更新图片失败');
-			}
+			$this->error($photo->getError());
 		}
 	}
 
@@ -159,7 +136,11 @@ class PhotoController extends Controller
 			if($result){
 				$this->success('删除成功');
 			}else{
-				$this->error('删除失败');
+				if(APP_DEBUG){
+					$this->error($photo->getError());
+				}else{
+					$this->error('500，服务器错误！');
+				}
 			}
 		}else{
 			$this->error('删除失败');
@@ -168,7 +149,8 @@ class PhotoController extends Controller
 
 	public function batchDel()
 	{
-		$photo = M('photos');
+		//不能使用M函数
+		$photo = D('photos');
 		$this->uBatchDel($photo);
 	}
 
