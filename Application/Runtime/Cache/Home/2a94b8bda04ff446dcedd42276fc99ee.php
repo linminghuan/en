@@ -1,0 +1,299 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="en">
+<head>
+	<head>
+	<meta charset="UTF-8">
+	<title>HOME</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+	<link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/Public/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/Public/Admin/Css/common.css">
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="/Public/jquery/jquery-3.2.1.min.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="/Public/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/Public/jquery-validation/lib/jquery.js"></script>
+	<script src="/Public/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="/Application/Common/Ueditor/ueditor.parse.js"></script>
+	<script src="/Public/Admin/Js/common.js"></script>
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+</head>
+	<link href="/Public/jqueryflexslider/css/jqueryflexslider.css" rel="stylesheet">
+	<link href="/Public/Home/Css/home-style.css" rel="stylesheet">
+	<style type="text/css">
+		a{text-decoration:none;}
+		.flexslider{position:relative;width:100%;height:650px;overflow:hidden;background:url(/Public/jqueryflexslider/images/loading.gif) 50% no-repeat;}
+		.flex-control-nav a{display:inline-block;width:14px;height:14px;line-height:40px;overflow:hidden;background:url(/Public/jqueryflexslider/images/dot.png) right 0 no-repeat;cursor:pointer;}
+		.flex-direction-nav li a.flex-prev{left:40px;background:url(/Public/jqueryflexslider/images/prev.png) center center no-repeat;}
+		.flex-direction-nav li a.flex-next{right:40px;background:url(/Public/jqueryflexslider/images/next.png) center center no-repeat;}
+		/* 定位地图的样式 */
+		#container {width:100%; height: 500px; }  
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
+				<!--banner-->
+				<div class="row">
+					<div style="background:url('Public/Home/Images/banner.svg');width:100%;height:150px;"></div>
+				</div>
+				<!-- 导航栏 -->
+				<div class="row">
+					<div class="container-fluid"> 
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse"
+									data-target="#example-navbar-collapse">
+								<span class="sr-only">切换导航</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#">HOME</a>
+						</div>
+						<div class="collapse navbar-collapse" id="example-navbar-collapse">
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="#about-us">About us</a></li>
+								<li><a href="#">Tearching</a></li>
+								<li><a href="#">Research</a></li>
+								<li><a href="#">Partnerships</a></li>
+								<li><a href="#">Student Activities</a></li>
+								<!-- 下拉菜单 -->
+								<!-- <li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										Java <b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="#">jmeter</a></li>
+										<li><a href="#">EJB</a></li>
+										<li><a href="#">Jasper Report</a></li>
+										<li class="divider"></li>
+										<li><a href="#">分离的链接</a></li>
+										<li class="divider"></li>
+										<li><a href="#">另一个分离的链接</a></li>
+									</ul>
+								</li> -->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	
+		<!-- 轮播图 -->
+		<div class="row" style="margin-top:300px;">
+			<div class="flexslider" id="flexslider">
+				<ul class="slides">
+					<li style="background:url(/Public/Upload/Image/20170916/1505546418358489.jpg) 50% 0 no-repeat;">
+						<div id="sliderMask" style="width:100%;height:300px;background:#3E3A3A;filter:alpha(opacity=60);-moz-opacity:0.6;opacity: 0.6;position:absolute;bottom:0px;padding:100px;">
+							<p style="color: #fff;font-size:2em;display:block;text-align:center;">我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试</p>
+							<a class="btn" href="" style="display:inline-block;border:4px solid #0A6C9D;color:#fff;margin:0 75%;">Read More</a>
+						</div>
+					</li>
+					<li style="background:url(/Public/Upload/Image/20170916/1505546509244018.jpg) 50% 0 no-repeat;">
+						
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 关于我们 -->
+		<div class="row" style="margin-top:100px;">
+			<div style="width:98%;min-height:600px;border:10px solid #12B266;margin:0 auto;">
+				<div class="row" style="position:relative;">
+					<span style="display:inline-block;width:100px;height:100px;background:#12B266;color:white;position:absolute;top:0px;left:10px;">
+					<i style="font-size:10em;">“</i>
+					</span>
+				</div>
+
+				<div class="row" style="margin-top:100px;margin-bottom:100px;">
+					<h1 style="text-align:center;color:#12B266;font-size:4em;">About Us</h1>
+					<div style="width:98.2%;margin:0 auto;font-size:1.5em;">
+						<p style="width:80%;margin:0 auto;">
+							hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!style="text-align:center;"style="text-align:center;"style="text-align:center;"style="text-align:center;"
+						</p>
+					</div>
+				</div>
+				
+				<div class="row" style="position:relative;">
+					<span style="display:inline-block;width:100px;height:100px;background:#12B266;color:white;position:absolute;bottom:-5px;right:10px;">
+					<i style="font-size:10em;">”</i>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- 学院新闻 -->
+		<div class="row" style="margin-top:100px">
+			<div style="width:100%;min-height:700px;">
+				<div class="row">
+					<h1 style="color:#0E9CEA;text-align:center;font-size:4em;">Student Activities</h1>
+				</div>
+				<div class="row">
+					<div id="academy-news" style="width:80%;margin:0 auto;">
+						<a href="">
+							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
+							<h2>test1</h2>
+							<h4>date:2017-9-17</h4>
+							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
+						</a>
+						<a href="">
+							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
+							<h2>test1</h2>
+							<h4>date:2017-9-17</h4>
+							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
+						</a><a href="">
+							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
+							<h2>test1</h2>
+							<h4>date:2017-9-17</h4>
+							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
+						</a><a href="">
+							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
+							<h2>test1</h2>
+							<h4>date:2017-9-17</h4>
+							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
+						</a><a href="">
+							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
+							<h2>test1</h2>
+							<h4>date:2017-9-17</h4>
+							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
+						</a><a href="">
+							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
+							<h2>test1</h2>
+							<h4>date:2017-9-17</h4>
+							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
+						</a><a href="">
+							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
+							<h2>test1</h2>
+							<h4>date:2017-9-17</h4>
+							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
+						</a><a href="">
+							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
+							<h2>test1</h2>
+							<h4>date:2017-9-17</h4>
+							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<a href="" class="btn btn-default" style="margin-top:40px;margin-left:83%;border: 3px solid #0E9CEA;color:#0E9CEA;">Read More</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- 友情链接 -->
+		<div class="row">
+			<h1 style="text-align:center;font-size:4em;color:#12B266;">Some Links</h1>
+			<div class="container">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a data-toggle="tab" href="#scau">
+							South China Agricultural University
+						</a>
+					</li>
+					<li><a data-toggle="tab" href="#menu1">中英环境中心</a></li>
+				</ul>
+
+				<div class="tab-content">
+					<div id="scau" class="tab-pane fade in active">
+						<div style="min-height:500px;width:100%;">
+							<div class="row">
+								<h3>South China Agricultural University</h3>
+							</div>
+							<div class="row">
+								<div class="col-lg-4">
+									<img  style="width:100%;height:400px;">
+								</div>
+								<div class="col-lg-8">
+									<p>菜鸟教程 —— 学的不仅是技术，更是梦想！！！</p>
+								</div>
+							</div>
+							<div class="row">
+								<a href="" class="btn btn-default" style="margin-top:20px;margin-left:83%;border: 3px solid #0E9CEA;color:#0E9CEA;">Read More</a>
+							</div>
+						</div>
+					</div>
+					<div id="menu1" class="tab-pane fade">
+						<div style="min-height:500px;width:100%;">
+							<div class="row">
+								<h3>中英环境中心</h3>
+							</div>
+							<div class="row">
+								<div class="col-lg-4">
+									<img  style="width:100%;height:400px;">
+								</div>
+								<div class="col-lg-8">
+									<p>菜鸟教程 —— 学的不仅是技术，更是梦想！！！</p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<a href="" class="btn btn-default" style="margin-top:20px;margin-left:83%;border: 3px solid #0E9CEA;color:#0E9CEA;">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--地图定位 -->
+		<div class="row" style="margin-top:150px;">
+			<div id="">
+				<div id="container"></div>  
+			</div>
+		</div>
+
+		<!-- footer -->
+		<div class="row" style="margin-top:100px;">
+			<div style="background:#3C3C3C;min-height:150px;width:100%;text-align:left;">
+				<img src="/Public/Home/Images/二维码.png" style="display:inline-block;width:6.5%;height:auto;margin-left:15%;border:2px solid #eee;margin-top:-105px;">
+				<div style="width:50%;height:auto;display:inline-block;color:#fff;font-size:1.2em;line-height:15px;margin-top:20px;">
+					<p>Phone:</p><p>E-mail:</p>
+					<p>address:</p>
+					<p>Copyright ©2017-<?php echo date('Y');?> http://zyhjxy.scau.edu.cn/Government All Rights Reserved</p>
+					<p>Powered By:</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.0&key=8a9d44b97d5c60d46a626b76e77aa35b"></script> 
+<script type="text/javascript" src="/Public/jqueryflexslider/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//初始化轮播图
+		$('.flexslider').flexslider({
+			directionNav: true,
+			pauseOnAction: false,
+			slideshowSpeed: 30000
+		});
+		//轮播图拓展
+		//Mask的运动
+		$('#flexslider li').mouseenter(function(event) {
+			$('#sliderMask').css('bottom', '0px');
+		});
+		$('#flexslider li').mouseleave(function(event) {
+			$('#sliderMask').css('bottom', '-300px');
+		});
+		//学院新闻
+		$('#academy-news div').mouseenter(function(event) {
+			
+		});
+	});
+	//高德地图
+	var map = new AMap.Map('container',{
+	    zoom: 16,
+	    center: [113.351871,23.152996],
+	    lang:'zh_en'
+	});
+	//设置点标记
+	var marker = new AMap.Marker({
+	    position: [113.351871,23.152996],//marker所在的位置
+	    map:map//创建时直接赋予map属性
+	});
+	//也可以在创建完成后通过setMap方法执行地图对象
+	marker.setMap(map);
+</script>
