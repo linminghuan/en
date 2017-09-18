@@ -1,0 +1,100 @@
+/* *****************大型设备************************** */
+/* 学院新闻 */
+#academy-news a{
+	margin:0;
+	width:23.5%;
+	display:inline-block;
+	float:left;
+	margin:50px auto;
+	color:#0E9CEA;
+	text-decoration:none;
+}
+#academy-news img{
+	width:99%;
+	height:auto;
+	display: block;
+	margin:0 auto; 
+}
+#academy-news h2{
+	display: block;
+	margin:10px auto; 
+}
+#academy-news p{
+	width:100%;
+	height:auto;  
+    overflow: hidden;
+    text-overflow:ellipsis;
+	white-space: nowrap;
+	font-size:1em; 
+	font-family:'微软雅黑';
+	margin:0 auto; 
+}
+
+/* *****************中型设备************************** */
+/* @media screen and (min-width:768px) and (max-width:992px){
+    学院新闻
+	#academy-news a{
+		margin:0;
+		width:48.5%;
+		display:inline-block;
+		float:left;
+		margin:50px auto;
+		color:#0E9CEA;
+		text-decoration:none;
+	}
+	#academy-news img{
+		width:99%;
+		height:auto;
+		display: block;
+		margin:0 auto; 
+	}
+	#academy-news h2{
+		display: block;
+		margin:10px auto; 
+	}
+	#academy-news p{
+		width:100%;
+		height:auto;  
+	    overflow: hidden;
+	    text-overflow:ellipsis;
+		white-space: nowrap;
+		font-size:1em; 
+		font-family:'微软雅黑';
+		margin:0 auto; 
+	}
+} */
+
+
+/* *****************小型设备************************** */
+@media screen and (max-width:998px){
+	/* 学院新闻 */
+	#academy-news a{
+		margin:0;
+		width:98.5%;
+		display:inline-block;
+		float:left;
+		margin:50px auto;
+		color:#0E9CEA;
+		text-decoration:none;
+	}
+	#academy-news img{
+		width:99%;
+		height:auto;
+		display: block;
+		margin:0 auto; 
+	}
+	#academy-news h2{
+		display: block;
+		margin:10px auto; 
+	}
+	#academy-news p{
+		width:100%;
+		height:auto;  
+	    overflow: hidden;
+	    text-overflow:ellipsis;
+		white-space: nowrap;
+		font-size:1em; 
+		font-family:'微软雅黑';
+		margin:0 auto; 
+	}
+}
