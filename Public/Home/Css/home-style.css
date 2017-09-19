@@ -1,6 +1,6 @@
 /* *****************大型设备************************** */
 /* 学院新闻 */
-#academy-news a{
+/* #academy-news a{
 	margin:0;
 	width:23.5%;
 	display:inline-block;
@@ -18,7 +18,7 @@
 #academy-news h2{
 	display: block;
 	margin:10px auto; 
-}
+} */
 #academy-news p{
 	width:100%;
 	height:auto;  
@@ -28,6 +28,11 @@
 	font-size:1em; 
 	font-family:'微软雅黑';
 	margin:0 auto; 
+}
+
+/* 友情链接 */
+#friendlink .active{
+	background: #12B266;
 }
 
 /* *****************中型设备************************** */

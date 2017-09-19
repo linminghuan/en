@@ -3,8 +3,8 @@
 <head>
 	<include file="./Application/Home/View/Layouts/resource.html" title="HOME"/>
 	<link href="/Public/jqueryflexslider/css/jqueryflexslider.css" rel="stylesheet">
-	<link href="/Public/Home/Css/home-style.css" rel="stylesheet">
 	<style type="text/css">
+	    *{font-family:'微软雅黑'}
 		a{text-decoration:none;}
 		.flexslider{position:relative;width:100%;height:650px;overflow:hidden;background:url(/Public/jqueryflexslider/images/loading.gif) 50% no-repeat;}
 		.flex-control-nav a{display:inline-block;width:14px;height:14px;line-height:40px;overflow:hidden;background:url(/Public/jqueryflexslider/images/dot.png) right 0 no-repeat;cursor:pointer;}
@@ -12,6 +12,17 @@
 		.flex-direction-nav li a.flex-next{right:40px;background:url(/Public/jqueryflexslider/images/next.png) center center no-repeat;}
 		/* 定位地图的样式 */
 		#container {width:100%; height: 500px; }  
+		/* 学院新闻 */
+		#academy-news p{
+			width:100%;
+			height:auto;  
+		    overflow: hidden;
+		    text-overflow:ellipsis;
+			white-space: nowrap;
+			font-size:1em; 
+			font-family:'微软雅黑';
+			margin:0 auto; 
+		}
 	</style>
 </head>
 <body>
@@ -20,7 +31,7 @@
 			<nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
 				<!--banner-->
 				<div class="row">
-					<div style="background:url('/Public/Home/Images/banner.svg');width:100%;height:150px;"></div>
+					<img src="/Public/Home/Images/banner.svg" style="width:100%;max-height:150px;">
 				</div>
 				<!-- 导航栏 -->
 				<div class="row">
@@ -33,10 +44,10 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="#">HOME</a>
+							<a class="navbar-brand" href="#" style="font-size:2em;">HOME</a>
 						</div>
 						<div class="collapse navbar-collapse" id="example-navbar-collapse">
-							<ul class="nav navbar-nav">
+							<ul class="nav navbar-nav" style="font-size:1.5em;">
 								<li class="active"><a href="#about-us">About us</a></li>
 								<li><a href="#">Tearching</a></li>
 								<li><a href="#">Research</a></li>
@@ -65,17 +76,20 @@
 		</div>
 	
 		<!-- 轮播图 -->
-		<div class="row" style="margin-top:300px;">
+		<div class="row" style="margin-top:250px;">
 			<div class="flexslider" id="flexslider">
 				<ul class="slides">
 					<li style="background:url(/Public/Upload/Image/20170916/1505546418358489.jpg) 50% 0 no-repeat;">
-						<div id="sliderMask" style="width:100%;height:300px;background:#3E3A3A;filter:alpha(opacity=60);-moz-opacity:0.6;opacity: 0.6;position:absolute;bottom:0px;padding:100px;">
-							<p style="color: #fff;font-size:2em;display:block;text-align:center;">我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试</p>
+						<div class="sliderMask" style="width:100%;height:300px;background:#3E3A3A;filter:alpha(opacity=60);-moz-opacity:0.6;opacity: 0.6;position:absolute;bottom:-300px;">
+							<p style="color: #fff;font-size:2em;display:block;text-align:center;margin-top:3.5%;">我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试</p>
 							<a class="btn" href="" style="display:inline-block;border:4px solid #0A6C9D;color:#fff;margin:0 75%;">Read More</a>
 						</div>
 					</li>
 					<li style="background:url(/Public/Upload/Image/20170916/1505546509244018.jpg) 50% 0 no-repeat;">
-						
+						<div class="sliderMask" style="width:100%;height:300px;background:#3E3A3A;filter:alpha(opacity=60);-moz-opacity:0.6;opacity: 0.6;position:absolute;bottom:-300px;">
+							<p style="color: #fff;font-size:2em;display:block;text-align:center;margin-top:3.5%;">我bushiijepwjpofjigteijwpeokofw weufiow</p>
+							<a class="btn" href="" style="display:inline-block;border:4px solid #0A6C9D;color:#fff;margin:0 75%;">Read More</a>
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -83,144 +97,189 @@
 
 		<!-- 关于我们 -->
 		<div class="row" style="margin-top:100px;">
-			<div style="width:98%;min-height:600px;border:10px solid #12B266;margin:0 auto;">
+			<div style="width:100%;min-height:600px;margin:0 auto;">
 				<div class="row" style="position:relative;">
-					<span style="display:inline-block;width:100px;height:100px;background:#12B266;color:white;position:absolute;top:0px;left:10px;">
-					<i style="font-size:10em;">“</i>
-					</span>
+					<h1 style="text-align:center;color:#12B266;font-size:4em;">About Us</h1>
+					<img src="/Public/Home/Images/右引号.png" style="width:150px;height:auto;float:right;">
 				</div>
 
-				<div class="row" style="margin-top:100px;margin-bottom:100px;">
-					<h1 style="text-align:center;color:#12B266;font-size:4em;">About Us</h1>
-					<div style="width:98.2%;margin:0 auto;font-size:1.5em;">
-						<p style="width:80%;margin:0 auto;">
-							hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!style="text-align:center;"style="text-align:center;"style="text-align:center;"style="text-align:center;"
+				<div class="row" style="">
+					<div class="col-md-1"></div>
+					<div class="col-md-4 col-sm-4">
+						<img src="/Public/Home/Images/资源环境学院院楼3.jpg" alt="资源环境学院院楼" style="width:100%;height:auto;">
+					</div>
+					<div class="col-md-6 col-sm-6" style="font-size:1.5em;">
+						<p style="width:100%;margin:0 auto;color:#666464;">
+							world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello
 						</p>
+					</div>
+					<div class="col-md-1">
 					</div>
 				</div>
 				
 				<div class="row" style="position:relative;">
-					<span style="display:inline-block;width:100px;height:100px;background:#12B266;color:white;position:absolute;bottom:-5px;right:10px;">
-					<i style="font-size:10em;">”</i>
-					</span>
+					<img src="/Public/Home/Images/左引号.png" style="width:150px;height:auto;">
+					<a href="" class="btn btn-default" style="margin-left:70%;border:4px solid #0A6C9D;color:#0A6C9D;margin:0 75%;">Read Details</a>
 				</div>
 			</div>
 		</div>
 
 		<!-- 学院新闻 -->
-		<div class="row" style="margin-top:100px">
+		<div class="row" style="margin-top:100px;">
 			<div style="width:100%;min-height:700px;">
 				<div class="row">
 					<h1 style="color:#0E9CEA;text-align:center;font-size:4em;">Student Activities</h1>
 				</div>
-				<div class="row">
-					<div id="academy-news" style="width:80%;margin:0 auto;">
-						<a href="">
-							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
-							<h2>test1</h2>
-							<h4>date:2017-9-17</h4>
-							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
-						</a>
-						<a href="">
-							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
-							<h2>test1</h2>
-							<h4>date:2017-9-17</h4>
-							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
-						</a><a href="">
-							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
-							<h2>test1</h2>
-							<h4>date:2017-9-17</h4>
-							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
-						</a><a href="">
-							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
-							<h2>test1</h2>
-							<h4>date:2017-9-17</h4>
-							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
-						</a><a href="">
-							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
-							<h2>test1</h2>
-							<h4>date:2017-9-17</h4>
-							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
-						</a><a href="">
-							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
-							<h2>test1</h2>
-							<h4>date:2017-9-17</h4>
-							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
-						</a><a href="">
-							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
-							<h2>test1</h2>
-							<h4>date:2017-9-17</h4>
-							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
-						</a><a href="">
-							<img src="/Public/Upload/Image/20170916/1505546896602569.jpg">
-							<h2>test1</h2>
-							<h4>date:2017-9-17</h4>
-							<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</P>
-						</a>
-					</div>
+				<div class="row" style="width:80%;margin:0 auto;" id="academy-news">
+				    <div class="col-sm-6 col-md-3">
+				        <div class="thumbnail">
+				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				                 alt="通用的占位符缩略图">
+				            <div class="caption">
+				                <h2>test1</h2>
+				                <span>date:2017-9-18</span>
+				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
+				                <a href="#" class="btn btn-primary " role="button">
+			                        Read Details
+			                    </a>
+				            </div>
+				        </div>
+				    </div>
+				    <div class="col-sm-6 col-md-3">
+				        <div class="thumbnail">
+				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				                 alt="通用的占位符缩略图">
+				            <div class="caption">
+				                <h2>test1</h2>
+				                <span>date:2017-9-18</span>
+				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
+				                <a href="#" class="btn btn-primary " role="button">
+			                        Read Details
+			                    </a>
+				            </div>
+				        </div>
+				    </div>
+				    <div class="col-sm-6 col-md-3">
+				        <div class="thumbnail">
+				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				                 alt="通用的占位符缩略图">
+				            <div class="caption">
+				                <h2>test1</h2>
+				                <span>date:2017-9-18</span>
+				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
+				                <a href="#" class="btn btn-primary " role="button">
+			                        Read Details
+			                    </a>
+				            </div>
+				        </div>
+				    </div>
+				    <div class="col-sm-6 col-md-3">
+				        <div class="thumbnail">
+				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				                 alt="通用的占位符缩略图">
+				            <div class="caption">
+				                <h2>test1</h2>
+				                <span>date:2017-9-18</span>
+				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
+				                <a href="#" class="btn btn-primary " role="button">
+			                        Read Details
+			                    </a>
+				            </div>
+				        </div>
+				    </div>
+				    <div class="col-sm-6 col-md-3">
+				        <div class="thumbnail">
+				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				                 alt="通用的占位符缩略图">
+				            <div class="caption">
+				                <h2>test1</h2>
+				                <span>date:2017-9-18</span>
+				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
+				                <a href="#" class="btn btn-primary " role="button">
+			                        Read Details
+			                    </a>
+				            </div>
+				        </div>
+				    </div>
+				    <div class="col-sm-6 col-md-3">
+				        <div class="thumbnail">
+				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				                 alt="通用的占位符缩略图">
+				            <div class="caption">
+				                <h2>test1</h2>
+				                <span>date:2017-9-18</span>
+				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
+				                <a href="#" class="btn btn-primary " role="button">
+			                        Read Details
+			                    </a>
+				            </div>
+				        </div>
+				    </div>
+				    <div class="col-sm-6 col-md-3">
+				        <div class="thumbnail">
+				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				                 alt="通用的占位符缩略图">
+				            <div class="caption">
+				                <h2>test1</h2>
+				                <span>date:2017-9-18</span>
+				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
+				                <a href="#" class="btn btn-primary " role="button">
+			                        Read Details
+			                    </a>
+				            </div>
+				        </div>
+				    </div>
+				    <div class="col-sm-6 col-md-3">
+				        <div class="thumbnail">
+				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				                 alt="通用的占位符缩略图">
+				            <div class="caption">
+				                <h2>test1</h2>
+				                <span>date:2017-9-18</span>
+				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
+				                <a href="#" class="btn btn-primary " role="button">
+			                        Read Details
+			                    </a>
+				            </div>
+				        </div>
+				    </div>
 				</div>
 				<div class="row">
-					<a href="" class="btn btn-default" style="margin-top:40px;margin-left:83%;border: 3px solid #0E9CEA;color:#0E9CEA;">Read More</a>
+					<a href="" class="btn btn-default" style="margin-top:40px;margin-left:83%;border: 3px solid #0A6C9D;color:#0A6C9D;">Read More</a>
 				</div>
 			</div>
 		</div>
 
 		<!-- 友情链接 -->
-		<div class="row">
-			<h1 style="text-align:center;font-size:4em;color:#12B266;">Some Links</h1>
-			<div class="container">
-				<ul class="nav nav-tabs">
-					<li class="active">
-						<a data-toggle="tab" href="#scau">
-							South China Agricultural University
-						</a>
-					</li>
-					<li><a data-toggle="tab" href="#menu1">中英环境中心</a></li>
-				</ul>
-
-				<div class="tab-content">
-					<div id="scau" class="tab-pane fade in active">
-						<div style="min-height:500px;width:100%;">
-							<div class="row">
-								<h3>South China Agricultural University</h3>
-							</div>
-							<div class="row">
-								<div class="col-lg-4">
-									<img  style="width:100%;height:400px;">
-								</div>
-								<div class="col-lg-8">
-									<p>菜鸟教程 —— 学的不仅是技术，更是梦想！！！</p>
-								</div>
-							</div>
-							<div class="row">
-								<a href="" class="btn btn-default" style="margin-top:20px;margin-left:83%;border: 3px solid #0E9CEA;color:#0E9CEA;">Read More</a>
-							</div>
-						</div>
-					</div>
-					<div id="menu1" class="tab-pane fade">
-						<div style="min-height:500px;width:100%;">
-							<div class="row">
-								<h3>中英环境中心</h3>
-							</div>
-							<div class="row">
-								<div class="col-lg-4">
-									<img  style="width:100%;height:400px;">
-								</div>
-								<div class="col-lg-8">
-									<p>菜鸟教程 —— 学的不仅是技术，更是梦想！！！</p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<a href="" class="btn btn-default" style="margin-top:20px;margin-left:83%;border: 3px solid #0E9CEA;color:#0E9CEA;">Read More</a>
-						</div>
-					</div>
+		<div class="row" style="margin-top:100px;">
+			<h1 style="text-align:center;font-size:4em;color:#12B266;">Recommend</h1>
+			<div class="row" style="width:100%;min-height:250px;margin:0 auto;position:relative;overflow:hidden;">
+				<div id="friendlink1" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
+					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
+						<h1 style="margin-top:25%;display:inline-block;">SCAU</h1>
+						<a href="" class="btn" style="color:#fff;"><i class="fa fa-chevron-circle-right fa-3x"></i></a>
+					</span>
+					<img src="/Public/Home/Images/资源环境学院院楼3.jpg" style="width:100%;height:auto;display:block;float:left;">
+				</div>
+				<div id="friendlink2" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
+					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
+						<h1 style="margin-top:25%;display:inline-block;">Rearch</h1>
+						<a href="" class="btn" style="color:#fff;"><i class="fa fa-chevron-circle-right fa-3x"></i></a>
+					</span>
+					<img src="/Public/Home/Images/资源环境学院院楼3.jpg" style="width:100%;height:auto;display:block;float:left;">
+				</div>
+				<div id="friendlink3" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
+					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
+						<h1 style="margin-top:25%;display:inline-block;">JIERE</h1>
+						<a href="" class="btn" style="color:#fff;"><i class="fa fa-chevron-circle-right fa-3x"></i></a>
+					</span>
+					<img src="/Public/Home/Images/资源环境学院院楼3.jpg" style="width:100%;height:auto;display:block;float:left;">
 				</div>
 			</div>
 		</div>
 
 		<!--地图定位 -->
-		<div class="row" style="margin-top:150px;">
+		<div class="row" style="margin-top:100px;">
 			<div id="">
 				<div id="container"></div>  
 			</div>
@@ -254,19 +313,42 @@
 		//轮播图拓展
 		//Mask的运动
 		$('#flexslider li').mouseenter(function(event) {
-			$('#sliderMask').css('bottom', '0px');
+			$('.sliderMask').finish();
+			$('.sliderMask').animate({
+				bottom:'0px',
+			},550,"swing");
 		});
 		$('#flexslider li').mouseleave(function(event) {
-			$('#sliderMask').css('bottom', '-300px');
+			$('.sliderMask').finish();
+			$('.sliderMask').animate({
+				bottom:'-300px',
+			},550,"swing");
 		});
 		//学院新闻
-		$('#academy-news div').mouseenter(function(event) {
+		// $('#academy-news div').mouseenter(function(event) {
 			
+		// });
+		//友情链接遮罩
+		$('.friendlink').mouseenter(function(event) {
+			var objId = '#'+this.id;
+			$(objId+' span').finish();
+			$(objId+' span').animate({
+				opacity:'1',
+				height: $(objId+' img').css('height'),
+			},550,'swing');
+		});
+		$('.friendlink').mouseleave(function(event) {
+			var objId = '#'+this.id;
+			$(objId+' span').finish();
+			$(objId+' span').animate({
+				opacity:'0',
+				height: '0px',
+			},550,'swing');
 		});
 	});
 	//高德地图
 	var map = new AMap.Map('container',{
-	    zoom: 16,
+	    zoom: 18,
 	    center: [113.351871,23.152996],
 	    lang:'zh_en'
 	});
@@ -277,4 +359,5 @@
 	});
 	//也可以在创建完成后通过setMap方法执行地图对象
 	marker.setMap(map);
+
 </script>
