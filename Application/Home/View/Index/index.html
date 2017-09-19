@@ -313,13 +313,13 @@
 		//轮播图拓展
 		//Mask的运动
 		$('#flexslider li').mouseenter(function(event) {
-			$('.sliderMask').finish();
+			$('.sliderMask').stop();
 			$('.sliderMask').animate({
 				bottom:'0px',
 			},550,"swing");
 		});
 		$('#flexslider li').mouseleave(function(event) {
-			$('.sliderMask').finish();
+			$('.sliderMask').stop();
 			$('.sliderMask').animate({
 				bottom:'-300px',
 			},550,"swing");
