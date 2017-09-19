@@ -79,7 +79,7 @@ class CategoryController extends Controller
 			}
 			return $categoryArr;
 		}else{
-			return;
+			return null;
 		}
 	}
 

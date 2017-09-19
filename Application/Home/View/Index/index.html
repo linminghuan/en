@@ -6,7 +6,7 @@
 	<style type="text/css">
 	    *{font-family:'微软雅黑'}
 		a{text-decoration:none;}
-		.flexslider{position:relative;width:100%;height:650px;overflow:hidden;background:url(/Public/jqueryflexslider/images/loading.gif) 50% no-repeat;}
+		.flexslider{position:relative;width:100%;height:650px;overflow:hidden;background:url(/Public/jqueryflexslider/images/loading.gif) 50% no-repeat;z-index:1;}
 		.flex-control-nav a{display:inline-block;width:14px;height:14px;line-height:40px;overflow:hidden;background:url(/Public/jqueryflexslider/images/dot.png) right 0 no-repeat;cursor:pointer;}
 		.flex-direction-nav li a.flex-prev{left:40px;background:url(/Public/jqueryflexslider/images/prev.png) center center no-repeat;}
 		.flex-direction-nav li a.flex-next{right:40px;background:url(/Public/jqueryflexslider/images/next.png) center center no-repeat;}
@@ -27,60 +27,15 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row">
-			<nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
-				<!--banner-->
-				<div class="row">
-					<img src="/Public/Home/Images/banner.svg" style="width:100%;max-height:150px;">
-				</div>
-				<!-- 导航栏 -->
-				<div class="row">
-					<div class="container-fluid"> 
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse"
-									data-target="#example-navbar-collapse">
-								<span class="sr-only">切换导航</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand" href="#" style="font-size:2em;">HOME</a>
-						</div>
-						<div class="collapse navbar-collapse" id="example-navbar-collapse">
-							<ul class="nav navbar-nav" style="font-size:1.5em;">
-								<li class="active"><a href="#about-us">About us</a></li>
-								<li><a href="#">Tearching</a></li>
-								<li><a href="#">Research</a></li>
-								<li><a href="#">Partnerships</a></li>
-								<li><a href="#">Student Activities</a></li>
-								<!-- 下拉菜单 -->
-								<!-- <li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-										Java <b class="caret"></b>
-									</a>
-									<ul class="dropdown-menu">
-										<li><a href="#">jmeter</a></li>
-										<li><a href="#">EJB</a></li>
-										<li><a href="#">Jasper Report</a></li>
-										<li class="divider"></li>
-										<li><a href="#">分离的链接</a></li>
-										<li class="divider"></li>
-										<li><a href="#">另一个分离的链接</a></li>
-									</ul>
-								</li> -->
-							</ul>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</div>
-	
+		<!-- header -->
+		<include file="./Application/Home/View/Layouts/header.html"/>
 		<!-- 轮播图 -->
-		<div class="row" style="margin-top:250px;">
+		<div class="row">
 			<div class="flexslider" id="flexslider">
 				<ul class="slides">
-					<li style="background:url(/Public/Upload/Image/20170916/1505546418358489.jpg) 50% 0 no-repeat;">
-						<div class="sliderMask" style="width:100%;height:300px;background:#3E3A3A;filter:alpha(opacity=60);-moz-opacity:0.6;opacity: 0.6;position:absolute;bottom:-300px;">
+					<?php rendSlider($photoData);?>
+					<!-- <li style="background:url(/Public/Upload/Image/20170916/1505546418358489.jpg) 50% 0 no-repeat;">
+						<div class="sliderMask" style="">
 							<p style="color: #fff;font-size:2em;display:block;text-align:center;margin-top:3.5%;">我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试</p>
 							<a class="btn" href="" style="display:inline-block;border:4px solid #0A6C9D;color:#fff;margin:0 75%;">Read More</a>
 						</div>
@@ -90,10 +45,22 @@
 							<p style="color: #fff;font-size:2em;display:block;text-align:center;margin-top:3.5%;">我bushiijepwjpofjigteijwpeokofw weufiow</p>
 							<a class="btn" href="" style="display:inline-block;border:4px solid #0A6C9D;color:#fff;margin:0 75%;">Read More</a>
 						</div>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
+		<?php 
+			function rendSlider($data)
+			{
+				foreach($data as $key=>$value){
+					echo "<li style='background:url(".$value['url'].") 50% 0 no-repeat;'>";
+					echo "<div class='sliderMask'>";
+					echo "<p>".$value['discription']."</p>";
+					echo "</div>";
+				}
+				
+			}
+		?>
 
 		<!-- 关于我们 -->
 		<div class="row" style="margin-top:100px;">
@@ -110,7 +77,11 @@
 					</div>
 					<div class="col-md-6 col-sm-6" style="font-size:1.5em;">
 						<p style="width:100%;margin:0 auto;color:#666464;">
-							world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello
+							Welcome to South China Agricultural University!
+
+							For a hundred years, South China Agricultural University has developed into a multi-disciplinary, comprehensive university comprised of the disciplines of agriculture, engineering, liberal arts, basic sciences, economics, management, law, education, history and philosophy. It has always been contributing itself to the development of agriculture and society.
+
+							SCAU has set two central tasks: teaching and research. As an advanced multi-disciplinary agricultural institute with distinctive tropical and subtropical characteristics, SCAU intends to provide its students with an all-round education that contributes to their future professional success. At SCAU, graduate programs and post-graduate programs are developing concurrently. It has a faculty that is capable of top-level and large-scale research. SCAU has been conducting agricultural research on basic theory as well as applied projects. It will bravely face the future challenges.
 						</p>
 					</div>
 					<div class="col-md-1">
@@ -256,24 +227,30 @@
 			<div class="row" style="width:100%;min-height:250px;margin:0 auto;position:relative;overflow:hidden;">
 				<div id="friendlink1" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
 					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
-						<h1 style="margin-top:25%;display:inline-block;">SCAU</h1>
-						<a href="" class="btn" style="color:#fff;"><i class="fa fa-chevron-circle-right fa-3x"></i></a>
+						<a href="" class="btn" style="color:#fff;margin-top:25%;display:inline-block;">
+						<h1 style="display:inline-block;" >SCAU</h1>
+						<i class="fa fa-chevron-circle-right fa-3x"></i>
+						</a>
 					</span>
-					<img src="/Public/Home/Images/资源环境学院院楼3.jpg" style="width:100%;height:auto;display:block;float:left;">
+					<img src="/Public/Home/Images/华农正校门.jpg" style="width:100%;height:auto;display:block;float:left;">
 				</div>
 				<div id="friendlink2" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
 					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
-						<h1 style="margin-top:25%;display:inline-block;">Rearch</h1>
-						<a href="" class="btn" style="color:#fff;"><i class="fa fa-chevron-circle-right fa-3x"></i></a>
+						<a href="" class="btn" style="color:#fff;margin-top:25%;display:inline-block;">
+						<h1 style="display:inline-block;" >Rearch</h1>
+						<i class="fa fa-chevron-circle-right fa-3x"></i>
+						</a>
 					</span>
 					<img src="/Public/Home/Images/资源环境学院院楼3.jpg" style="width:100%;height:auto;display:block;float:left;">
 				</div>
 				<div id="friendlink3" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
 					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
-						<h1 style="margin-top:25%;display:inline-block;">JIERE</h1>
-						<a href="" class="btn" style="color:#fff;"><i class="fa fa-chevron-circle-right fa-3x"></i></a>
+						<a href="" class="btn" style="color:#fff;margin-top:25%;display:inline-block;">
+						<h1 style="display:inline-block;" >JIERE</h1>
+						<i class="fa fa-chevron-circle-right fa-3x"></i>
+						</a>
 					</span>
-					<img src="/Public/Home/Images/资源环境学院院楼3.jpg" style="width:100%;height:auto;display:block;float:left;">
+					<img src="/Public/Home/Images/中英环境科学研究中心.jpg" style="width:100%;height:auto;display:block;float:left;">
 				</div>
 			</div>
 		</div>
@@ -286,17 +263,7 @@
 		</div>
 
 		<!-- footer -->
-		<div class="row" style="margin-top:100px;">
-			<div style="background:#3C3C3C;min-height:150px;width:100%;text-align:left;">
-				<img src="/Public/Home/Images/二维码.png" style="display:inline-block;width:6.5%;height:auto;margin-left:15%;border:2px solid #eee;margin-top:-105px;">
-				<div style="width:50%;height:auto;display:inline-block;color:#fff;font-size:1.2em;line-height:15px;margin-top:20px;">
-					<p>Phone:</p><p>E-mail:</p>
-					<p>address:</p>
-					<p>Copyright ©2017-<?php echo date('Y');?> http://zyhjxy.scau.edu.cn/Government All Rights Reserved</p>
-					<p>Powered By:</p>
-				</div>
-			</div>
-		</div>
+		<include file="./Application/Home/View/Layouts/footer.html"/>
 	</div>
 </body>
 </html>
@@ -359,5 +326,4 @@
 	});
 	//也可以在创建完成后通过setMap方法执行地图对象
 	marker.setMap(map);
-
 </script>

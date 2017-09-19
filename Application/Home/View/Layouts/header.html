@@ -1,0 +1,36 @@
+<div class="row">
+	<!--banner-->
+	<div class="row">
+		<img src="/Public/Home/Images/banner.svg" style="width:100%;max-height:150px;">
+	</div>
+	<!-- 导航栏 -->
+	<div class="row" style=" background:#5E5A5A;">
+		<div id='cssmenu' style='z-index: 2;font-size: 1em;'>
+		<?php rend($menuData);?>
+		</div>
+	</div>
+</div>
+<?php 
+	function rend($data)
+	{
+		rendNav($data);
+	}
+	function rendNav($data, $class = '')
+	{
+		if(isset($data)){
+			echo '<ul>';
+			foreach($data as $key => $value){
+				if($value['next'] != null){
+					echo "<li class='".$class."'><a href='__URL__/list/id/".$value['id']."'>".$value['name']."</a>";
+					rendNav($value['next'], 'has-sub');
+				}else{
+					echo "<li><a href='__URL__/list/id/".$value['id']."'>".$value['name']."</a>";
+				}
+				echo "</li>";
+			}
+			echo '</ul>';
+		}
+		
+	}
+
+?>
