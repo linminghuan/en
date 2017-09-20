@@ -41,13 +41,13 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="homepage" class="col-sm-2 control-label">是否导航</label>
+								<label for="navigation" class="col-sm-2 control-label">是否导航</label>
 								<div class="col-sm-2">
 									<label>
-										<input type="radio" name="homepage" id="homepage1" value="1" checked> 显示
+										<input type="radio" name="navigation" id="navigation1" value="1" checked> 显示
 									</label>
 									<label>
-										<input type="radio" name="homepage" id="homepage2" value="0">不显示
+										<input type="radio" name="navigation" id="navigation2" value="0">不显示
 									</label>
 								</div>
 							</div>
@@ -80,7 +80,7 @@
 <script type="text/javascript">
 	InitRadio($("input[name='status']"),"{$data.status}");
 	InitNav($('#left_nav li'), "{$category}");
-	InitRadio($("input[name='homepage']"),"{$data.homepage}");
+	InitRadio($("input[name='navigation']"),"{$data.navigation}");
 	//InitCategory($('#category')[0].options,"{$data.category}");
 	$(function (){
 		$("#category_form").validate({

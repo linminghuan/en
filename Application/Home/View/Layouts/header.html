@@ -6,23 +6,19 @@
 	<!-- 导航栏 -->
 	<div class="row" style=" background:#5E5A5A;">
 		<div id='cssmenu' style='z-index: 2;font-size: 1em;'>
-		<?php rend($menuData);?>
+		<?php rendMenu($menuData);?>
 		</div>
 	</div>
 </div>
 <?php 
-	function rend($data)
-	{
-		rendNav($data);
-	}
-	function rendNav($data, $class = '')
+	function rendMenu($data, $class = '')
 	{
 		if(isset($data)){
 			echo '<ul>';
 			foreach($data as $key => $value){
 				if($value['next'] != null){
 					echo "<li class='".$class."'><a href='__URL__/list/id/".$value['id']."'>".$value['name']."</a>";
-					rendNav($value['next'], 'has-sub');
+					rendMenu($value['next'], 'has-sub');
 				}else{
 					echo "<li><a href='__URL__/list/id/".$value['id']."'>".$value['name']."</a>";
 				}

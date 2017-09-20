@@ -6,6 +6,7 @@
  * @verson: 1.0
  * @description:  
  * （1）完成基本功能；（2017/9/16）
+ * （2）添加list方法；（2017/9/17）
  */
 namespace Home\Controller;
 
@@ -22,7 +23,7 @@ class IndexController extends Controller
     	$category = M('categories');
     	$map['status'] = 1;
     	$menuData = $category->where("name='menu'")->ORDER('sort')->field('id,name,pid')->select();
-    	$menuData = $this->subCategory($category, $menuData[0]['id'], ['homepage'=>1]);
+    	$menuData = $this->subCategory($category, $menuData[0]['id'], ['navigation'=>1]);
     	$this->assign('menuData', $menuData);
     	//轮播图
     	$map['status'] = 1;
@@ -49,4 +50,19 @@ class IndexController extends Controller
 			return;
 		}
 	}
+
+    //返回栏目列表
+    public function list($id)
+    {
+        if(isset($id)){
+            //返回左边导航栏数据
+            $category = M('categories');
+            $tmp = $category->find($id);
+            $tmp['next'] = $this->subCategory($category, $id);
+            $this->assign('lNavData', $tmp);
+            $this->display('Index/list');
+        }else{
+            $this->error('404, 没找到！');
+        }
+    }
 }

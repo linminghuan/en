@@ -5,51 +5,131 @@
     <style type="text/css">
 	    *{font-family:'微软雅黑'}
 		a{text-decoration:none;}
+		li{list-style-type:none;}
+		#menu a{
+			font-size: 1.5em;
+			color: #C4C2C2;
+			text-decoration:none;
+		}
+		#menu i{
+			color: #C4C2C2;
+			float: right;
+		}
+		#menu ul{
+			display: block;
+			width:60%;
+			background: #312F2F;
+			margin-top: -10px;
+		}
+		#menu ul li{
+			display: inline-block;
+			width:100%;
+			height:36px;
+		}
+		#menu .sub-menu ul{
+			display: none;
+			left:100%;
+			width:125%;
+			background: #312F2F;
+			margin-top: 0px;
+		}
+		#menu h3{
+			font-size:2em;
+			text-align: center;
+			display: block;
+			width: 60%;
+			background: #35807e;
+			color:#E4DFDF;
+			height:50px;
+			line-height: 45px;
+		}
     </style>
+
 </head>
 <body>
 	<div class="container-fluid">
 		<!-- header -->
 		<include file="./Application/Home/View/Layouts/header.html"/>
 		<!-- body -->
-		<div class="row" style="margin:250px auto;min-height:700px;width:85%;">
-			<div class="col-md-2" style="border:3px solid #B91414;">
-					<li>
-					<div class="nav nav-pills nav-stacked" id="accordion">
-						<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-							点击我进行展开
-						</a>
-						<div id="collapseTwo" class="panel-collapse collapse">
-								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">SVN</a></li>
-									<li><a href="#">iOS</a></li>
-									<li><a href="#">VB.Net</a></li>
-									<li><a href="#">Java</a></li>
-									<li>
-										<a data-toggle="collapse" data-parent="#collapseTwo" href="#collapseThree">
-											点击我进行展开
-										</a>
-										<div id="collapseThree" class="panel-collapse collapse">
-											<ul class="nav nav-pills nav-stacked">
-												<li class="active"><a href="#">Home</a></li>
-												<li><a href="#">SVN</a></li>
-												<li><a href="#">iOS</a></li>
-												<li><a href="#">VB.Net</a></li>
-												<li><a href="#">Java</a></li>
-												<li><a href="#">PHP</a></li>
-											</ul>
-										</div>
-									</li>
-								</ul>
-						</div>
-						</div>
-					</li>
+		<div class="row" style="margin:150px auto;min-height:700px;width:100%;">
+			<div class="col-md-3">
+				<div id="menu">
+					<h3><?php echo $lNavData['name'];?></h3>
+					<?php rendLeftNav($lNavData['next']);?>
+				</div>
 			</div>
-			<div class="col-md-8"></div>
+			<div class="col-md-8">
+				<div class="container-fluid">
+					
+				</div>
+			</div>
 		</div>
 		<!-- footer -->
 		<include file="./Application/Home/View/Layouts/footer.html"/>
 	</div>
 </body>
 </html>
+<?php
+	function rendLeftNav($data, $class = 'sub-menu')
+	{
+		if(isset($data)){
+			echo '<ul>';
+			foreach($data as $key=>$value){
+				if($value['next'] != null){
+					echo "<li class='".$class."'><a href='__URL__/list/id/".$value['id']."'>".$value['name']."</a><i class='fa fa-plus fa-2x'></i>";
+					rendLeftNav($value['next'], 'sub-menu');
+				}else{
+					echo "<li><a href='__URL__/list/id/".$value['id']."'>".$value['name']."</a>";
+				}
+				echo '</li>';
+			}
+			echo '</ul>';
+		}
+	}
+?>
+<script type="text/javascript">
+	$(function (){
+		//绑定菜单点击事件
+		$('#menu').on('click', '.sub-menu i', function(event) {
+			event.stopPropagation();//阻止事件冒泡
+			var ul = $(this).nextAll('ul:first')[0];
+			if($(ul).css('display') == 'inline-block'){
+				$(this).css({
+					color: '#E4DFDF',
+					background: '#312F2F',
+				});
+				$(ul).css('display', 'none');
+				$(this).attr('class', 'fa fa-plus fa-2x');
+			}else{
+				$(this).css({
+					color: '#E4DFDF',
+					background: '#35807e',
+				});
+				$(ul).css('display', 'inline-block');
+				$(this).attr('class', 'fa fa-minus fa-2x');
+			}
+		});
+
+		//为li绑定mouseenter、mouseleave事件
+		$('#menu').on({
+			mouseenter : function (){
+				event.stopPropagation();//阻止事件冒泡
+				if($($(this).find('i')).attr('class') != 'fa fa-minus fa-2x'){
+					$(this).css({
+						color: '#0B0B0B',
+						background: '#35807e',
+					});
+				}
+			},
+			mouseleave : function (){
+				event.stopPropagation();//阻止事件冒泡
+				if($($(this).find('i')).attr('class') != 'fa fa-minus fa-2x'){
+					$(this).css({
+						color: '#E4DFDF',
+						background: '#312F2F',
+					});
+				}
+			}  
+		}, 'li');
+	});
+</script>
