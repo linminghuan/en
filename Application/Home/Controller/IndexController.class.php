@@ -30,7 +30,7 @@ class IndexController extends Controller
     }
 
     //递归查询所有的栏目
-	private function subCategory($pid, $where = [])
+	private function subCategory($pid, $where = array())
 	{ 
         $category = M('categories');
          if(!isset($pid)){
@@ -56,7 +56,7 @@ class IndexController extends Controller
 	}
 
     //返回栏目列表
-    public function list($id)
+    public function sList ($id)
     {
         if(isset($id)){
             $category = M('categories');

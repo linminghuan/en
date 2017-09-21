@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<include file="./Application/Home/View/Layouts/resource.html" title="HOME"/>
-	<link href="/Public/jqueryflexslider/css/jqueryflexslider.css" rel="stylesheet">
+	<link href="__ROOT__/Public/jqueryflexslider/css/jqueryflexslider.css" rel="stylesheet">
 	<style type="text/css">
 	    *{font-family:'微软雅黑'}
 		a{text-decoration:none;}
@@ -34,18 +34,18 @@
 			<div class="flexslider" id="flexslider">
 				<ul class="slides">
 					<?php rendSlider($photoData);?>
-					<!-- <li style="background:url(/Public/Upload/Image/20170916/1505546418358489.jpg) 50% 0 no-repeat;">
+					<li style="background:url(__ROOT__/Public/Upload/Image/20170916/1505546418358489.jpg) 50% 0 no-repeat;">
 						<div class="sliderMask" style="">
 							<p style="color: #fff;font-size:2em;display:block;text-align:center;margin-top:3.5%;">我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试</p>
 							<a class="btn" href="" style="display:inline-block;border:4px solid #0A6C9D;color:#fff;margin:0 75%;">Read More</a>
 						</div>
 					</li>
-					<li style="background:url(/Public/Upload/Image/20170916/1505546509244018.jpg) 50% 0 no-repeat;">
+					<li style="background:url(__ROOT__/Public/Upload/Image/20170916/1505546509244018.jpg) 50% 0 no-repeat;">
 						<div class="sliderMask" style="width:100%;height:300px;background:#3E3A3A;filter:alpha(opacity=60);-moz-opacity:0.6;opacity: 0.6;position:absolute;bottom:-300px;">
 							<p style="color: #fff;font-size:2em;display:block;text-align:center;margin-top:3.5%;">我bushiijepwjpofjigteijwpeokofw weufiow</p>
 							<a class="btn" href="" style="display:inline-block;border:4px solid #0A6C9D;color:#fff;margin:0 75%;">Read More</a>
 						</div>
-					</li> -->
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -63,6 +63,7 @@
 		?>
 
 		<!-- 关于我们 -->
+		<!-- 
 		<div class="row" style="margin-top:100px;">
 			<div style="width:100%;min-height:600px;margin:0 auto;">
 				<div class="row" style="position:relative;">
@@ -75,7 +76,7 @@
 					<div class="col-md-4 col-sm-4">
 						<img src="/Public/Home/Images/资源环境学院院楼3.jpg" alt="资源环境学院院楼" style="width:100%;height:auto;">
 					</div>
-					<div class="col-md-6 col-sm-6" style="font-size:1.5em;">
+					<div class="col-md-6 col-sm-6" style="font-size:1.2em;">
 						<p style="width:100%;margin:0 auto;color:#666464;">
 							Welcome to South China Agricultural University!
 
@@ -93,18 +94,18 @@
 					<a href="" class="btn btn-default" style="margin-left:70%;border:4px solid #0A6C9D;color:#0A6C9D;margin:0 75%;">Read Details</a>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- 学院新闻 -->
 		<div class="row" style="margin-top:100px;">
 			<div style="width:100%;min-height:700px;">
 				<div class="row">
-					<h1 style="color:#0E9CEA;text-align:center;font-size:4em;">Student Activities</h1>
+					<h1 style="color:#0E9CEA;text-align:center;font-size:3.5em;">Student Activities</h1>
 				</div>
 				<div class="row" style="width:80%;margin:0 auto;" id="academy-news">
 				    <div class="col-sm-6 col-md-3">
 				        <div class="thumbnail">
-				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -118,7 +119,7 @@
 				    </div>
 				    <div class="col-sm-6 col-md-3">
 				        <div class="thumbnail">
-				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -132,7 +133,7 @@
 				    </div>
 				    <div class="col-sm-6 col-md-3">
 				        <div class="thumbnail">
-				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -146,7 +147,7 @@
 				    </div>
 				    <div class="col-sm-6 col-md-3">
 				        <div class="thumbnail">
-				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -160,7 +161,7 @@
 				    </div>
 				    <div class="col-sm-6 col-md-3">
 				        <div class="thumbnail">
-				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -174,7 +175,7 @@
 				    </div>
 				    <div class="col-sm-6 col-md-3">
 				        <div class="thumbnail">
-				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -188,7 +189,7 @@
 				    </div>
 				    <div class="col-sm-6 col-md-3">
 				        <div class="thumbnail">
-				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -202,7 +203,7 @@
 				    </div>
 				    <div class="col-sm-6 col-md-3">
 				        <div class="thumbnail">
-				            <img src="/Public/Upload/Image/20170916/1505546896602569.jpg"
+				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -232,7 +233,7 @@
 						<i class="fa fa-chevron-circle-right fa-3x"></i>
 						</a>
 					</span>
-					<img src="/Public/Home/Images/华农正校门.jpg" style="width:100%;height:auto;display:block;float:left;">
+					<img src="__ROOT__/Public/Home/Images/华农正校门.jpg" style="width:100%;height:auto;display:block;float:left;">
 				</div>
 				<div id="friendlink2" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
 					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
@@ -241,7 +242,7 @@
 						<i class="fa fa-chevron-circle-right fa-3x"></i>
 						</a>
 					</span>
-					<img src="/Public/Home/Images/资源环境学院院楼3.jpg" style="width:100%;height:auto;display:block;float:left;">
+					<img src="__ROOT__/Public/Home/Images/资源环境学院院楼3.jpg" style="width:100%;height:auto;display:block;float:left;">
 				</div>
 				<div id="friendlink3" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
 					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
@@ -250,7 +251,7 @@
 						<i class="fa fa-chevron-circle-right fa-3x"></i>
 						</a>
 					</span>
-					<img src="/Public/Home/Images/中英环境科学研究中心.jpg" style="width:100%;height:auto;display:block;float:left;">
+					<img src="__ROOT__/Public/Home/Images/中英环境科学研究中心.jpg" style="width:100%;height:auto;display:block;float:left;">
 				</div>
 			</div>
 		</div>
