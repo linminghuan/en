@@ -1,0 +1,16 @@
+<?php
+	foreach($listData as $key => $value){
+		echo "<div class='row content-li'>";
+		echo "<div class='img'>";
+		echo "<a href='__URL__/detail/category_id/".$value['category_id']."/id/".$value['id']."'><img src='".$value['cover']."'></a>";
+		echo "</div>";
+		echo "<div class='text'>";
+		echo "<a href='__URL__/detail/category_id/".$value['category_id']."/id/".$value['id']."'><h2>".$value['title']."</h2></a>";
+		echo "<div class='discipt'>".$value['discription']."</div>";
+		echo "</div>";
+		echo "<div class='more'>";
+		echo "<a href='__URL__/detail/category_id/".$value['category_id']."/id/".$value['id']."' class='mbtn'><i class='fa fa-arrow-circle-right fa-3x'></i></a>";
+		echo "</div>";
+		echo "</div>";
+	} 
+?>

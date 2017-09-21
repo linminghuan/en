@@ -16,11 +16,15 @@
 		if(isset($data)){
 			echo '<ul>';
 			foreach($data as $key => $value){
+				$str = '__URL__/list/id/'.$value['id'];
+				if($value['name'] == 'Home'){
+					$str = '/';
+				}
 				if($value['next'] != null){
-					echo "<li class='".$class."'><a href='__URL__/list/id/".$value['id']."'>".$value['name']."</a>";
+					echo "<li class='".$class."'><a href='".$str."'>".$value['name']."</a>";
 					rendMenu($value['next'], 'has-sub');
 				}else{
-					echo "<li><a href='__URL__/list/id/".$value['id']."'>".$value['name']."</a>";
+					echo "<li><a href='".$str."'>".$value['name']."</a>";
 				}
 				echo "</li>";
 			}

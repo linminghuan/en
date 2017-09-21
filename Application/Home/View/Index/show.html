@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<include file="./Application/Home/View/Layouts/resource.html" title=""/>
+    <style type="text/css">
+	    *{font-family:'微软雅黑'}
+		a{text-decoration:none;}
+		li{list-style-type:none;}
+		/* 左边导航栏 */
+		#menu a{
+			font-size: 1.5em;
+			color: #C4C2C2;
+			text-decoration:none;
+		}
+		#menu i{
+			color: #C4C2C2;
+			float: right;
+		}
+		#menu ul{
+			display: block;
+			width:60%;
+			background: #312F2F;
+			margin-top: -10px;
+		}
+		#menu ul li{
+			display: inline-block;
+			width:100%;
+			height:36px;
+		}
+		#menu .sub-menu ul{
+			display: none;
+			left:100%;
+			width:125%;
+			background: #312F2F;
+			margin-top: 0px;
+		}
+		#menu a h3{
+			font-size:1.5em;
+			text-align: center;
+			display: block;
+			width: 60%;
+			background: #35807e;
+			color:#E4DFDF;
+			height:50px;
+			line-height: 45px;
+		}
+		/***********右边内容************/
+		#content{
+			width: 100%;
+		}
+		#content a{
+			text-decoration:none;
+		}
+		#content .img img{
+			width: 100%;
+			height: auto;
+		}
+		#content h1{
+			color:#1F1E1E;
+			font-size:3.5em;
+		}
+		/* 列表部分 */
+		#content .content-li{
+			width:100%;
+			margin:25px auto;
+			border:1px solid #D1CCCC;
+			overflow: hidden;
+		}
+		#content .content-li h2{
+
+		}
+		#content .content-li .img{
+			width:30%;
+			display:inline-block;
+			float:left;
+		}
+		#content .content-li .text{
+			width:60%;
+			display:inline-block;
+			float:left;
+			padding-left: 20px;
+		}
+		#content .content-li .more{
+			position:relative;
+			width:10%;display:
+			inline-block;
+			float:left;
+		}
+		#content .content-li .text .discipt{
+			font-size: 1.2em;
+			color: #7F7D7D
+		}
+		#content .content-li .mbtn{
+			display: block;
+			background:#35807e;
+			width: 100%;
+			position: absolute;
+			right:-100px;
+			filter:alpha(opacity=0);
+			-moz-opacity:0;
+			opacity: 0;
+			color: #E4DFDF;
+			font-size: 1.2em;
+			text-align: center;
+		}
+		#content .content-li .mbtn i{
+			line-height: 220px;
+		}
+		/* 详情 */
+		#content .content-detail {
+			width: 100%;
+			margin-left: 0px;
+		}
+		#content .content-detail .title h2{
+			font-size: 2.5em;
+			color: #35807e;
+		}
+		#content .content-detail .article-mes{
+			color: #A5A3A3; 
+			height: 35px;
+			border-bottom: 1px solid #2D96ED;
+		}
+		#content .content-detail .article-cont{
+			color: #616263;
+		}
+		/* 分页样式 */
+		#page {
+			width: 100%;
+			margin: 0 auto;
+		}
+		#page a {
+			display: inline-block;
+			width: 35px;
+			height: 35px;
+			border: 1px solid #B9BABB;
+			border-radius: 2px;
+			margin-right: 10px;
+			text-align: center;
+			line-height: 32px;
+			color: #312F2F;
+			text-decoration:none;
+		}
+		#page .current {
+			display: inline-block;
+			width: 35px;
+			height: 35px;
+			border: 1px solid #B9BABB;
+			border-radius: 2px;
+			margin-right: 10px;
+			background: #35807e;
+			text-align: center;
+			line-height: 32px;
+			color: white;
+		}
+    </style>
+
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- header -->
+		<include file="./Application/Home/View/Layouts/header.html"/>
+		<!-- body -->
+		<div class="row" style="margin:50px auto;min-height:700px;width:80%;">
+			<div class="col-md-4">
+				<div id="menu">
+					<a href="__URL__/list/id/{$lNavData['id']}"><h3><?php echo $lNavData['name'];?></h3></a>
+					<?php rendLeftNav($lNavData['next']);?>
+				</div>
+			</div>
+			<!-- 内容 -->
+			<div class="col-md-8">
+				<div id="content">
+					<div class="row" style="width:100%;">
+						<a href="__URL__/list/id/{$lNavData['id']}"><h1><?php echo $lNavData['name'];?></h1></a>
+					</div>
+					<if condition="$type eq 'list' ">
+						<include file='./Application/Home/View/Layouts/list.html'/>
+					<else />
+						<include file='./Application/Home/View/Layouts/detail.html'/>
+					</if>
+				</div>
+				<!-- 分页 -->
+				<div class="result page" id="page">{$page}</div>
+			</div>
+		</div>
+		<!-- footer -->
+		<include file="./Application/Home/View/Layouts/footer.html"/>
+	</div>
+</body>
+</html>
+<?php
+	function rendLeftNav($data, $class = 'sub-menu')
+	{
+		if(isset($data)){
+			echo '<ul>';
+			foreach($data as $key=>$value){
+				if($value['next'] != null){
+					echo "<li class='".$class."'><a href='__URL__/list/id/".$value['id']."'>".$value['name']."</a><i class='fa fa-plus fa-2x'></i>";
+					rendLeftNav($value['next'], 'sub-menu');
+				}else{
+					echo "<li><a href='__URL__/list/id/".$value['id']."'>".$value['name']."</a>";
+				}
+				echo '</li>';
+			}
+			echo '</ul>';
+		}
+	}
+?>
+<script type="text/javascript">
+	$(function (){
+		//绑定菜单点击事件
+		$('#menu').on('click', '.sub-menu i', function(event) {
+			event.stopPropagation();//阻止事件冒泡
+			var ul = $(this).nextAll('ul:first')[0];
+			if($(ul).css('display') == 'inline-block'){
+				$(this).css({
+					color: '#E4DFDF',
+					background: '#312F2F',
+				});
+				$(ul).css('display', 'none');
+				$(this).attr('class', 'fa fa-plus fa-2x');
+			}else{
+				$(this).css({
+					color: '#E4DFDF',
+					background: '#35807e',
+				});
+				$(ul).css('display', 'inline-block');
+				$(this).attr('class', 'fa fa-minus fa-2x');
+			}
+		});
+
+		//为li绑定mouseenter、mouseleave事件
+		$('#menu').on({
+			mouseenter : function (){
+				event.stopPropagation();//阻止事件冒泡
+				if($($(this).find('i')).attr('class') != 'fa fa-minus fa-2x'){
+					$(this).css({
+						color: '#0B0B0B',
+						background: '#35807e',
+					});
+				}
+			},
+			mouseleave : function (){
+				event.stopPropagation();//阻止事件冒泡
+				if($($(this).find('i')).attr('class') != 'fa fa-minus fa-2x'){
+					$(this).css({
+						color: '#E4DFDF',
+						background: '#312F2F',
+					});
+				}
+			}  
+		}, 'li');
+
+		//文章列表按钮动画
+		$('#content').on({
+			mouseenter : function (){
+				event.stopPropagation();//阻止事件冒泡
+				var mbtn = $(this).find('.mbtn');
+				$(mbtn).finish();
+				$(mbtn).animate({
+					right: '0px',
+					opacity: '1',
+					height: $(this).css('height'),
+				});
+			},
+			mouseleave : function (){
+				event.stopPropagation();//阻止事件冒泡
+				var mbtn = $(this).find('.mbtn');
+				$(mbtn).finish();
+				$(mbtn).animate({
+					right: '-100px',
+					opacity: '0',
+					height: '0px',
+				});
+			}  
+		}, '.content-li');
+	});
+</script>

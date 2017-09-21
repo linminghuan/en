@@ -1,0 +1,18 @@
+<!-- <div class="row content-detail">
+	<div class="row title">
+		<h2>test</h2>
+	</div>
+	<div class='row article-mes'>
+		<span class="date">update: 2017-9-16</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="editor">editor: admin</span>
+	</div>
+	<div class="row article-cont">
+		
+	</div>
+</div> -->
+<?php
+	echo "<div class='row content-detail'>";
+	echo "<div class='row title'><h2>".$detailData['title']."</h2></div>";
+	echo "<div class='row article-mes'><span class='date'>update: ".$detailData['update_at']."</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='editor'>editor: ".$detailData['editor']."</span></div>";
+	echo "<div class='row article-cont'>".html_entity_decode($detailData['content'])."</div></div>";
+?>
