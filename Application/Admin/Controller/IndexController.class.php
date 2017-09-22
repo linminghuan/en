@@ -9,11 +9,11 @@
  */
 namespace Admin\Controller;
 
-use Think\Controller;
-use Admin\Traits\AuthTrait;
+use Admin\Controller\AdminController;
+/*use Admin\Traits\AuthTrait;*/
 
-class IndexController extends Controller {
-	use AuthTrait;
-
+class IndexController extends AdminController
+{
+	/*use AuthTrait;*/
     
 }

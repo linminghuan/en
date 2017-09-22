@@ -6,6 +6,7 @@
  * @verson: 1.0
  * @description:  
  * （1）完成基本功能；（2017/9/14）
+ * （2）把url字段从自动完成数组里删除；（2017/9/22）
  */
 namespace Admin\Model;
 
@@ -21,7 +22,6 @@ class PhotoModel extends Model
 
 	protected $_auto = array ( 
 		array('update_at',"nowDate",3,'callback'),
-		array('url','GetImgUrl',3,'callback'),
 		array('editor','AutoEditor',1,'callback'),
     );
 

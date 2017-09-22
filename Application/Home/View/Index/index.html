@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 	<include file="./Application/Home/View/Layouts/resource.html" title="HOME"/>
-	<link href="__ROOT__/Public/jqueryflexslider/css/jqueryflexslider.css" rel="stylesheet">
+	<link href="/en/Public/jqueryflexslider/css/jqueryflexslider.css" rel="stylesheet">
 	<style type="text/css">
 	    *{font-family:'微软雅黑'}
 		a{text-decoration:none;}
-		.flexslider{position:relative;width:100%;height:650px;overflow:hidden;background:url(./Public/jqueryflexslider/images/loading.gif) 50% no-repeat;z-index:1;}
-		.flex-control-nav a{display:inline-block;width:14px;height:14px;line-height:40px;overflow:hidden;background:url(./Public/jqueryflexslider/images/dot.png) right 0 no-repeat;cursor:pointer;}
-		.flex-direction-nav li a.flex-prev{left:40px;background:url(./Public/jqueryflexslider/images/prev.png) center center no-repeat;}
-		.flex-direction-nav li a.flex-next{right:40px;background:url(./Public/jqueryflexslider/images/next.png) center center no-repeat;}
+		.flexslider{position:relative;width:100%;height:650px;overflow:hidden;background:url(/en/Public/jqueryflexslider/images/loading.gif) 50% no-repeat;z-index:1;}
+		.flex-control-nav a{display:inline-block;width:14px;height:14px;line-height:40px;overflow:hidden;background:url(/en/Public/jqueryflexslider/images/dot.png) right 0 no-repeat;cursor:pointer;}
+		.flex-direction-nav li a.flex-prev{left:40px;background:url(/en/Public/jqueryflexslider/images/prev.png) center center no-repeat;}
+		.flex-direction-nav li a.flex-next{right:40px;background:url(/en/Public/jqueryflexslider/images/next.png) center center no-repeat;}
 		/* 定位地图的样式 */
 		#container {width:100%; height: 500px; }  
 		/* 学院新闻 */
@@ -23,6 +23,10 @@
 			font-family:'微软雅黑';
 			margin:0 auto; 
 		}
+		/* 手机端的兼容 */
+		@media (max-width: 990px){
+		    
+		}
 	</style>
 </head>
 <body>
@@ -33,34 +37,29 @@
 		<div class="row">
 			<div class="flexslider" id="flexslider">
 				<ul class="slides">
-					<?php rendSlider($photoData);?>
-					<li style="background:url(__ROOT__/Public/Upload/Image/20170916/1505546418358489.jpg) 50% 0 no-repeat;">
+					<?php 
+						foreach($data as $key=>$value){
+							echo "<li style='background:url(".$value['url'].") 50% 0 no-repeat;'>";
+							echo "<div class='sliderMask'>";
+							echo "<p>".$value['discription']."</p>";
+							echo "</div>";
+						}
+					?>
+					<!-- <li style="background:url(/en/Public/Upload/Image/20170916/1505546418358489.jpg) 50% 0 no-repeat;">
 						<div class="sliderMask" style="">
 							<p style="color: #fff;font-size:2em;display:block;text-align:center;margin-top:3.5%;">我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试</p>
 							<a class="btn" href="" style="display:inline-block;border:4px solid #0A6C9D;color:#fff;margin:0 75%;">Read More</a>
 						</div>
 					</li>
-					<li style="background:url(__ROOT__/Public/Upload/Image/20170916/1505546509244018.jpg) 50% 0 no-repeat;">
+					<li style="background:url(/en/Public/Upload/Image/20170916/1505546509244018.jpg) 50% 0 no-repeat;">
 						<div class="sliderMask" style="width:100%;height:300px;background:#3E3A3A;filter:alpha(opacity=60);-moz-opacity:0.6;opacity: 0.6;position:absolute;bottom:-300px;">
 							<p style="color: #fff;font-size:2em;display:block;text-align:center;margin-top:3.5%;">我bushiijepwjpofjigteijwpeokofw weufiow</p>
 							<a class="btn" href="" style="display:inline-block;border:4px solid #0A6C9D;color:#fff;margin:0 75%;">Read More</a>
 						</div>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
-		<?php 
-			function rendSlider($data)
-			{
-				foreach($data as $key=>$value){
-					echo "<li style='background:url(".$value['url'].") 50% 0 no-repeat;'>";
-					echo "<div class='sliderMask'>";
-					echo "<p>".$value['discription']."</p>";
-					echo "</div>";
-				}
-				
-			}
-		?>
 
 		<!-- 关于我们 -->
 		<!-- 
@@ -97,15 +96,27 @@
 		</div> -->
 
 		<!-- 学院新闻 -->
-		<div class="row" style="margin-top:100px;">
-			<div style="width:100%;min-height:700px;">
-				<div class="row">
-					<h1 style="color:#0E9CEA;text-align:center;font-size:3.5em;">Student Activities</h1>
-				</div>
+		<div class="row" style="margin-top:100px;width:100%;">
+			<div style="min-height:700px;">
+				<h1 id="news-h1" style="color:#0E9CEA;font-size:3.5em;text-align:center;">Student Activities</h1>
 				<div class="row" style="width:80%;margin:0 auto;" id="academy-news">
-				    <div class="col-sm-6 col-md-3">
+					<?php 
+						foreach($newsData as $key => $value){
+							echo "<div class='col-sm-6 col-md-3'>";
+							echo "<div class='thumbnail'>";
+							echo "<img src='/en/Public/Home/Images/bg.jpg'
+					                 alt='文章的封面'>";
+					        echo "<div class='caption'>";
+					        echo "<h2>".$value['title']."</h2>";
+					        echo "<span>date:".$value['update_at']."</span>";
+					        echo "<p>".$value['discription']."</p>";
+					        echo "<a href='__URL__/detail/id/".$value['id']."' class='btn btn-primary' role='button'>Read Details</a>";
+					        echo "</div></div></div>";
+						}
+					?>
+				    <div class="col-sm-6 col-md-4">
 				        <div class="thumbnail">
-				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
+				            <img src="/en/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -117,9 +128,9 @@
 				            </div>
 				        </div>
 				    </div>
-				    <div class="col-sm-6 col-md-3">
+				    <div class="col-sm-6 col-md-4">
 				        <div class="thumbnail">
-				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
+				            <img src="/en/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -131,9 +142,9 @@
 				            </div>
 				        </div>
 				    </div>
-				    <div class="col-sm-6 col-md-3">
+				    <div class="col-sm-6 col-md-4">
 				        <div class="thumbnail">
-				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
+				            <img src="/en/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -145,9 +156,9 @@
 				            </div>
 				        </div>
 				    </div>
-				    <div class="col-sm-6 col-md-3">
+				    <div class="col-sm-6 col-md-4">
 				        <div class="thumbnail">
-				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
+				            <img src="/en/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -159,9 +170,9 @@
 				            </div>
 				        </div>
 				    </div>
-				    <div class="col-sm-6 col-md-3">
+				    <div class="col-sm-6 col-md-4">
 				        <div class="thumbnail">
-				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
+				            <img src="/en/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -173,37 +184,9 @@
 				            </div>
 				        </div>
 				    </div>
-				    <div class="col-sm-6 col-md-3">
+				    <div class="col-sm-6 col-md-4">
 				        <div class="thumbnail">
-				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
-				                 alt="通用的占位符缩略图">
-				            <div class="caption">
-				                <h2>test1</h2>
-				                <span>date:2017-9-18</span>
-				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
-				                <a href="#" class="btn btn-primary " role="button">
-			                        Read Details
-			                    </a>
-				            </div>
-				        </div>
-				    </div>
-				    <div class="col-sm-6 col-md-3">
-				        <div class="thumbnail">
-				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
-				                 alt="通用的占位符缩略图">
-				            <div class="caption">
-				                <h2>test1</h2>
-				                <span>date:2017-9-18</span>
-				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
-				                <a href="#" class="btn btn-primary " role="button">
-			                        Read Details
-			                    </a>
-				            </div>
-				        </div>
-				    </div>
-				    <div class="col-sm-6 col-md-3">
-				        <div class="thumbnail">
-				            <img src="__ROOT__/Public/Home/Images/bg.jpg"
+				            <img src="/en/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
 				            <div class="caption">
 				                <h2>test1</h2>
@@ -224,7 +207,7 @@
 
 		<!-- 友情链接 -->
 		<div class="row" style="margin-top:100px;">
-			<h1 style="text-align:center;font-size:4em;color:#12B266;">Recommend</h1>
+			<h1 style="font-size:4em;color:#12B266;text-align:center;">Recommend</h1>
 			<div class="row" style="width:100%;min-height:250px;margin:0 auto;position:relative;overflow:hidden;">
 				<div id="friendlink1" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
 					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
@@ -233,7 +216,7 @@
 						<i class="fa fa-chevron-circle-right fa-3x"></i>
 						</a>
 					</span>
-					<img src="__ROOT__/Public/Home/Images/华农正校门.jpg" style="width:100%;height:auto;display:block;float:left;">
+					<img src="/en/Public/Home/Images/华农正校门.jpg" style="width:100%;height:auto;display:block;float:left;">
 				</div>
 				<div id="friendlink2" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
 					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
@@ -242,7 +225,7 @@
 						<i class="fa fa-chevron-circle-right fa-3x"></i>
 						</a>
 					</span>
-					<img src="__ROOT__/Public/Home/Images/资源环境学院院楼3.jpg" style="width:100%;height:auto;display:block;float:left;">
+					<img src="/en/Public/Home/Images/资源环境学院院楼3.jpg" style="width:100%;height:auto;display:block;float:left;">
 				</div>
 				<div id="friendlink3" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
 					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
@@ -251,7 +234,7 @@
 						<i class="fa fa-chevron-circle-right fa-3x"></i>
 						</a>
 					</span>
-					<img src="__ROOT__/Public/Home/Images/中英环境科学研究中心.jpg" style="width:100%;height:auto;display:block;float:left;">
+					<img src="/en/Public/Home/Images/中英环境科学研究中心.jpg" style="width:100%;height:auto;display:block;float:left;">
 				</div>
 			</div>
 		</div>
@@ -269,7 +252,7 @@
 </body>
 </html>
 <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.0&key=8a9d44b97d5c60d46a626b76e77aa35b"></script> 
-<script type="text/javascript" src="/Public/jqueryflexslider/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="/en/Public/jqueryflexslider/js/jquery.flexslider-min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		//初始化轮播图

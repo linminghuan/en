@@ -6,7 +6,8 @@
  * @verson: 1.0
  * @description:  
  * （1）完成基本功能；（2017/9/16）
- * （2）添加list方法；（2017/9/17）
+ * （2）添加sList方法；（2017/9/19）
+ * （3）添加detail方法；（2017/9/19）
  */
 namespace Home\Controller;
 
@@ -30,13 +31,13 @@ class IndexController extends Controller
     }
 
     //递归查询所有的栏目
-	private function subCategory($pid, $where = array())
+	private function subCategory($pid = 1, $where = array())
 	{ 
         $category = M('categories');
-         if(!isset($pid)){
+        /*if(!isset($pid)){
             $menuData = $category->where("name='menu'")->ORDER('sort')->field('id,name,pid')->select();
             $pid =  $menuData[0]['id'];
-        }
+        }*/
 		$categoryArr = Array();
 		if(isset($where)) $map = $where;
         $map['navigation'] = array('eq', 1);

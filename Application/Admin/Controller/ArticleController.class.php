@@ -6,32 +6,30 @@
  * @verson: 1.0
  * @description:  
  * （1）完成基本功能；（2017/9/15）
+ * （2）修复allCategory方法；（2017/9/22）
+ * （3）修改allCategory方法；（2017/9/22）
  */
 namespace Admin\Controller;
 
-use Think\Controller;
-use Admin\Traits\AuthTrait;
-use Admin\Traits\UtilTrait;
+use Admin\Controller\AdminController;
+// use Admin\Traits\AuthTrait;
+// use Admin\Traits\UtilTrait;
 
-class ArticleController extends Controller
+class ArticleController extends AdminController
 {
-	use AuthTrait;
-	use UtilTrait;
+	// use AuthTrait;
+	// use UtilTrait;
 
 	public function allCategory()
 	{
 		$category = M('categories');
 		$map['name'] = array('NEQ', 'menu');
 		$map['status'] = array('EQ', '1');
-		$data = $category->where($map)->field('id,name')->select();
+		$data = $category->where($map)->field('id,name')->order('sort')->select();
 		if($data){
 			return $data;
 		}else{
-			if(APP_DEBUG){
-				$this->error($category->getError());
-			}else{
-				$this->error('500，服务器错误！');
-			}
+			return null;
 		}
 	}
 	
@@ -88,20 +86,23 @@ class ArticleController extends Controller
 			$list = $article->order('update_at')->page($p.',15')->select();
 			$count = $article->count();
 		}
-		//获取栏目名
-		foreach($list as $key => $value){
-			$tmp = M('categories')->field('name')->find($value['category_id']);
-			if(!$tmp){
-				$this->error('500，服务器错误！');
+		if(count($list) != 0){
+			//获取栏目名
+			foreach($list as $key => $value){
+				$category = M('categories');
+				$tmp = $category->find($value['category_id']);
+				if(!$tmp){
+					$this->error('500，服务器错误！');
+				}
+				$list[$key]['cname'] = $tmp['name'];
 			}
-			$list[$key]['cname'] = $tmp['name'];
+			// 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取	
+			$this->assign('data',$list);// 赋值数据集
+			// 查询满足要求的总记录数
+			$Page = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数
+			$show = $Page->show();// 分页显示输出
+			$this->assign('page',$show);// 赋值分页输出
 		}
-		// 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取	
-		$this->assign('data',$list);// 赋值数据集
-		// 查询满足要求的总记录数
-		$Page = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数
-		$show = $Page->show();// 分页显示输出
-		$this->assign('page',$show);// 赋值分页输出
 		//所有的栏目
 		$categories = $this->allCategory();
 		$this->assign('categories', $categories);

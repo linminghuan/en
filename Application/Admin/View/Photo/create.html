@@ -2,6 +2,23 @@
 <html lang="en">
 <head>
 	<include file="./Application/Admin/View/Layouts/resouce.html" title="新增图片"/>
+	<style type="text/css">
+		body {
+			margin: 0;
+		}
+		#clipArea {
+			margin: 20px;
+			height: 700px;
+		}
+		#file,#clipBtn {
+			margin: 20px;
+		}
+		#view {
+			margin: 0 auto;
+			width: 960px;
+			height: 325px;
+		}
+	</style>
 </head>
 <body>
 	<div class="container-fluid">
@@ -44,25 +61,6 @@
 								<input type="number" class="form-control" id="sort" name="sort" placeholder="请输入排序">
 								</div>
 							</div>
-							<!-- <div class="form-group">
-								<label for="category" class="col-sm-2 control-label">图片类型</label>
-								<div class=" col-sm-2">
-									<select class="form-control" name="category" id="category">
-										<option value="student">学生风采</option>
-										<option value="banner">banner轮播</option>
-										<option value="famous">名师风采</option>
-									</select>
-								</div>
-								<label for="sub_category" class="col-sm-2 control-label">图片二级类型</label>
-								<div class=" col-sm-2">
-									<select class="form-control" name="sub_category" id="sub_category" disabled="true">
-										<option></option>
-										<option value="star_teacher">名师</option>
-									    <option value="professor">教授</option>
-									    <option value="associate_professor">副教授</option>
-									</select>
-								</div>
-							</div> -->
 							<div class="form-group">
 								<label for="status" class="col-sm-2 control-label">是否显示</label>
 								<div class="col-sm-2">
@@ -77,15 +75,15 @@
 									</label>
 								</div>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="col-sm-2 control-label">图片</label>
-								<!-- 加载编辑器的容器 -->
+								加载编辑器的容器
 							    <texterea id="ue_container" name="url" type="text/plain" class="col-sm-9" style="height:290px;"></texterea>
-							    <!-- 配置文件 -->
+							    配置文件
 							    <script type="text/javascript" src="__ROOT__/Application/Common/Ueditor/ueditor.config.js"></script>
-							    <!-- 编辑器源码文件 -->
+							    编辑器源码文件
 							    <script type="text/javascript" src="__ROOT__/Application/Common/Ueditor/ueditor.all.js"></script>
-							    <!-- 实例化编辑器 -->
+							    实例化编辑器
 							    <script type="text/javascript">
 							        var ue = UE.getEditor('ue_container',{toolbars: [[
 								        'simpleupload', //单图上传
@@ -95,6 +93,18 @@
 									    rootPath: '../'
 									});
 							    </script>
+							</div> -->
+							<div class="form-group">
+								<label for="cover" class="col-sm-2 control-label" >图片</label>
+								<div class="col-sm-10">
+									<div class="row">
+										<div id="clipArea"></div>
+										<input id="imgurl" type="text" name="url" style="display:none">
+										<input type="file" id="file">
+										<button class="btn btn-primary" type="button" id="clipBtn">截图</button>
+										<div id="view"></div>
+									</div>
+								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
@@ -115,30 +125,53 @@
 	// InitRadio($("input[name='status']"),"{$data.status}");
 	InitNav($('#left_nav li'),"{$category}");
 	//InitCategory($('#category')[0].options,"{$data.category}");
-	$(function (){
-		$("#photo_form").validate({
-	    	rules:{
-	    		discription:{
-	    			required:true,
-	    			maxlength:255
-	    		},/*
-	    		author:{
-	    			required:true,
-	    			maxlength:255
-	    		},*/
-	    		status:"required",
-	    	},
-	    	messages:{
-	    		discription:{
-	    			required:"请填写图片描述",
-	    			maxlength:255
-	    		},/*
-	    		author:{
-	    			required:"请填写作者",
-	    			maxlength:255
-	    		},*/
-	    		status:"请设置是否显示",
-	    	},
-	    });
-	});
+	$("#photo_form").validate({
+    	rules:{
+    		discription:{
+    			required:true,
+    			maxlength:255
+    		},/*
+    		author:{
+    			required:true,
+    			maxlength:255
+    		},*/
+    		status:"required",
+    	},
+    	messages:{
+    		discription:{
+    			required:"请填写图片描述",
+    			maxlength:255
+    		},/*
+    		author:{
+    			required:"请填写作者",
+    			maxlength:255
+    		},*/
+    		status:"请设置是否显示",
+    	},
+    });
+</script>
+<script src='http://libs.baidu.com/jquery/2.1.1/jquery.min.js'></script>
+<script src="/en/Public/jQuery-photoClip/js/iscroll-zoom.js"></script>
+<script src="/en/Public/jQuery-photoClip/js/hammer.js"></script>
+<script src="/en/Public/jQuery-photoClip/js/lrz.all.bundle.js"></script>
+<script src="/en/Public/jQuery-photoClip/js/jquery.photoClip.js"></script>
+<script>
+//document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+var clipArea = new bjj.PhotoClip("#clipArea", {
+	size: [960, 325],
+	outputSize: [1920, 650],
+	file: "#file",
+	view: "#view",
+	ok: "#clipBtn",
+	loadStart: function() {
+		//console.log("照片读取中");
+	},
+	loadComplete: function() {
+		//console.log("照片读取完成");
+	},
+	clipFinish: function(dataURL) {
+		$('#imgurl').attr('value', dataURL);
+	}
+});
+//clipArea.destroy();
 </script>

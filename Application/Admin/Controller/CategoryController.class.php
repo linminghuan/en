@@ -8,14 +8,15 @@
  * （1）完成基本功能；（2017/9/14）；
  * （2）添加index方法；（2017/9/15）；
  * （3）修复create方法显示父级栏目名错误；添加edit、update、delete方法（2017/9/15）；
+ * （4）subCategory使用新的写法；（2017/9/22）
  */
 namespace Admin\Controller;
 
-use Think\Controller;
-use Admin\Traits\AuthTrait;
-use Admin\Traits\UtilTrait;
+use Admin\Controller\AdminController;
+// use Admin\Traits\AuthTrait;
+// use Admin\Traits\UtilTrait;
 
-class CategoryController extends Controller
+class CategoryController extends AdminController
 {
 	public function create($pid = null)
 	{
@@ -57,16 +58,15 @@ class CategoryController extends Controller
 	{
 		$categoryArr = Array();
 		$category = M('categories');
-		$data = $category->where("name='menu'")->field('id')->select();
-		$res = $this->subCategory($category, $data[0]['id']);
+		$data = $this->subCategory();
 		$this->assign('category', 'category');
-		$this->assign('data', $res);
+		$this->assign('data', $data[0]['next']);
 		$this->display('Category/index');
 
 	}
 
 	//递归查询所有的栏目
-	private function subCategory($model, $pid)
+	/*private function subCategory($model, $pid)
 	{
 		$categoryArr = Array();
 		$map['pid'] = $pid;
@@ -80,6 +80,27 @@ class CategoryController extends Controller
 			return $categoryArr;
 		}else{
 			return null;
+		}
+	}
+*/
+	private function subCategory($pid = 1, $where = array())
+	{
+		$category = M('categories');
+		$categoryArr = Array();
+		if(isset($where)) $map = $where;
+        $map['navigation'] = array('eq', 1);
+		$map['pid'] = $pid;
+        $map['status'] = 1;
+		$tmp = $category->where($map)->field('id,name,pid')->select();
+		if(count($tmp) != 0){
+			foreach ($tmp as $key => $value) {
+				$tmp1 = $this->subCategory($value['id']);
+				$value['next'] = $tmp1;
+				$categoryArr[] = $value;
+			}
+			return $categoryArr;
+		}else{
+			return;
 		}
 	}
 

@@ -6,19 +6,20 @@
  * @verson: 1.0
  * @description:  
  * （1）完成基本功能；（2017/9/13）
+ * （2）修改update方法的写法，以适应新的图片上传插件；（2017/9/22）
  */
 namespace Admin\Controller;
 
-use Think\Controller;
-use Admin\Traits\AuthTrait;
-use Admin\Traits\UtilTrait;
+use Admin\Controller\AdminController;
+// use Admin\Traits\AuthTrait;
+// use Admin\Traits\UtilTrait;
 
 error_reporting(E_ALL ^ E_NOTICE);
 
-class PhotoController extends Controller
+class PhotoController extends AdminController
 {
-	use AuthTrait;
-	use UtilTrait;
+	// use AuthTrait;
+	// use UtilTrait;
 	
 	public function index()
 	{
@@ -103,14 +104,14 @@ class PhotoController extends Controller
 	{
 		$photo = D('photo');
 		if($photo->create()){
-			//替换图片
+			/*//替换图片
 			$oldUrl = I('oldUrl');
 			if(isset($photo->url)){
 				$res = $this->delFile($oldUrl);
 				if(!$res) $this->error('500，服务器错误'); 
 			}else{
 				$photo->url = $oldUrl;
-			}
+			}*/
 			$result = $photo->where('id = '.$id)->save();
 			if($result !== false){
 				$this->redirect('Admin/Photo/index', '',2, '<meta charset="UTF-8"><font style='.'font-family:"微软雅黑";font-size:35px;color:#555;'.'>图片更新成功</font>');
