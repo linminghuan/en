@@ -164,7 +164,7 @@
 			<div class="col-md-4">
 				<div id="menu">
 					<a href="__URL__/sList/id/{$lNavData['id']}"><h3><?php echo $lNavData['name'];?></h3></a>
-					<?php rendLeftNav($lNavData['next']);?>
+					<?php rendLeftNav($lNavData['next'], 'sub-menu');?>
 				</div>
 			</div>
 			<!-- 内容 -->
@@ -189,7 +189,7 @@
 </body>
 </html>
 <?php
-	function rendLeftNav($data, $class = 'sub-menu')
+	function rendLeftNav($data, $class = '')
 	{
 		if(isset($data)){
 			echo '<ul>';

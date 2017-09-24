@@ -6,7 +6,7 @@
 	<!-- 导航栏 -->
 	<div class="row" style=" background:#5E5A5A;">
 		<div id='cssmenu' style='z-index: 2;font-size: 1em;'>
-			<?php rendMenu($menuData);?>
+			<?php rendMenu($menuData, 'has-sub');?>
 		</div>
 	</div>
 </div>
@@ -18,7 +18,7 @@
 			foreach($data as $key => $value){
 				$str = '__URL__/sList/id/'.$value['id'];
 				if($value['name'] == 'Home'){
-					$str = '/';
+					$str = '/en/';
 				}
 				if($value['next'] != null){
 					echo "<li class='".$class."'><a href='".$str."'>".$value['name']."</a>";

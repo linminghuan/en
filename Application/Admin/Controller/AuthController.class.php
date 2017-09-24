@@ -27,9 +27,9 @@ class AuthController extends Controller
 			$user->ip = $_SERVER['SERVER_ADDR'];
 			$user->log_in = date('Y-m-d H:i:s');
 			$res = $user->where('id', '=', $result1[0]['id'])->save();
-			clg($res);
 			if($res){
-				session('name',$Iname);
+				session('username',$Iname);
+				session('user_id',$result1[0]['id']);
 				$this->redirect('Admin/Index/index', '',0, '<meta charset="UTF-8"><font style='.'font-family:"微软雅黑";font-size:35px;color:#555;'.'>正在跳转……</font>');
 			}else{
 				$this->error('500错误，请重新登陆');
@@ -40,7 +40,7 @@ class AuthController extends Controller
 	}
 
 	public function quit(){
-		session('name',null);
+		session('username',null);
 		$this->display('Auth/index');
 	}
 }

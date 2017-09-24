@@ -3,6 +3,9 @@
 <head>
 	<include file="./Application/Admin/View/Layouts/resouce.html" title="栏目管理"/>
 	<style type="text/css">
+		.table{
+		    table-layout: fixed;
+		}
 	</style>
 </head>
 <body>
@@ -25,26 +28,23 @@
 									<a href="__URL__/create" class="btn btn-success">新增</a>
 								</div>
 							</div>
-							<div class="row" style="width:95%;">
-								<div id="category" style="margin-left:36px;">
-									<div class="row" style="height:25px;margin-top: 5 px;border-bottom:2px solid #666;">
-										<span class="col-xs-1">序号</span>
-										<span class="col-xs-3">分类名称</span>
-										<span class="col-xs-1">排序</span>
-										<div class="col-xs-3">
-											<span class="col-xs-6">是否导航</span>
-											<span class="col-xs-6">是否显示</span>
-										</div>
-										<div class="col-xs-4">
-											<span class="col-xs-6">新增子栏目</span>
-											<span class="col-xs-3">编辑</span>
-											<span class="col-xs-3">删除</span>
-										</div>
-									</div>
-									<?php
-										rend($data);
-									?>
-								</div>
+							<div class="row" style="width:95%;margin-left:10px;">
+								<table id="category" class="table table-bordered">
+									<thead>
+										<tr>
+											<th style="width:50px">序号</th>
+											<th style="width:50px">展开</th>
+											<th style="width:100%;">名称</th>
+											<th style="width:50px">排序</th>
+											<th style="width:50px">导航</th>
+											<th style="width:50px">显示</th>
+											<th style="width:120px;text-align:center;">操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr id="rootNode"></tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -55,41 +55,56 @@
 </body>
 </html>
 <script type="text/javascript">
+	// var template = "<tr><td>"+el.id+"</td><td style='text-align:center;'><i class='fa fa-plus fa-2x develop'></i></td><td>"+el.name+"</td><td>"+el.sort+"</td><td>"+el.navigation+"</td><td>"+el.status+"</td><td><span class='col-xs-3'><a href='__URL__/create/pid/"+el.id+"' class='btn btn-success btn-xs'><i class='fa fa-plus'></i></a></span><span class='col-xs-3'><a href='__URL__/edit/pid/"+el.pid+"/id/"+el.id+"' class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></a></span><span class='col-xs-3'><a href='__URL__/delete/pid/"+el.pid+"/id/"+el.id+"' class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></a></span></td></tr>";
+	init();
+	function init()
+	{
+		getNextCategory(1, $('#rootNode'));
+	}
+	//
+	$('#category').on('click', '.develop', function(event) {
+		event.stopPropagation();//阻止事件冒泡
+		var parentTd = $(this).parent('td')[0];
+		var tpid = $(parentTd).attr('title');
+		if($(this).attr('class') == 'fa fa-plus fa-2x develop'){
+			$(this).attr('class', 'fa fa-minus fa-2x develop');
+			var trId = 'tr'+tpid;
+			var subRootNode = $("#"+trId);
+			getNextCategory(tpid, subRootNode);
+		}else{
+			$(this).attr('class', 'fa fa-plus fa-2x develop');
+			var wrapTbody = ".pid"+tpid;
+			$(wrapTbody).remove();
+		}
+		
+	});
+	//获取下级栏目数据并渲染
+	function getNextCategory(pid, rootNode)
+	{
+		$.get("__URL__/getNextCategory/pid/"+pid, function (data){
+			if(data.data){
+				rendHtml(data.pid, data.data, rootNode);
+			}
+		});
+	}
+	//渲染下级栏目
+	function rendHtml(pid, params, rootNode)
+	{
+		var translate = ['否','是'];
+		var trClass = 'pid'+pid;
+		var backGround = 'rgb('+randomNum()+','+randomNum()+','+randomNum()+')';
+		var tmp = "."+trClass;
+		params.forEach(function(el, index) {
+			$(rootNode).after("<tr class='"+trClass+"' id='tr"+el.id+"'><td>"+el.id+"</td><td title='"+el.id+"' style='text-align:center;'><i class='fa fa-plus fa-2x develop'></i></td><td>"+el.name+"</td><td>"+el.sort+"</td><td>"+translate[el.navigation]+"</td><td>"+translate[el.status]+"</td><td><span class='col-xs-3'><a href='__URL__/create/pid/"+el.id+"' class='btn btn-success btn-xs'><i class='fa fa-plus'></i></a></span><span class='col-xs-3'><a href='__URL__/edit/pid/"+el.pid+"/id/"+el.id+"' class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></a></span><span class='col-xs-3'><a href='__URL__/delete/pid/"+el.pid+"/id/"+el.id+"' class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></a></span></td></tr>");
+			
+		});
+		//设置tr的背景颜色
+		$("."+trClass).css('background-color', backGround);
+	}
+	//返回0~250的随机数
+	function randomNum()
+	{
+		return  Math.floor(Math.random()*1000/8)+100;
+	}
 	InitNav($('#left_nav li'),"{$category}");
 </script>
-<?php
-	//TODO把次级栏目收起来
-	//TODO实现在index页修改排序
-	function rend($params)
-	{
-		rendCategory($params);
-	}
-	function rendCategory($params, $t = -10)
-	{
-		$translate = array('否', '是');
-		foreach($params as $key => $value){
-			$tmp = 'margin-left:'.$t.'px;';
-			echo "<div class='row' style='height:36px;".$tmp."margin-top: 10px;border-bottom:2px solid #20D181;border-left: 1px solid #20D181;'>";
-			echo "<span class='col-xs-1'>".$value['id']."</span>";
-			echo "<span class='col-xs-3'>".$value['name']."</span>";
-			echo "<span class='col-xs-1'>".$value['sort']."</span>";
-			echo "<div class='col-xs-3'>";
-			echo "<span class='col-xs-6'>".$translate[$value['navigation']]."</span>";
-			echo "<span class='col-xs-6'>".$translate[$value['status']]."</span>";
-			echo '</div>';
-			echo "<div class='col-xs-4'>";
-			echo "<span class='col-xs-6'><a href='__URL__/create/pid/".$value['id']."' class='btn btn-success btn-xs'><i class='fa fa-plus'></i></a></span>";
-			echo "<span class='col-xs-3'><a href='__URL__/edit/pid/".$value['pid']."/id/".$value['id']."' class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></a></span>";
-			echo "<span class='col-xs-3'><a href='__URL__/delete/pid/".$value['pid']."/id/".$value['id']."' class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></a></span>";
-			echo '</div>';
-			echo '</div>';
-			if(null != $value['next']){
-				$t += 20;
-				rendCategory($value['next'], $t);
-			}
-			$t = -10;
-		}
-
-	}
-?>
-

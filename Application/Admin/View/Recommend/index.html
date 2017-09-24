@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<include file="./Application/Admin/View/Layouts/resouce.html" title="Recommend管理"/>
+</head>
+<body>
+	<div class="container-fluid">
+		<include file="./Application/Admin/View/Layouts/header.html"/>
+		<div class="row">
+			<include file="./Application/Admin/View/Layouts/left_nav.html"/>
+			<div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">
+				<div class="panel panel-default">
+		   			<div class="panel-body">
+						<div class="row">
+							<ol class="breadcrumb">
+							    <li><a href="__ROOT__/Admin/Index/index">首页</a></li>
+							    <li"Recommend管理</li>
+							</ol>
+						</div>
+						<div class="row">
+							<div class="row">
+								<form class="form-inline" role="form" action="__URL__/index" method="get">
+									<!-- <div class="col-md-3">
+										<div class="form-group">
+											<div class=" col-sm-5">
+												<select class="form-control" name="category">
+													<option value="">图片类型</option>
+													<option value="student">学生风采</option>
+													<option value="banner">banner轮播</option>
+													<option value="famous">名师风采</option>
+												</select>
+											</div>
+										</div>
+									</div> -->
+									<div class="col-md-3">
+										<div class="form-group">
+											<div class=" col-sm-12">
+												<select class="form-control" name="status" id="status">
+													<option value="">是否显示</option>
+													<!-- <option value="2">首页显示</option> -->
+													<option value="1">显示</option>
+													<option value="0">不显示</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class=" col-sm-8">
+												<input type="submit" class="btn btn-default" value="查询">
+											</div>
+										</div>
+									</div>
+								</form>
+								<div class="col-md-1 pull-right">
+									<a href="__URL__/create" class="btn btn-success">新增</a>
+								</div>
+							</div>
+							<table class="table table-striped">
+							<thead>
+							<tr>
+							<th width="10px">#</th>
+							<th>名称</th>
+							<th>描述</th>
+							<th>是否显示</th>
+							<th>更新日期</th>
+							<th>操作</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<volist name="data" id="recommend">
+									<tr>
+										<td><input class="checkbox-batch" name="checkbox" type="checkbox" data-group="recommends" value="{$recommend.id}"></td>
+
+										<td>{$recommend.name}</td>
+										<td>{$recommend.discription}</td>
+										<td>
+											<!-- <if condition="$recommend.status eq 2"> 首页显示
+											<elseif condition="$recommend.status eq 1"/>显示
+											<else />不显示
+											</if> -->
+											<if condition="$recommend.status eq 1"> 显示
+											<else />不显示
+											</if>
+										</td>
+										<td>{$recommend.update_at}</td>
+										<td>
+											<a href="__URL__/edit/id/{$recommend.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+											<a href="__URL__/delete/id/{$recommend.id}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
+										</td>
+									</tr>
+								</volist>
+							</tr>
+							</tbody>
+							</table>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<input id="checkall" class="checkbox-batch" name="checkbox" type="checkbox" value="">
+								<button id="batchDelBtn" class="btn btn-danger" type="submit">批量删除</button>
+							</div>
+							<div class="result page" id="page">{$page}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<include file="./Application/Admin/View/Layouts/footer.html"/>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	// InitRadio($("input[name='status']"),"{$data.status}");
+	InitNav($('#left_nav li'),"{$category}");
+	checkAll("#checkall");
+	batchDel('#batchDelBtn', '__URL__/batchDel');
+	// InitCategory($('#category')[0].options,"{$data.category}");
+</script>

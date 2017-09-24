@@ -19,6 +19,7 @@ class IndexController extends Controller
     {
     	$article = M('articles');
     	$category = M('categories');
+        $setting = M('settings');
     	$photo = M('photos');
     	//导航栏
     	$menuData = $this->subCategory();
@@ -27,6 +28,10 @@ class IndexController extends Controller
     	$map['status'] = 1;
     	$photoData = $photo->where($map)->select();
     	$this->assign('photoData', $photoData);
+        //footer数据
+        //TODO做缓存
+        $footerData = $setting->where('user_id=1')->select();
+        $this->assign('footerData', $footerData[0]);
         $this->display('Index/index');
     }
 

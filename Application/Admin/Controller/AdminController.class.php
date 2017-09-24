@@ -24,7 +24,7 @@ class AdminController extends Controller
 
     private function checklogin() { 
 
-        if ((!isset($_SESSION['name']) || !$_SESSION['name'])) {
+        if ((!isset($_SESSION['username']) || !$_SESSION['username'])) {
 
 			$this->redirect('Admin/Auth/index', '',2, '<meta charset="UTF-8"><span style='.'font-family:"微软雅黑";font-size:35px;color:#555;'.'>禁止访问，请先登录</span>');
 

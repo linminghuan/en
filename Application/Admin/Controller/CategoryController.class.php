@@ -9,6 +9,7 @@
  * （2）添加index方法；（2017/9/15）；
  * （3）修复create方法显示父级栏目名错误；添加edit、update、delete方法（2017/9/15）；
  * （4）subCategory使用新的写法；（2017/9/22）
+ * （5）添加返回下级菜单的数据的接口；（2017/9/22）
  */
 namespace Admin\Controller;
 
@@ -58,9 +59,12 @@ class CategoryController extends AdminController
 	{
 		$categoryArr = Array();
 		$category = M('categories');
-		$data = $this->subCategory();
+		//只返回最顶级的菜单
+		$tmp = $category->where("name='menu'")->order('sort')->select();
+		$data = $category->where('pid='.$tmp[0]['id'])->select();
+		$data = json_encode($data);
 		$this->assign('category', 'category');
-		$this->assign('data', $data[0]['next']);
+		$this->assign('data', $data);
 		$this->display('Category/index');
 
 	}
@@ -178,6 +182,25 @@ class CategoryController extends AdminController
 		}else{
 			$this->error('404，没找到！');
 		}
+	}
+
+	//获取下一级菜单的接口
+	public function getNextCategory($pid)
+	{
+		if(isset($pid)){
+			$category = M('categories');
+			$res['pid'] = $pid; 
+			$map['pid'] = $pid;
+			$data = $category->where($map)->order('sort desc')->select();
+			$res['data'] = $data;
+			if($data){
+				return $this->ajaxReturn($res);
+			}else{
+				return null;
+			}
+		}
+		
+
 	}
 }
 
