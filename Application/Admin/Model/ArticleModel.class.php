@@ -57,7 +57,7 @@ class ArticleModel extends Model
     protected function AutoSort($param)
     {
         if(I('post.sort') == ''){
-            $param = M('articles')->count();
+            $param = M($this->tableName)->count();
             $param++;
         }else{
             $param = I('post.sort');

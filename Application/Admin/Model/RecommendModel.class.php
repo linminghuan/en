@@ -22,11 +22,23 @@ class RecommendModel extends Model
 
     protected $_auto = array ( 
 		array('update_at',"nowDate",3,'callback'),
+        array('sort','AutoSort',1,'callback'),
     );
 
     protected function nowDate ()
     {
     	return date('Y-m-d H:i:s');
+    }
+
+    protected function AutoSort($param)
+    {
+        if(I('post.sort') == ''){
+            $param = M($this->tableName)->count();
+            $param++;
+        }else{
+            $param = I('post.sort');
+        }
+        return $param;
     }
 }
 
