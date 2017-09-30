@@ -101,13 +101,19 @@ class IndexController extends Controller
             $map['status'] = 1;
             $data = $article->where($map)->order('sort')->page($p.',10')->select();
             if(count($data) != 0){
-                $this->assign('listData', $data);
-                $count = $article->where($map)->count(); 
-                $Page = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数
-                $show = $Page->show();// 分页显示输出
-                $this->assign('page',$show);
+                $count = $article->where($map)->count();
+                if($count == 1){
+                    $this->assign('detailData', $data[0]);
+                    $type = 'detail';
+                }else{
+                    $this->assign('listData', $data); 
+                    $Page = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数
+                    $show = $Page->show();// 分页显示输出
+                    $this->assign('page',$show);
+                    $type = 'list';
+                }
                 //返回类型
-                $this->assign('type', 'list');
+                $this->assign('type', $type);
                 $this->display('Index/show');
             }else{
                 $this->error('404,暂无数据！');
