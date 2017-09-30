@@ -56,6 +56,7 @@
 </html>
 <script type="text/javascript">
 	// var template = "<tr><td>"+el.id+"</td><td style='text-align:center;'><i class='fa fa-plus fa-2x develop'></i></td><td>"+el.name+"</td><td>"+el.sort+"</td><td>"+el.navigation+"</td><td>"+el.status+"</td><td><span class='col-xs-3'><a href='__URL__/create/pid/"+el.id+"' class='btn btn-success btn-xs'><i class='fa fa-plus'></i></a></span><span class='col-xs-3'><a href='__URL__/edit/pid/"+el.pid+"/id/"+el.id+"' class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></a></span><span class='col-xs-3'><a href='__URL__/delete/pid/"+el.pid+"/id/"+el.id+"' class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></a></span></td></tr>";
+	var trArr = new Array();//储存展开的标签的pid
 	init();
 	function init()
 	{
@@ -64,17 +65,38 @@
 	//
 	$('#category').on('click', '.develop', function(event) {
 		event.stopPropagation();//阻止事件冒泡
-		var parentTd = $(this).parent('td')[0];
-		var tpid = $(parentTd).attr('title');
+		var parentTd = $(this).parent('td')[0];//获取点击的标签的父单元格
+		var tpid = $(parentTd).attr('title');//根据title属性获取pid
+		var trId = 'tr'+tpid;//拼接所在行的tr标签
+		//判断是展开还是收起来
 		if($(this).attr('class') == 'fa fa-plus fa-2x develop'){
+			var tag = 0;//判断状态，是否已经在数组中
+			trArr.forEach(function(el, index){
+				//判断是否已在数组中
+				if(el == tpid){
+					tag = 1;
+				}
+			});
+			//放到数组中
+			if(tag == 0){
+				trArr.push(tpid);
+			}
 			$(this).attr('class', 'fa fa-minus fa-2x develop');
-			var trId = 'tr'+tpid;
 			var subRootNode = $("#"+trId);
 			getNextCategory(tpid, subRootNode);
 		}else{
 			$(this).attr('class', 'fa fa-plus fa-2x develop');
-			var wrapTbody = ".pid"+tpid;
-			$(wrapTbody).remove();
+			tag = 0;
+			trArr.forEach(function(el,index){
+				if(el == tpid){
+					tag = 1;
+				}
+				if(tag == 1){
+					//删除子节点
+					var wrapTbody = ".pid"+el;
+					$(wrapTbody).remove();
+				}
+			});
 		}
 		
 	});
@@ -90,10 +112,11 @@
 	//渲染下级栏目
 	function rendHtml(pid, params, rootNode)
 	{
-		var translate = ['否','是'];
+		var translate = ['否','是'];//翻译成中文
 		var trClass = 'pid'+pid;
 		var backGround = 'rgb('+randomNum()+','+randomNum()+','+randomNum()+')';
 		var tmp = "."+trClass;
+		var tArr = new Array();
 		params.forEach(function(el, index) {
 			$(rootNode).after("<tr class='"+trClass+"' id='tr"+el.id+"'><td>"+el.id+"</td><td title='"+el.id+"' style='text-align:center;'><i class='fa fa-plus fa-2x develop'></i></td><td>"+el.name+"</td><td>"+el.sort+"</td><td>"+translate[el.navigation]+"</td><td>"+translate[el.status]+"</td><td><span class='col-xs-3'><a href='__URL__/create/pid/"+el.id+"' class='btn btn-success btn-xs'><i class='fa fa-plus'></i></a></span><span class='col-xs-3'><a href='__URL__/edit/pid/"+el.pid+"/id/"+el.id+"' class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></a></span><span class='col-xs-3'><a href='__URL__/delete/pid/"+el.pid+"/id/"+el.id+"' class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></a></span></td></tr>");
 			
