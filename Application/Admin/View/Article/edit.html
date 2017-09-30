@@ -16,7 +16,7 @@
 		#view {
 			margin: 0 auto;
 			width: 300px;
-			height: 200px;
+			height: 300px;
 		}
 	</style>
 </head>
@@ -141,7 +141,7 @@
 								<div class="col-sm-10">
 									<div class="row">
 										<div id="clipArea"></div>
-										<input id="cover" type="text" name="cover" style="display:none">
+										<input id="cover" type="text" name="cover" style="display:none" value="{$data.cover}">
 										<input type="file" id="file">
 										<button class="btn btn-primary" type="button" id="clipBtn">截图</button>
 										<div id="view" style="background: url({$data.cover});"></div>
@@ -205,8 +205,8 @@
 <script>
 //document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 var clipArea = new bjj.PhotoClip("#clipArea", {
-	size: [300, 200],
-	outputSize: [600, 400],
+	size: [300, 300],
+	outputSize: [600, 600],
 	file: "#file",
 	view: "#view",
 	ok: "#clipBtn",

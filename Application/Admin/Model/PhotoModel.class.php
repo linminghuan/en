@@ -35,7 +35,7 @@ class PhotoModel extends Model
 	protected function AutoEditor ($param)
 	{
     	if(I('post.editor') == ''){
-    		$param = $_SESSION['name'];
+    		$param = $_SESSION['username'];
     	}else{
     		$param = I('post.editor');
     	}

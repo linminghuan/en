@@ -32,7 +32,7 @@ class AdminController extends Controller
     }
 
     //删除文件的函数
-	private function delFile($url)
+	protected function delFile($url)
 	{
 		$tmp = '.'.$url;
 		if(unlink($tmp)){
@@ -43,14 +43,14 @@ class AdminController extends Controller
 	}
 
 	//格式化上传的文件的路径函数
-	private function GetImgUrl($str)
+	protected function GetImgUrl($str)
 	{
 		$str = strchr($str,"/");
 		$str = strchr($str,"&quot;",true);
 		return $str;
 	}
 
-	private function uBatchDel($model)
+	protected function uBatchDel($model)
 	{
 		$delItems = I('delitems');
 		$delItems = trim($delItems, ',');

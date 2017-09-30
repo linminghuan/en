@@ -61,7 +61,7 @@ class RecommendController extends AdminController
 		$show = $Page->show();// 分页显示输出
 		$this->assign('page',$show);// 赋值分页输出
 		$this->assign('category', 'recommend');
-		$this->display('Recommend/Index');
+		$this->display('Recommend/index');
 	}
 
 	public function edit($id)
@@ -84,6 +84,55 @@ class RecommendController extends AdminController
 			$this->error('404，没找到！');
 		}
 
+	}
+
+	public function update($id)
+	{
+		if(isset($id)){
+			$recommend = D('recommend');
+			if($recommend->create()){
+				$res = $recommend->where('id='.$id)->save();
+				if($res){
+					$this->redirect('Admin/Recommend/index', '',2, '<meta charset="UTF-8"><font style='.'font-family:"微软雅黑";font-size:35px;color:#555;'.'>Recommend更新成功</font>');
+				}else{
+					if(APP_DEBUG){
+						$this->error($recommend->getError());
+					}else{
+						$this->error('500，服务器错误！');
+					}
+				}
+			}else{
+				$this->$recommend->error($this->getError());
+			}
+		}else{
+			$this->$recommend->error('404，没找到！');
+		}
+	}
+
+	public function delete($id)
+	{
+		if(isset($id)){
+			$recommend = D('recommend');
+			$res = $recommend->delete($id);
+			if($res){
+				$this->success('删除成功');
+			}else{
+				if(APP_DEBUG){
+					$this->error($recommend->getError());
+				}else{
+					$this->error('500，服务器错误！');
+				}
+			}
+		}else{
+			$this->$recommend->error($recommend->getError());
+		}
+	}
+
+	public function batchDel()
+	{
+		//不能使用M函数
+		$recommend = D('recommend');
+		parent::uBatchDel($recommend);
 	}
 }
 

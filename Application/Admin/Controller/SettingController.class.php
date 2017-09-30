@@ -20,14 +20,14 @@ class SettingController extends AdminController
 		$data = $setting->find($user_id);
 		$this->assign('data', $data);
 		$this->assign('category', 'setting');
-		$this->display('Setting/Index');
+		$this->display('Setting/index');
 	}
 
 	public function update()
 	{
 		$user_id = $_SESSION['user_id'];
 		$setting = D('setting');
-		$data = $setting->where('user_id='.$user_id)->select();
+		//$data = $setting->where('user_id='.$user_id)->select();
 		if($setting->create()){
 			$res = $setting->where('user_id='.$user_id)->save();
 			if($res){

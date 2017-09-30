@@ -131,21 +131,31 @@ class PhotoController extends AdminController
 	{
 		$photo = M('photos');
 		$data = $photo->find($id);
-		$res = $this->delFile($data['url']);
-		if($res){
-			$result = $photo->delete($id);
-			if($result){
-				$this->success('删除成功');
-			}else{
-				if(APP_DEBUG){
-					$this->error($photo->getError());
-				}else{
-					$this->error('500，服务器错误！');
-				}
-			}
+		$result = $photo->delete($id);
+		if($result){
+			$this->success('删除成功');
 		}else{
-			$this->error('删除失败');
+			if(APP_DEBUG){
+				$this->error($photo->getError());
+			}else{
+				$this->error('500，服务器错误！');
+			}
 		}
+		// $res = $this->delFile($data['url']);
+		// if($res){
+		// 	$result = $photo->delete($id);
+		// 	if($result){
+		// 		$this->success('删除成功');
+		// 	}else{
+		// 		if(APP_DEBUG){
+		// 			$this->error($photo->getError());
+		// 		}else{
+		// 			$this->error('500，服务器错误！');
+		// 		}
+		// 	}
+		// }else{
+		// 	$this->error('删除失败');
+		// }
 	}
 
 	public function batchDel()

@@ -38,7 +38,7 @@
 			<div class="flexslider" id="flexslider">
 				<ul class="slides">
 					<?php 
-						foreach($data as $key=>$value){
+						foreach($sliderData as $key=>$value){
 							echo "<li style='background:url(".$value['url'].") 50% 0 no-repeat;'>";
 							echo "<div class='sliderMask'>";
 							echo "<p>".$value['discription']."</p>";
@@ -98,11 +98,11 @@
 		<!-- 学院新闻 -->
 		<div class="row" style="margin-top:100px;width:100%;">
 			<div style="min-height:700px;">
-				<h1 id="news-h1" style="color:#0E9CEA;font-size:3.5em;text-align:center;">Student Activities</h1>
+				<h1 id="news-h1" style="color:#0E9CEA;font-size:3.5em;text-align:center;">News & Events</h1>
 				<div class="row" style="width:80%;margin:0 auto;" id="academy-news">
 					<?php 
-						foreach($newsData as $key => $value){
-							echo "<div class='col-sm-6 col-md-3'>";
+						foreach($newsData[data] as $key => $value){
+							echo "<div class='col-sm-6 col-md-4'>";
 							echo "<div class='thumbnail'>";
 							echo "<img src='/en/Public/Home/Images/bg.jpg'
 					                 alt='文章的封面'>";
@@ -110,7 +110,7 @@
 					        echo "<h2>".$value['title']."</h2>";
 					        echo "<span>date:".$value['update_at']."</span>";
 					        echo "<p>".$value['discription']."</p>";
-					        echo "<a href='__URL__/detail/id/".$value['id']."' class='btn btn-primary' role='button'>Read Details</a>";
+					        echo "<a href='__URL__/detail/category_id/".$value['category_id']."/id/".$value['id']."' class='btn btn-primary' role='button'>Read Details</a>";
 					        echo "</div></div></div>";
 						}
 					?>
@@ -156,51 +156,9 @@
 				            </div>
 				        </div>
 				    </div>
-				    <div class="col-sm-6 col-md-4">
-				        <div class="thumbnail">
-				            <img src="/en/Public/Home/Images/bg.jpg"
-				                 alt="通用的占位符缩略图">
-				            <div class="caption">
-				                <h2>test1</h2>
-				                <span>date:2017-9-18</span>
-				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
-				                <a href="#" class="btn btn-primary " role="button">
-			                        Read Details
-			                    </a>
-				            </div>
-				        </div>
-				    </div>
-				    <div class="col-sm-6 col-md-4">
-				        <div class="thumbnail">
-				            <img src="/en/Public/Home/Images/bg.jpg"
-				                 alt="通用的占位符缩略图">
-				            <div class="caption">
-				                <h2>test1</h2>
-				                <span>date:2017-9-18</span>
-				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
-				                <a href="#" class="btn btn-primary " role="button">
-			                        Read Details
-			                    </a>
-				            </div>
-				        </div>
-				    </div>
-				    <div class="col-sm-6 col-md-4">
-				        <div class="thumbnail">
-				            <img src="/en/Public/Home/Images/bg.jpg"
-				                 alt="通用的占位符缩略图">
-				            <div class="caption">
-				                <h2>test1</h2>
-				                <span>date:2017-9-18</span>
-				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
-				                <a href="#" class="btn btn-primary " role="button">
-			                        Read Details
-			                    </a>
-				            </div>
-				        </div>
-				    </div>
 				</div>
 				<div class="row">
-					<a href="" class="btn btn-default" style="margin-top:40px;margin-left:83%;border: 3px solid #0A6C9D;color:#0A6C9D;">Read More</a>
+					<a href="__URL__/sList/id/{$newsData.category_id}" class="btn btn-default" style="margin-top:40px;margin-left:83%;border: 3px solid #0A6C9D;color:#0A6C9D;">Read More</a>
 				</div>
 			</div>
 		</div>
@@ -209,33 +167,18 @@
 		<div class="row" style="margin-top:100px;">
 			<h1 style="font-size:4em;color:#12B266;text-align:center;">Recommend</h1>
 			<div class="row" style="width:100%;min-height:250px;margin:0 auto;position:relative;overflow:hidden;">
-				<div id="friendlink1" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
-					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
-						<a href="" class="btn" style="color:#fff;margin-top:25%;display:inline-block;">
-						<h1 style="display:inline-block;" >SCAU</h1>
-						<i class="fa fa-chevron-circle-right fa-3x"></i>
-						</a>
-					</span>
-					<img src="/en/Public/Home/Images/华农正校门.jpg" style="width:100%;height:auto;display:block;float:left;">
-				</div>
-				<div id="friendlink2" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
-					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
-						<a href="" class="btn" style="color:#fff;margin-top:25%;display:inline-block;">
-						<h1 style="display:inline-block;" >Rearch</h1>
-						<i class="fa fa-chevron-circle-right fa-3x"></i>
-						</a>
-					</span>
-					<img src="/en/Public/Home/Images/资源环境学院院楼3.jpg" style="width:100%;height:auto;display:block;float:left;">
-				</div>
-				<div id="friendlink3" class="friendlink" style="width:33.3%;float:left;border-top:10px solid #12B266">
-					<span style="width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;">
-						<a href="" class="btn" style="color:#fff;margin-top:25%;display:inline-block;">
-						<h1 style="display:inline-block;" >JIERE</h1>
-						<i class="fa fa-chevron-circle-right fa-3x"></i>
-						</a>
-					</span>
-					<img src="/en/Public/Home/Images/中英环境科学研究中心.jpg" style="width:100%;height:auto;display:block;float:left;">
-				</div>
+				<?php 
+					foreach($recommendData as $key => $value){
+						echo "<div id='friendlink".$key."' class='friendlink' style='width:33.3%;float:left;border-top:10px solid #12B266'>";
+						echo "<span style='width:33.3%;height:0px;color:#fff;background:#12B266;position:absolute;text-align:center;font-size:3em;filter:alpha(opacity=0);-moz-opacity:0;opacity: 0;'>";
+						echo "<a href='".$value['url']."' class='btn' style='color:#fff;margin-top:25%;display:inline-block;'>";
+						echo "<h1 style='display:inline-block;' >".$value['name']."</h1>";
+						echo "<i class='fa fa-chevron-circle-right fa-3x'></i>";
+						echo "</a></span>";
+						echo "<img src='".$value['cover']."' style='width:100%;height:auto;display:block;float:left;'>";
+						echo "</div>";
+					}
+				?>
 			</div>
 		</div>
 
@@ -259,7 +202,7 @@
 		$('.flexslider').flexslider({
 			directionNav: true,
 			pauseOnAction: false,
-			slideshowSpeed: 30000
+			slideshowSpeed: 3000
 		});
 		//轮播图拓展
 		//Mask的运动
@@ -300,12 +243,12 @@
 	//高德地图
 	var map = new AMap.Map('container',{
 	    zoom: 18,
-	    center: [113.351871,23.152996],
+	    center: [113.359172,23.161539],
 	    lang:'zh_en'
 	});
 	//设置点标记
 	var marker = new AMap.Marker({
-	    position: [113.351871,23.152996],//marker所在的位置
+	    position: [113.359172,23.161539],//marker所在的位置
 	    map:map//创建时直接赋予map属性
 	});
 	//也可以在创建完成后通过setMap方法执行地图对象

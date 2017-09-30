@@ -36,7 +36,7 @@
 							</ol>
 						</div>
 						<div class="row">
-							<form class="form-horizontal" name="recommend_form" role="form" method="post" action="__URL__/insert"> 
+							<form class="form-horizontal" name="recommend_form" role="form" method="post" action="__URL__/update/id/{$data.id}"> 
 							<div class="form-group">
 								<label for="name" class="col-sm-2 control-label">名称</label>
 								<div class="col-sm-10">
@@ -77,7 +77,7 @@
 								<div class="col-sm-10">
 									<div class="row">
 										<div id="clipArea"></div>
-										<input id="imgurl" type="text" name="cover" style="display:none">
+										<input id="imgurl" type="text" name="cover" style="display:none" value="{$data.cover}">
 										<input type="file" id="file">
 										<button class="btn btn-primary" type="button" id="clipBtn">截图</button>
 										<div id="view" style="background:url({$data.cover})"></div>

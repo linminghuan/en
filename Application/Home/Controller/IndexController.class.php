@@ -8,6 +8,7 @@
  * （1）完成基本功能；（2017/9/16）
  * （2）添加sList方法；（2017/9/19）
  * （3）添加detail方法；（2017/9/19）
+ * （4）添加首页的数据；（2017/9/24）
  */
 namespace Home\Controller;
 
@@ -21,17 +22,29 @@ class IndexController extends Controller
     	$category = M('categories');
         $setting = M('settings');
     	$photo = M('photos');
+        $recommend = M('recommends');
     	//导航栏
     	$menuData = $this->subCategory();
         $this->assign('menuData', $menuData);
     	//轮播图
     	$map['status'] = 1;
-    	$photoData = $photo->where($map)->select();
-    	$this->assign('photoData', $photoData);
+    	$sliderData = $photo->where($map)->select();
+    	$this->assign('sliderData', $sliderData);
         //footer数据
         //TODO做缓存
         $footerData = $setting->where('user_id=1')->select();
         $this->assign('footerData', $footerData[0]);
+        //
+        $map['status'] = 1;
+        $recommendData = $recommend->where($map)->select();
+        $this->assign('recommendData', $recommendData);
+        //通知新闻的数据recommend的数据
+        $temp = $category->where("name='News & Events'")->select();
+        $newsData['category_id'] =  $temp[0]['id'];
+        $map['category_id'] = $temp[0]['id'];
+        $map['status'] = 1;
+        $newsData['data'] = $article->where($map)->order('sort')->limit(C('NEWS'))->select();
+        $this->assign('newsData', $newsData);
         $this->display('Index/index');
     }
 
@@ -48,7 +61,7 @@ class IndexController extends Controller
         $map['navigation'] = array('eq', 1);
 		$map['pid'] = $pid;
         $map['status'] = 1;
-		$tmp = $category->where($map)->field('id,name,pid')->select();
+		$tmp = $category->where($map)->field('id,name,pid')->order('sort')->select();
 		if(count($tmp) != 0){
 			foreach ($tmp as $key => $value) {
 				$tmp1 = $this->subCategory($value['id']);
@@ -66,6 +79,7 @@ class IndexController extends Controller
     {
         if(isset($id)){
             $category = M('categories');
+            $setting = M('settings');
             //导航栏
             $menuData = $this->subCategory();
             $this->assign('menuData', $menuData);
@@ -73,6 +87,10 @@ class IndexController extends Controller
             $tmp = $category->find($id);
             $tmp['next'] = $this->subCategory($id);
             $this->assign('lNavData', $tmp);
+            //footer数据
+            //TODO做缓存
+            $footerData = $setting->where('user_id=1')->select();
+            $this->assign('footerData', $footerData[0]);
             //返回列表数据
             $article = M('articles');
             $p = 1;
@@ -81,11 +99,11 @@ class IndexController extends Controller
             }
             $map['category_id'] = $id;
             $map['status'] = 1;
-            $data = $article->where($map)->order('sort')->page($p.',1')->select();
+            $data = $article->where($map)->order('sort')->page($p.',10')->select();
             if(count($data) != 0){
                 $this->assign('listData', $data);
                 $count = $article->where($map)->count(); 
-                $Page = new \Think\Page($count,1);// 实例化分页类 传入总记录数和每页显示的记录数
+                $Page = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数
                 $show = $Page->show();// 分页显示输出
                 $this->assign('page',$show);
                 //返回类型
@@ -105,6 +123,7 @@ class IndexController extends Controller
     {
         if($id){
             $category = M('categories');
+            $setting = M('settings');
             //导航栏
             $menuData = $this->subCategory();
             $this->assign('menuData', $menuData);
@@ -112,6 +131,10 @@ class IndexController extends Controller
             $tmp = $category->find($category_id);
             $tmp['next'] = $this->subCategory($category_id);
             $this->assign('lNavData', $tmp);
+            //footer数据
+            //TODO做缓存
+            $footerData = $setting->where('user_id=1')->select();
+            $this->assign('footerData', $footerData[0]);
             //返回文章内容
             $article = M('articles');
             $map['status'] = 1;

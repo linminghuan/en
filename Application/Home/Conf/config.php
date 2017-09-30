@@ -6,5 +6,6 @@ return array(
 		'EMAIL' => 'zhxy@scau.edu.cn',
 		'ADDRESS' => '',
 		'POWEREDBY' => 'The College of Natural Resources and Environment of South China Agricultural University'
-	)
+	),
+	'NEWS' => 3,
 );

@@ -24,12 +24,14 @@ class ArticleModel extends Model
     protected $_auto = array ( 
 		array('update_at',"nowDate",3,'callback'),
 		array('editor','AutoEditor',1,'callback'),
+        array('cover', 'AutoCover',3,'callback'),
+        array('sort','AutoSort',1,'callback'),
     );
 
     protected function AutoEditor ($param)
 	{
     	if(I('post.editor') == ''){
-    		$param = $_SESSION['name'];
+    		$param = $_SESSION['username'];
     	}else{
     		$param = I('post.editor');
     	}
@@ -39,6 +41,28 @@ class ArticleModel extends Model
     protected function nowDate ()
     {
     	return date('Y-m-d H:i:s');
+    }
+
+    protected function AutoCover($param)
+    {
+        if(I('post.cover') == ''){
+            $t = rand(1,2);
+            $param = '/en/Public/Home/Images/article'.$t.'.jpg';
+        }else{
+            $param = I('post.cover');
+        }
+        return $param;
+    }
+
+    protected function AutoSort($param)
+    {
+        if(I('post.sort') == ''){
+            $param = M('articles')->count();
+            $param++;
+        }else{
+            $param = I('post.sort');
+        }
+        return $param;
     }
 }
 
