@@ -32,7 +32,8 @@ class CategoryModel extends Model
     protected function AutoSort($param)
     {
         if(I('post.sort') == ''){
-            $param = M($this->tableName)->count();
+            $param = M($this->tableName)->where('pid='.I('post.pid'))->count();
+            $param++;
         }else{
             $param = I('post.sort');
         }

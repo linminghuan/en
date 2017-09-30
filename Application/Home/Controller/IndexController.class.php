@@ -99,7 +99,7 @@ class IndexController extends Controller
             }
             $map['category_id'] = $id;
             $map['status'] = 1;
-            $data = $article->where($map)->order('sort')->page($p.',10')->select();
+            $data = $article->where($map)->order('sort')->page($p.',6')->select();
             if(count($data) != 0){
                 $count = $article->where($map)->count();
                 if($count == 1){
@@ -107,7 +107,7 @@ class IndexController extends Controller
                     $type = 'detail';
                 }else{
                     $this->assign('listData', $data); 
-                    $Page = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数
+                    $Page = new \Think\Page($count,6);// 实例化分页类 传入总记录数和每页显示的记录数
                     $show = $Page->show();// 分页显示输出
                     $this->assign('page',$show);
                     $type = 'list';
