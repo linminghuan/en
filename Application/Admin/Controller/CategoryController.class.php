@@ -10,6 +10,7 @@
  * （3）修复create方法显示父级栏目名错误；添加edit、update、delete方法（2017/9/15）；
  * （4）subCategory使用新的写法；（2017/9/22）
  * （5）添加返回下级菜单的数据的接口；（2017/9/22）
+ * （6）添加删除栏目同时删除所有子栏目和所有文章；（2017/10/1）
  */
 namespace Admin\Controller;
 
@@ -169,16 +170,23 @@ class CategoryController extends AdminController
 		return;
 		if(isset($id)){
 			$category = M('categories');
-			$res = $category->delete($id);
-			if($res){
-				$this->success('删除成功');
-			}else{
-				if(APP_DEBUG){
-					$this->error($category->getError());
+			$category->startTrans();
+			$res1 = $this->delSubCategory($id);
+			if($res1){
+				$res = $category->delete($id);
+				if($res){
+					$category->commit();
+					$this->success('删除成功');
 				}else{
-					$this->error('500，服务器错误！');
+					$category->rollback();
+					if(APP_DEBUG){
+						$this->error($category->getError());
+					}else{
+						$this->error('500，服务器错误！');
+					}
 				}
 			}
+			
 		}else{
 			$this->error('404，没找到！');
 		}
@@ -201,6 +209,35 @@ class CategoryController extends AdminController
 		}
 		
 
+	}
+
+	//根据pid删除栏目
+	protected function delSubCategory($id)
+	{
+		$category = M('categories');
+		$map['pid'] = $id;
+		$this->delArticle($id);
+		$data = $category->where($map)->select();
+		if($data){
+			foreach ($data as $key => $value) {
+				$res = $this->delSubCategory($value['id']);
+				$this->delArticle($value['id']);
+				$res2 = $category->delete($value['id']);
+			}
+		}
+		return true;
+	}
+
+	//根据category_id删除文章
+	protected function delArticle ($category_id)
+	{
+		$article = D('article');
+		$map['category_id'] = $category_id; 
+		$data = $article->where($map)->select();
+		foreach ($data as $key => $value) {
+			$articleArr[] = $value['id'];
+		}
+		$this->uBatchDel($article, $articleArr);
 	}
 }
 

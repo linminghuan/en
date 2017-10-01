@@ -6,14 +6,14 @@
  * @verson: 1.0
  * @description:  
  * （1）完成基本功能；（2017/9/22）
+ * （2）修改了批量删除方法的写法；（2017/10/1）
  */
 namespace Admin\Controller;
 
 use Think\Controller;
 
-/**
-* 
-*/
+
+
 class AdminController extends Controller
 {
 	public function _initialize() {
@@ -50,17 +50,19 @@ class AdminController extends Controller
 		return $str;
 	}
 
-	protected function uBatchDel($model)
+	protected function uBatchDel($model, $delItems)
 	{
-		$delItems = I('delitems');
-		$delItems = trim($delItems, ',');
-		$delItems = explode(',', $delItems);
-		if($model->db()->getTables() == 'photos'){
-			foreach ($delItems as $id) {
-				$data = $model->where('id', '=', $id)->field('url')->select();
-				$res = $this->delFile($data[0]['url']);
-			}
+		if($delItems == null){
+			$delItems = I('delitems');
+			$delItems = trim($delItems, ',');
+			$delItems = explode(',', $delItems);
 		}
+		// if($model->db()->getTables() == 'photos'){
+		// 	foreach ($delItems as $id) {
+		// 		$data = $model->where('id', '=', $id)->field('url')->select();
+		// 		$res = $this->delFile($data[0]['url']);
+		// 	}
+		// }
 		$model->startTrans();
 		$res = $model->where(array('id'=>array('in',$delItems)))->delete();
 		if($res){
