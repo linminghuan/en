@@ -26,6 +26,7 @@ class ArticleModel extends Model
 		array('editor','AutoEditor',1,'callback'),
         array('cover', 'AutoCover',3,'callback'),
         array('sort','AutoSort',1,'callback'),
+        array('discription','AutoDiscription',1,'callback'),
     );
 
     protected function AutoEditor ($param)
@@ -63,6 +64,20 @@ class ArticleModel extends Model
             $param = I('post.sort');
         }
         return $param;
+    }
+
+    protected function AutoDiscription($param)
+    {
+        $disc = I('post.discription');
+        if($disc != ''){
+            if(strlen($disc) >= 250){
+                $disc = substr($disc,0,250);
+                $param = $disc.'...';
+            }else{
+                $param = $disc.'...';
+            }
+            return $param;
+        }
     }
 }
 
