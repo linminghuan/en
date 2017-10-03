@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<include file="./Application/Admin/View/Layouts/resouce.html" title="编辑Recommend"/>
+	<include file="./Application/Admin/View/Layouts/resouce.html" title="新增首页内容"/>
 	<style type="text/css">
 		body {
 			margin: 0;
@@ -31,34 +31,45 @@
 						<div class="row">
 							<ol class="breadcrumb">
 							    <li><a href="__ROOT__/Admin/Index/index">首页</a></li>
-							    <li><a href="__ROOT__/Admin/Photo/index">Recommend管理</a></li>
-							    <li>编辑Recommend</li>
+							    <li><a href="__ROOT__/Admin/Recommend/index">首页管理</a></li>
+							    <li>新增首页内容</li>
 							</ol>
 						</div>
 						<div class="row">
-							<form class="form-horizontal" name="recommend_form" role="form" method="post" action="__URL__/update/id/{$data.id}"> 
+							<form class="form-horizontal" name="recommend_form" role="form" method="post" action="__URL__/insert"> 
 							<div class="form-group">
 								<label for="name" class="col-sm-2 control-label">名称</label>
 								<div class="col-sm-10">
-								<input type="text" class="form-control" id="name" name="name" placeholder="请输入名称" value="{$data.name}">
+								<input type="text" class="form-control" id="name" name="name" placeholder="请输入名称">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="discription" class="col-sm-2 control-label">描述</label>
 								<div class="col-sm-10">
-								<input type="text" class="form-control" id="discription" name="discription" placeholder="请输入描述" value="{$data.discription}">
+								<input type="text" class="form-control" id="discription" name="discription" placeholder="请输入描述">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="url" class="col-sm-2 control-label">链接</label>
 								<div class="col-sm-10">
-								<input type="text" class="form-control" id="url" name="url" placeholder="请输入链接" value="{$data.url}">
+								<input type="text" class="form-control" id="url" name="url" placeholder="请输入链接">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="category_id" class="col-sm-2 control-label">内容类型</label>
+								<div class=" col-sm-2">
+									<select class="form-control" name="category_id" id="category_id">
+									<option value="">请选择内容类型</option>
+									<foreach name="data" item="vo">
+									    <option value="{$vo.id}">{$vo.name}</option>
+									</foreach>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="sort" class="col-sm-2 control-label">排序</label>
 								<div class="col-sm-10">
-								<input type="number" class="form-control" id="sort" name="sort" placeholder="请输入排序" value="{$data.sort}">
+								<input type="number" class="form-control" id="sort" name="sort" placeholder="请输入排序">
 								</div>
 							</div>
 							<div class="form-group">
@@ -77,10 +88,10 @@
 								<div class="col-sm-10">
 									<div class="row">
 										<div id="clipArea"></div>
-										<input id="imgurl" type="text" name="cover" style="display:none" value="{$data.cover}">
+										<input id="imgurl" type="text" name="cover" style="display:none">
 										<input type="file" id="file">
 										<button class="btn btn-primary" type="button" id="clipBtn">截图</button>
-										<div id="view" style="background:url({$data.cover})"></div>
+										<div id="view"></div>
 									</div>
 								</div>
 							</div>
@@ -100,7 +111,7 @@
 </body>
 </html>
 <script type="text/javascript">
-	InitRadio($("input[name='status']"),"{$data.status}");
+	// InitRadio($("input[name='status']"),"{$data.status}");
 	InitNav($('#left_nav li'),"{$category}");
 	//InitCategory($('#category')[0].options,"{$data.category}");
 	$("#recommend_form").validate({

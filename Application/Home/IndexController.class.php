@@ -22,7 +22,7 @@ class IndexController extends Controller
     	$category = M('categories');
         $setting = M('settings');
     	$photo = M('photos');
-        $homepage = M('homepages');
+        //$recommend = M('recommends');
     	//导航栏
     	$menuData = $this->subCategory();
         $this->assign('menuData', $menuData);
@@ -34,30 +34,17 @@ class IndexController extends Controller
         //TODO做缓存
         $footerData = $setting->where('user_id=1')->select();
         $this->assign('footerData', $footerData[0]);
-        //recommend的数据
+        //
         $map['status'] = 1;
-        $map['name'] = 'Recommend';
-        $tmp = $category->where($map)->select();
-        $recommendData = $homepage->where('category_id='.$tmp[0]['id'])->order('sort')->limit(3)->select();
-        $this->assign('recommendData', $recommendData);
-        //通知新闻的数据
-        $map = array();
-        $map['status'] = 1;
-        $map['name'] = 'News & Events';
-        $temp = $category->where($map)->select();
+        //$recommendData = $recommend->where($map)->select();
+        //$this->assign('recommendData', $recommendData);
+        //通知新闻的数据recommend的数据
+        $temp = $category->where("name='News & Events'")->select();
         $newsData['category_id'] =  $temp[0]['id'];
-        $map = array();
         $map['category_id'] = $temp[0]['id'];
         $map['status'] = 1;
-        $newsData['data'] = $homepage->where($map)->order('sort')->limit(3)->select();
+        $newsData['data'] = $article->where($map)->order('sort')->limit(C('NEWS'))->select();
         $this->assign('newsData', $newsData);
-        //名师推荐
-        $tmp = $category->where("name='Famous'")->select();
-        $map = array();
-        $map['status'] = 1;
-        $map['category_id'] = $tmp[0]['id'];
-        $famousData = $article->where($map)->select();
-        $this->assign('famousData', $famousData);
         $this->display('Index/index');
     }
 

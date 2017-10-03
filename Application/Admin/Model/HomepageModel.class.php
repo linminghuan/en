@@ -1,6 +1,6 @@
 <?php 
 /**
- * recommend的model
+ * homepage的model
  * @author: linminghuan
  * @date: 2017/9/24
  * @verson: 1.0
@@ -11,9 +11,9 @@ namespace Admin\Model;
 
 use Think\Model;
 
-class RecommendModel extends Model
+class HomepageModel extends Model
 {
-	protected $tableName = 'recommends';
+	protected $tableName = 'homepages';
 
 	protected $_validate = array(
 		array('url','require','链接必须！'), 

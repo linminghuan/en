@@ -30,6 +30,7 @@
 							</div>
 							<div class="row" style="width:95%;margin-left:10px;">
 								<table id="category" class="table table-bordered">
+									<caption>网站栏目</caption>
 									<thead>
 										<tr>
 											<th style="width:50px">序号</th>
@@ -46,6 +47,47 @@
 									</tbody>
 								</table>
 							</div>
+							<div class="row">
+								<div class="col-md-1 pull-right">
+									<a href="__ROOT__/Admin/Category/create/pname/homepage" class="btn btn-success">新增</a>
+								</div>
+							</div>
+							<div class="row" style="width:95%;margin-left:10px;">
+								<table id="" class="table table-bordered">
+									<caption>首页栏目</caption>
+									<thead>
+										<tr>
+											<th style="width:50px">序号</th>
+											<th style="width:100%;">名称</th>
+											<th style="width:50px">排序</th>
+											<th style="width:50px">显示</th>
+											<th style="width:120px;text-align:center;">操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<volist name="dataCategory" id="category">
+											<tr>
+												<td>{$category.id}</td>
+
+												<td>{$category.name}</td>
+												<td>{$category.sort}</td>
+												<td>
+													<eq name="category.status" value="1">
+													是
+													<else/>
+													否
+													</eq>
+												</td>
+												<td>
+													<a href="__URL__/edit/pid/{$category.pid}/id/{$category.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+													<a href="__URL__/delete/pid/{$category.pid}/id/{$category.id}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
+												</td>
+											</tr>
+										</volist>
+									</tbody>
+								</table>
+							</div>
+						</div>
 						</div>
 					</div>
 				</div>

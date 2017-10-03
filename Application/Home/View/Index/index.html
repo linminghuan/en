@@ -23,6 +23,11 @@
 			font-family:'微软雅黑';
 			margin:0 auto; 
 		}
+		/* 名师推荐 */
+		#famousmiddle .famouscontent{
+			position: absolute;
+			display: none;
+		}
 		/* 手机端的兼容 */
 		@media (max-width: 990px){
 		    
@@ -50,50 +55,10 @@
 							<p style="color: #fff;font-size:2em;display:block;text-align:center;margin-top:3.5%;">我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试我是测试</p>
 							<a class="btn" href="" style="display:inline-block;border:4px solid #0A6C9D;color:#fff;margin:0 75%;">Read More</a>
 						</div>
-					</li>
-					<li style="background:url(/en/Public/Upload/Image/20170916/1505546509244018.jpg) 50% 0 no-repeat;">
-						<div class="sliderMask" style="width:100%;height:300px;background:#3E3A3A;filter:alpha(opacity=60);-moz-opacity:0.6;opacity: 0.6;position:absolute;bottom:-300px;">
-							<p style="color: #fff;font-size:2em;display:block;text-align:center;margin-top:3.5%;">我bushiijepwjpofjigteijwpeokofw weufiow</p>
-							<a class="btn" href="" style="display:inline-block;border:4px solid #0A6C9D;color:#fff;margin:0 75%;">Read More</a>
-						</div>
 					</li> -->
 				</ul>
 			</div>
 		</div>
-
-		<!-- 关于我们 -->
-		<!-- 
-		<div class="row" style="margin-top:100px;">
-			<div style="width:100%;min-height:600px;margin:0 auto;">
-				<div class="row" style="position:relative;">
-					<h1 style="text-align:center;color:#12B266;font-size:4em;">About Us</h1>
-					<img src="/Public/Home/Images/右引号.png" style="width:150px;height:auto;float:right;">
-				</div>
-
-				<div class="row" style="">
-					<div class="col-md-1"></div>
-					<div class="col-md-4 col-sm-4">
-						<img src="/Public/Home/Images/资源环境学院院楼3.jpg" alt="资源环境学院院楼" style="width:100%;height:auto;">
-					</div>
-					<div class="col-md-6 col-sm-6" style="font-size:1.2em;">
-						<p style="width:100%;margin:0 auto;color:#666464;">
-							Welcome to South China Agricultural University!
-
-							For a hundred years, South China Agricultural University has developed into a multi-disciplinary, comprehensive university comprised of the disciplines of agriculture, engineering, liberal arts, basic sciences, economics, management, law, education, history and philosophy. It has always been contributing itself to the development of agriculture and society.
-
-							SCAU has set two central tasks: teaching and research. As an advanced multi-disciplinary agricultural institute with distinctive tropical and subtropical characteristics, SCAU intends to provide its students with an all-round education that contributes to their future professional success. At SCAU, graduate programs and post-graduate programs are developing concurrently. It has a faculty that is capable of top-level and large-scale research. SCAU has been conducting agricultural research on basic theory as well as applied projects. It will bravely face the future challenges.
-						</p>
-					</div>
-					<div class="col-md-1">
-					</div>
-				</div>
-				
-				<div class="row" style="position:relative;">
-					<img src="/Public/Home/Images/左引号.png" style="width:150px;height:auto;">
-					<a href="" class="btn btn-default" style="margin-left:70%;border:4px solid #0A6C9D;color:#0A6C9D;margin:0 75%;">Read Details</a>
-				</div>
-			</div>
-		</div> -->
 
 		<!-- 学院新闻 -->
 		<div class="row" style="margin-top:100px;width:100%;">
@@ -104,17 +69,17 @@
 						foreach($newsData[data] as $key => $value){
 							echo "<div class='col-sm-6 col-md-4'>";
 							echo "<div class='thumbnail'>";
-							echo "<img src='/en/Public/Home/Images/bg.jpg'
+							echo "<img src='".$value['cover']."'
 					                 alt='文章的封面'>";
 					        echo "<div class='caption'>";
-					        echo "<h2>".$value['title']."</h2>";
+					        echo "<h2>".$value['name']."</h2>";
 					        echo "<span>date:".$value['update_at']."</span>";
 					        echo "<p>".$value['discription']."</p>";
-					        echo "<a href='__URL__/detail/category_id/".$value['category_id']."/id/".$value['id']."' class='btn btn-primary' role='button'>Read Details</a>";
+					        echo "<a href='".$value['url']."' class='btn btn-primary' role='button'>Read More</a>";
 					        echo "</div></div></div>";
 						}
 					?>
-				    <div class="col-sm-6 col-md-4">
+				    <!-- <div class="col-sm-6 col-md-4">
 				        <div class="thumbnail">
 				            <img src="/en/Public/Home/Images/bg.jpg"
 				                 alt="通用的占位符缩略图">
@@ -127,38 +92,52 @@
 			                    </a>
 				            </div>
 				        </div>
-				    </div>
-				    <div class="col-sm-6 col-md-4">
-				        <div class="thumbnail">
-				            <img src="/en/Public/Home/Images/bg.jpg"
-				                 alt="通用的占位符缩略图">
-				            <div class="caption">
-				                <h2>test1</h2>
-				                <span>date:2017-9-18</span>
-				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
-				                <a href="#" class="btn btn-primary " role="button">
-			                        Read Details
-			                    </a>
-				            </div>
-				        </div>
-				    </div>
-				    <div class="col-sm-6 col-md-4">
-				        <div class="thumbnail">
-				            <img src="/en/Public/Home/Images/bg.jpg"
-				                 alt="通用的占位符缩略图">
-				            <div class="caption">
-				                <h2>test1</h2>
-				                <span>date:2017-9-18</span>
-				                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus provident quae maxime consequuntur atque.</p>
-				                <a href="#" class="btn btn-primary " role="button">
-			                        Read Details
-			                    </a>
-				            </div>
-				        </div>
-				    </div>
+				    </div> -->
 				</div>
-				<div class="row">
+				<!-- <div class="row">
 					<a href="__URL__/sList/id/{$newsData.category_id}" class="btn btn-default" style="margin-top:40px;margin-left:83%;border: 3px solid #0A6C9D;color:#0A6C9D;">Read More</a>
+				</div> -->
+			</div>
+		</div>
+
+		<!-- 名师展示 -->
+		<div class="row" style="margin-top:100px;min-height:550px;">
+			<div class="row" style="width:80%;margin:0 auto;">
+				<div id="famousleft" class="col-sm-1" style="height:550px;text-align:center;" data-anchor="3">
+					<i class="fa fa-chevron-left fa-5x" style="line-height:500px;"></i>
+				</div>
+				<div id="famousmiddle" class="col-sm-10" style="background:;height:550px;position:relative;" data-len="<?php echo count($famousData); ?>" data-anchor='1'>
+					<div class="" style="width:100%;height:550px;color:#555353">
+						<?php 
+							foreach($famousData as $key => $value){
+								echo "<div style='width: 100%;' class='famouscontent row' id='f-".++$key."' data-anchor='".$key."'>";
+								echo "<div style='width:300px;height:300px;margin:0 auto;border-radius:50%;overflow:hidden;'>";
+								echo "<img src='".$value['cover']."' style='width:100%;height:100%;'>";
+								echo "</div>";
+								echo "<div>";
+								echo "<h2 style='text-align:center;'>".$value['title']."</h2>";
+								echo "</div><div style='width:100%;font-size:1.5em;margin-top:36px;'>";
+								echo "<h4 style='width:60%;display:block;margin:0 auto;text-align: center;'>".html_entity_decode($value['content'])."</h4>";
+								echo "</div></div>";
+							}
+						?>
+						<div class="famouscontent" id="f-3" data-anchor="3">
+							<div style="width:300px;height:300px;margin:0 auto;border-radius:50%;overflow:hidden;">
+								<img src="/en/Public/Home/Images/bg.jpg" style="width:100%;height:100%;">
+							</div>
+							<div>
+								<h2 style="text-align:center;">Professor Tiansheng HONG3</h2>
+							</div>
+							<div style="font-size:1.5em;margin-top:36px;">
+								<p style="width:60%;display:block;margin:0 auto">
+									National University Outstanding Teacher,National Advanced Individual of Teacher's Virtue,National Top Ten Agricultural Machinery Teacher
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="famousright" class="col-sm-1" style="height:550px;text-align:center;" data-anchor="2">
+					<i class="fa fa-chevron-right fa-5x" style="line-height:500px;"></i>
 				</div>
 			</div>
 		</div>
@@ -239,7 +218,65 @@
 				height: '0px',
 			},550,'swing');
 		});
+		//名师展示
+		$('#f-1').css('display', 'block');
+		//上一页
+		$('#famousleft').click(function(event) {
+			prevPage(this);
+		});
+		//下一页
+		$('#famousright').click(function(event) {
+			nextPage(this);
+		});
+		//movePage();
 	});
+	function movePage(argument) {
+		var time = setInterval(function (){
+			nextPage($('#famousright'));
+		},3000);
+	}
+	function nextPage(e)
+	{
+		var len = $('#famousmiddle').attr('data-len');
+		var anchor = $(e).attr('data-anchor');
+		var manchor = $('#famousmiddle').attr('data-anchor');
+		$('#f-'+manchor).css('display', 'none');
+		$('#f-'+anchor).css('display', 'block');
+		manchor = anchor;
+		if(anchor == len){
+			anchor = 1;
+		}else{
+			anchor++;
+		}
+		$(e).attr('data-anchor', anchor);
+		$('#famousmiddle').attr('data-anchor', manchor);
+		if(manchor == len){
+			$('#famousright').attr('data-anchor', 1);
+		}else{
+			$('#famousright').attr('data-anchor', ++manchor);
+		}
+	}
+	function prevPage(e)
+	{
+		var len = $('#famousmiddle').attr('data-len');
+		var anchor = $(e).attr('data-anchor');
+		var manchor = $('#famousmiddle').attr('data-anchor');
+		$('#f-'+manchor).css('display', 'none');
+		$('#f-'+anchor).css('display', 'block');
+		manchor = anchor;
+		if(anchor == 1){
+			anchor = len;
+		}else{
+			anchor--;
+		}
+		$(e).attr('data-anchor', anchor);
+		$('#famousmiddle').attr('data-anchor', manchor);
+		if(manchor == len){
+			$('#famousright').attr('data-anchor', 1);
+		}else{
+			$('#famousright').attr('data-anchor', ++manchor);
+		}
+	}
 	//高德地图
 	var map = new AMap.Map('container',{
 	    zoom: 18,

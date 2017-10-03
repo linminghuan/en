@@ -11,6 +11,7 @@
  * （4）subCategory使用新的写法；（2017/9/22）
  * （5）添加返回下级菜单的数据的接口；（2017/9/22）
  * （6）添加删除栏目同时删除所有子栏目和所有文章；（2017/10/1）
+ * （7）添加index返回首页栏目；（2017/10/2）
  */
 namespace Admin\Controller;
 
@@ -22,12 +23,32 @@ class CategoryController extends AdminController
 {
 	public function create($pid = null)
 	{
+		// $category = M('categories');
+		// if($pid){
+		// 	$map['id'] = $pid;
+		// 	$data = $category->where($map)->field('id,name')->select();
+		// }else{
+		// 	$data = $category->where("name='menu'")->field('id,name')->select();
+		// }
+		// $pid = $data[0]['id'];
+		// $pname = $data[0]['name'];
+		// $this->assign('category', 'category');
+		// $this->assign('pid', $pid);
+		// $this->assign('pname', $pname);
+		// $this->display('Category/create');
+
+
 		$category = M('categories');
 		if($pid){
 			$map['id'] = $pid;
 			$data = $category->where($map)->field('id,name')->select();
 		}else{
-			$data = $category->where("name='menu'")->field('id,name')->select();
+			if($_GET['pname']){
+				$data = $category->where("name='homepage'")->field('id,name')->select();
+			}else{
+				$data = $category->where("name='menu'")->field('id,name')->select();
+			}
+			
 		}
 		$pid = $data[0]['id'];
 		$pname = $data[0]['name'];
@@ -66,6 +87,10 @@ class CategoryController extends AdminController
 		$data = json_encode($data);
 		$this->assign('category', 'category');
 		$this->assign('data', $data);
+		//首页栏目
+		$temp = $category->where("name='homepage'")->select();
+		$dataCategory = $category->where('pid='.$temp[0]['id'])->select();
+		$this->assign('dataCategory', $dataCategory);
 		$this->display('Category/index');
 
 	}
